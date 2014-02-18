@@ -7,6 +7,8 @@ the [*Ruby on Rails Tutorial*](http://railstutorial.org/)
 by [Michael Hartl](http://michaelhartl.com/).
 ####
 
+Heroku URL: http://murmuring-ridge-6792.herokuapp.com
+
 Slideshow App
 Requirements
 Tier 1
