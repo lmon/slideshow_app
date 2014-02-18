@@ -1,4 +1,12 @@
 
+####
+Portions of this app were created as part of 
+# Ruby on Rails Tutorial: sample application
+This is the sample application for
+the [*Ruby on Rails Tutorial*](http://railstutorial.org/)
+by [Michael Hartl](http://michaelhartl.com/).
+####
+
 Slideshow App
 Requirements
 Tier 1
@@ -30,7 +38,7 @@ As the system
 	I want to limit use of the site per hour/per user
 	I want to limit the number of images/server space
 	I want to use HTTPS for login/logout/register
-
+	I want the site to be responsive / mobile ready 
 Components
 	Register
 	Authentication
