@@ -5,38 +5,50 @@ describe "Static pages" do
 let(:base_title) { 'Slideshow App | ' }
 
  subject { page }
+
+  shared_examples_for "all static pages" do
+    it { should have_selector('h1', text: heading) }
+    it { should have_title(page_title) }
+  end
+
   describe "Home page" do
     before { visit root_path }
     it { should have_content('App Home') }
-    it { should have_title("#{base_title} Home") }
-    it { should have_content('My Slideshow App') }
+
+    let(:heading)    { 'My Slideshow App' }
+    let(:page_title) { "#{base_title} Home" }
+
+    it_should_behave_like "all static pages"
+
+    #it { should have_title("#{base_title} Home") }
+    #it { should have_content('My Slideshow App') }
   end
 
   describe "Help page" do
     before { visit help_path }
+    let(:heading)    { 'Help' }
+    let(:page_title) { "#{base_title} Help" }
+    it_should_behave_like "all static pages"
+
     it { should have_content('Help Page') }
-    
-     it { should have_title("#{base_title} Help") }
   end
 
   describe "About page" do
     before { visit about_path }
-    it "should have the content 'About Page'" do
-      # page specific content
+       # page specific content
       #expect(page).to have_content('About Page')
       # tag-specific content
-      expect(page).should have_selector("h1") do |content|
-    	expect(content).to have_content("About Page Me!") 
-  	  end
-    end        
-  	it { should have_title("#{base_title}About") }
+      it { should have_selector("h1", text:  "About Page Me!") } 
+     it { should have_title("#{base_title} About") }
 	
    end
    describe "Contact page" do
       before { visit contact_path }
-      it { should have_content('Contact Page') }
-      it { should have_title("#{base_title} Contact") }
-      it { should have_content('Simple static useless') }
+      let(:heading)    { 'Contact Page Me!' }
+      let(:page_title) { "#{base_title} Contact" }
+      it_should_behave_like "all static pages"
+    
+    it { should have_content('Contact Page') }
   end
 
   describe "Unnamed page" do
@@ -44,4 +56,19 @@ let(:base_title) { 'Slideshow App | ' }
     it { should have_title("Slideshow App") }    
   end
   
+# link click testing
+ it "should have the right links on the layout" do
+    visit root_path
+    click_link "About"
+    expect(page).to have_title("#{base_title} About")
+    click_link "Help"
+    #expect(page).to # fill in
+    click_link "Contact"
+    #expect(page).to # fill in
+    click_link "Home"
+    click_link "Sign up now!"
+    #expect(page).to # fill in
+end
+
+
 end
