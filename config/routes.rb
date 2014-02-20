@@ -5,10 +5,13 @@ Slideshow::Application.routes.draw do
   match '/help',    to: 'static_pages#help',    via: 'get'
   match '/about',   to: 'static_pages#about',   via: 'get'
   match '/contact', to: 'static_pages#contact', via: 'get'
-  match '/',        to: 'static_pages#home',   via: 'get'
-  match '/noname',  to: 'static_pages#noname', via: 'get'
+  match '/',        to: 'static_pages#home',    via: 'get'
+  match '/noname',  to: 'static_pages#noname',  via: 'get'
   # users
-  match '/signup',    to: 'users#new',    via: 'get'
+  match '/signup',  to: 'users#new',            via: 'get'
+  match '/signin',  to: 'sessions#new',         via: 'get'
+  match '/signout', to: 'sessions#destroy',     via: 'delete'
+
   # not this
   # get "static_pages/home"
  
@@ -20,6 +23,7 @@ Slideshow::Application.routes.draw do
   root to: "static_pages#home"
   
   resources :users
+  resources :sessions, only: [:new, :create, :destroy]
   
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

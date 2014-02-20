@@ -8,8 +8,12 @@
      
     sample application.
   </h2>
-
+<% if signed_in? %>
+ Content only signed in people can see
+<% else %>
   <%= link_to "Sign up now!", signup_path, class: "btn btn-large btn-primary" %>
+<% end %>
+
 </div>
 
-<%= link_to image_tag("rails.png", alt: "Rails"), 'http://rubyonrails.org/' %>
+<%= image_tag("rails.png", alt: "Rails")  %>

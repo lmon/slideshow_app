@@ -10,7 +10,9 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)    # Not the final implementation!
     if @user.save
-    	flash[:success] = "Welcome to the Inner Circle"
+      sign_in @user # auto sign in
+      link = ""#view_context.link_to( "Sign up now!", signup_path )    
+    	flash[:success] = " Welcome to the inner circle. #{link} ".html_safe
       redirect_to @user
     else
       render 'new'
