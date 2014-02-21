@@ -12,6 +12,9 @@ group :development, :test do
 end
 ##
 
+# for monitoring. Not sure if this should go here or inside production:
+gem 'newrelic_rpm'
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
 

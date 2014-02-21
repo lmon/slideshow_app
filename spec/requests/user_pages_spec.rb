@@ -18,6 +18,31 @@ describe "User Pages" do
   	it { should have_title(user.name) }
 	end
 
+  describe "index page" do
+    
+    describe "with a logged in user" do
+      before { visit signin_path }
+
+      let(:user) {FactoryGirl.create(:user) }
+        before do
+          fill_in "Email",        with: user.email.upcase
+          fill_in "Password",     with: user.password
+          click_button 'Sign in' 
+        end
+
+      before { visit users_path }
+  
+      #let(:user) { User.find_by(email: 'user@example.com') }
+      it { should have_selector('div table thead tr th', text: 'Name') }
+    end
+    describe "with a logged out user" do
+      before { visit users_path }
+      it { should have_selector('div', text: 'Access Denied') }
+    end
+
+  end
+
+
 ##########Signup
 describe "signup" do
 
