@@ -2,23 +2,20 @@
 <% provide(:title, 'Listing') %>
  <h1>Listing </h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Email</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-</table>
+<div class="container">
+       <div class="span2">Name</div>
+      <div  class="span2">Email</div>
+</div>
 
+  
 <%= will_paginate %>
 
+<div class="container">
   <ul class="users">
   <%= render @users %>
   </ul>
+</div>
+
 
 <%= will_paginate %>
  

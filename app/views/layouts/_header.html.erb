@@ -1,6 +1,6 @@
- <header class="navbar navbar-fixed-top navbar-inverse">
+ <nav class="navbar navbar-fixed-top navbar-inverse">
   <div class="navbar-inner">
-    <div class="container">
+    <div class="container-fluid">
       <%= link_to "slideshow", root_path, id: "logo" %>
       <nav>
         <ul class="nav pull-right">
@@ -13,7 +13,7 @@
                 Account <b class="caret"></b>
               </a>
               <ul class="dropdown-menu">
-                <li> Logged in as '<%="#{current_user.name}" %>' </li>
+                <li class="loggedin"> Logged in as '<%="#{current_user.name}" %>' </li>
                 <li><%= link_to "Profile", current_user %></li>
                 <li><%= link_to "Settings", edit_user_path(current_user) %></li>
                 <li class="divider"></li>
@@ -29,4 +29,4 @@
       </nav>
     </div>
   </div>
-</header>
+</nav>

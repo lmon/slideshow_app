@@ -45,9 +45,11 @@ describe "User Pages" do
 
     describe "delete links" do
       # normal logins shouldnt see delete link
-      it { should_not have_link('delete') }
+      it { should_not have_link('Destroy') }
 
       describe "as an admin user" do
+        before { click_link "Sign out" }
+
         # login as admin
         let(:admin) { FactoryGirl.create(:admin) }
         before do
@@ -55,14 +57,14 @@ describe "User Pages" do
           visit users_path
         end
 
-        it { should have_link('delete', href: user_path(User.first)) }
+        it { should have_link('Destroy') }
         it "should be able to delete another user" do
           expect do
-            click_link('delete', match: :first)
+            click_link('Destroy', match: :first)
           end.to change(User, :count).by(-1)
         end
         # it should not have a link to delete self
-        it { should_not have_link('delete', href: user_path(admin)) }
+        it { should_not have_link('Destroy', href: user_path(admin)) }
       end
     end
 
@@ -93,7 +95,6 @@ describe "User Pages" do
       it { should have_selector('div', text: 'Sign in') }
     end
 
-     
   end
 
 # edit a user 
@@ -133,18 +134,21 @@ describe "User Pages" do
           specify { expect(user.reload.email).to eq new_email }
       end
 
+      describe "forbidden attributes" do
+      let(:params) do
+        { user: { admin: true, password: user.password,
+                  password_confirmation: user.password } }
+      end
+      before do
+        sign_in user, no_capybara: true
+        patch user_path(user), params
+      end
+      specify { expect(user.reload).not_to be_admin }
+    end
+
   end
 
-  describe "delete user page" do
-    # verify its an admin
-    # go to index
-    # click correct destroy link
-    # click confirm
-    # verify datamase has one fewer items.
-    # verify id of user you clicked on is no longer in there
-    pending 
-
-  end
+  
 
 ########## Signup
 describe "signup" do
@@ -164,7 +168,7 @@ describe "signup" do
         fill_in "Name",         with: "Example User"
         fill_in "Email",        with: "user@example.com"
         fill_in "Password",     with: "foobar"
-        fill_in "Confirmation", with: "foobar"
+        fill_in "Confirm Password", with: "foobar"
       end
 
       it "should create a user" do

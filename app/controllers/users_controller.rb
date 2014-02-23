@@ -2,6 +2,8 @@ class UsersController < ApplicationController
   # these are each auto-run before the specified methods
   # allows only signed in users to access these functions
   before_action :signed_in_user, only: [:edit, :update, :index]
+  before_action :signed_in_user_no_access, only: [:new, :create]
+  
   # allows users to access these functions only for them elves
   before_action :correct_user,   only: [:edit, :update]
   # allows only admin users to access these functions
@@ -48,12 +50,15 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    #if User.find(params[:id]).id == current_user.id 
-    # redirect_to root_url
-    #end
-    User.find(params[:id]).destroy()
+    # prevents user from deleting self
+    if User.find(params[:id]).id == current_user.id 
+      redirect_to root_url
+    else
+      User.find(params[:id]).destroy()
       flash[:success] = "User Removed"
       redirect_to users_url
+   end
+    
   end
 
 
@@ -73,6 +78,12 @@ class UsersController < ApplicationController
     def correct_user
       @user = User.find(params[:id])
       redirect_to(root_url) unless current_user?(@user)
+    end
+
+    def signed_in_user_no_access
+      store_location
+      redirect_to root_url if current_user
+    
     end
 
     def admin_user
