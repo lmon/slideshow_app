@@ -1,0 +1,11 @@
+
+My Simple static useless form "Form"!
+<%= form_tag("mailto:admin@thisdomain.com", method: "get") do |f| %>
+
+<%= text_area_tag(:message, "", size: "24x6") %>
+
+<%= submit_tag "Submit", class: "btn btn-large btn-primary" %>
+
+    <% end %>
+
+

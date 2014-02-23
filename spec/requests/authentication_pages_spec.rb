@@ -46,10 +46,18 @@ describe "Authentication" do
 		    end
  	  	end
 
-		# so far sessions are 20 years long. ask is to make them 1 day
-		describe "session is of reasonable length" do
-	  	 pending
-	  	end
+ 	  	describe "signed in user shouldnt see sign-in form" do 	  		
+ 	  		let(:user) {FactoryGirl.create(:user) }
+	  		before do
+	    		fill_in "Email",        with: user.email.upcase
+	    		fill_in "Password",     with: user.password
+	  			click_button 'Sign in' 
+		  	end
+ 	  		it { should_not have_selector('div', text: 'Sign in') }
+	        it { should have_link('Sign out',    href: signout_path) }
+	        it { should_not have_link('Sign in', href: signin_path) }
+ 	  	end
+ 
 		
 	end
 
@@ -92,6 +100,34 @@ describe "Authentication" do
 	      end
 	    end
 
+	    #prevents non admins from accessing the destroy action
+	    describe "as non-admin user" do
+	      let(:user) { FactoryGirl.create(:user) }
+	      let(:non_admin) { FactoryGirl.create(:user) }
+
+	      before { sign_in non_admin, no_capybara: true }
+
+	      describe "submitting a DELETE request to the Users#destroy action" do
+	        before { delete user_path(user) }
+	        specify { expect(response).to redirect_to(root_url) }
+	      end
+	    end
+
+	    #prevents  admins from deleting self 
+	    describe "as admin user" do
+	      let(:admin) { FactoryGirl.create(:admin) }
+	      #let(:non_admin) { FactoryGirl.create(:user) }
+	      
+	      before { sign_in admin, no_capybara: true }
+
+	      describe "submitting a DELETE request to the Self Users#destroy action" do
+	        before { delete user_path(admin) }
+	        specify { expect(response).to redirect_to(root_url) }
+	      end
+	    end
+
+
+	    # prevents users from accessing other user's edit and update actions
 	   describe "as wrong user" do
 	      let(:user) { FactoryGirl.create(:user) }
 	      let(:wrong_user) { FactoryGirl.create(:user, email: "wrong@example.com") }

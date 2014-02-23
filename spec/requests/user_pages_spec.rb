@@ -20,7 +20,54 @@ describe "User Pages" do
 
   # list users 
   describe "index" do
+    let(:user) { FactoryGirl.create(:user) }
+    before(:each) do
+      sign_in user
+      visit users_path
+    end
+
+    it { should have_title('Listing') }
+    it { should have_content('Listing') }
+
+    describe "pagination" do
+
+      before(:all) { 30.times { FactoryGirl.create(:user) } }
+      after(:all)  { User.delete_all }
+
+      it { should have_selector('div.pagination') }
+
+      it "should list each user" do
+        User.paginate(page: 1).each do |user|
+          expect(page).to have_selector('li', text: user.name)
+        end
+      end
+    end
+
+    describe "delete links" do
+      # normal logins shouldnt see delete link
+      it { should_not have_link('delete') }
+
+      describe "as an admin user" do
+        # login as admin
+        let(:admin) { FactoryGirl.create(:admin) }
+        before do
+          sign_in admin
+          visit users_path
+        end
+
+        it { should have_link('delete', href: user_path(User.first)) }
+        it "should be able to delete another user" do
+          expect do
+            click_link('delete', match: :first)
+          end.to change(User, :count).by(-1)
+        end
+        # it should not have a link to delete self
+        it { should_not have_link('delete', href: user_path(admin)) }
+      end
+    end
+
     # create some temp users
+=begin
     describe "with a logged in user" do
       before do
         sign_in FactoryGirl.create(:user)
@@ -38,31 +85,15 @@ describe "User Pages" do
         end
       end
     end
-    #describe "with a logged in user" do
-    #  before { visit signin_path }
-
-     # let(:user) {FactoryGirl.create(:user) }
-      #  before do
-       #   fill_in "Email",        with: user.email.upcase
-        #  fill_in "Password",     with: user.password
-         # click_button 'Sign in' 
-        #end
-      #before { visit users_path }
-  
-      #it { should have_selector('div table thead tr th', text: 'Name') }
-    #end
+=end     
     
     describe "with a logged out user" do
+       before { click_link "Sign out" }
       before { visit users_path }
       it { should have_selector('div', text: 'Sign in') }
     end
 
-    describe "visiting the index listing page only as Admin-type" do
-      pending
-    end
-    describe "visiting the index listing page only as NON Admin-type" do
-      pending
-    end
+     
   end
 
 # edit a user 
@@ -105,7 +136,14 @@ describe "User Pages" do
   end
 
   describe "delete user page" do
-    pending
+    # verify its an admin
+    # go to index
+    # click correct destroy link
+    # click confirm
+    # verify datamase has one fewer items.
+    # verify id of user you clicked on is no longer in there
+    pending 
+
   end
 
 ########## Signup

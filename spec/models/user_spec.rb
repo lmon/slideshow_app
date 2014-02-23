@@ -17,8 +17,20 @@ describe User do
   # this function provided by the has_valid_password config 
   it { should respond_to(:authenticate) }
 
+  # allow for admin type users
+  it { should respond_to(:admin) }
 
   it { should be_valid }
+  it { should_not be_admin }
+
+  describe "with admin attribute set to 'true'" do
+    before do
+      @user.save!
+      @user.toggle!(:admin)
+    end
+
+    it { should be_admin }
+  end
 
   describe "with a password that's too short" do
     before { @user.password = @user.password_confirmation = "a" * 5 }
@@ -40,7 +52,6 @@ describe User do
       specify { expect(user_for_invalid_password).to be_false }
     end
   end
-
 
   describe "when name is not present" do
     before { @user.name = " " }

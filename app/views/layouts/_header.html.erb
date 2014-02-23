@@ -13,6 +13,7 @@
                 Account <b class="caret"></b>
               </a>
               <ul class="dropdown-menu">
+                <li> Logged in as '<%="#{current_user.name}" %>' </li>
                 <li><%= link_to "Profile", current_user %></li>
                 <li><%= link_to "Settings", edit_user_path(current_user) %></li>
                 <li class="divider"></li>
