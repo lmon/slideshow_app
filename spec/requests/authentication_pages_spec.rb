@@ -99,13 +99,7 @@ describe "Authentication" do
 			describe "visiting the index listing page" do
 	          before { visit users_path }
 	          it { should have_title('Sign in') }
-	        end
-	        
-	        describe "visiting the new page" do
-	          before { visit signin_path }
-	          specify { expect(response).to redirect_to(root_url) }
-	        end
-	        
+	        end 
 	      end
 	    end
 
@@ -120,12 +114,20 @@ describe "Authentication" do
 	        before { delete user_path(user) }
 	        specify { expect(response).to redirect_to(root_url) }
 	      end
+
+		  # the functionality is correct, but I cant get the test to passs.
+		  before { sign_in non_admin, no_capybara: true }
+	      describe "visiting the 'new' page" do
+	          before { visit signin_path }
+	          it { should_not have_content('Recover Username/Password') }
+	          specify { expect(response).to redirect_to(root_url) }
+	        end
+
 	    end
 
 	    #prevents  admins from deleting self 
 	    describe "as admin user" do
 	      let(:admin) { FactoryGirl.create(:admin) }
-	      #let(:non_admin) { FactoryGirl.create(:user) }
 	      
 	      before { sign_in admin, no_capybara: true }
 

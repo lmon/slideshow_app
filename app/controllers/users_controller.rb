@@ -14,6 +14,7 @@ class UsersController < ApplicationController
     # i assume this can only be used if the display is paginated?
     @users = User.paginate(page: params[:page])
   end
+  
   def new
   	@user = User.new
   end
@@ -83,7 +84,6 @@ class UsersController < ApplicationController
     def signed_in_user_no_access
       store_location
       redirect_to root_url if current_user
-    
     end
 
     def admin_user

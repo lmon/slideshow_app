@@ -1,4 +1,5 @@
 class SessionsController < ApplicationController
+ before_action :signed_in_user_no_access, only: [:new]
 
 	def new
 		#uses default view path
@@ -16,6 +17,11 @@ class SessionsController < ApplicationController
 		  	render 'new'
 	  	end
    	end
+
+    def signed_in_user_no_access
+      store_location
+      redirect_to root_url if current_user
+    end
 
   	def destroy
   		sign_out
