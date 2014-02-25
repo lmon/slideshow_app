@@ -1,0 +1,16 @@
+<% provide(:title, "Edit contact") %>
+<h1>Update your profile</h1>
+
+<div class="row">
+  <div class="span6 offset3">
+    <%= form_for(@contact) do |f| %>
+       
+        <%= render 'shared/error_messages', thing: @contact %>
+		<%=render 'contact_form', f:f %>
+
+      <%= f.submit "Update", class: "btn btn-large btn-primary" %>
+    <% end %>
+
+    
+  </div>
+</div>

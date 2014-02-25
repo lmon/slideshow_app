@@ -1,0 +1,21 @@
+<% provide(:title, 'Contact Us') %>
+    <h1>Contact Us</h1>
+    <p>
+      Use this to contact us
+    </p>
+ 
+ <div class="row">
+  <div class="span6 offset3">
+
+  <%= form_for(@contact) do |f| %> 
+
+  <%= render 'shared/error_messages', thing: @contact %>
+
+    <%= render 'contact_form', f:f %> 
+ 
+      <%= f.submit "Submit", class: "btn btn-large btn-primary" %>
+    <% end %>
+
+
+  </div>
+</div>

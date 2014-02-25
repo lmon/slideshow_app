@@ -1,0 +1,8 @@
+<li>
+  <div class="span2"><%= link_to contact.name, contact %></div>
+  <div class="span3"><%= contact.email %></div>
+         
+  <div class="span1"><%= link_to 'Edit', edit_contact_path(contact) , class: "btn btn-small btn-secondaary"%></div>
+       
+    <div class="span1"><%= link_to 'Destroy', contact, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-small btn-secondaary" %></div>
+</li>

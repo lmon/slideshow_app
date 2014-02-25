@@ -1,0 +1,22 @@
+ 
+<% provide(:title, 'List of Contacts') %>
+ <h1>List of Contacts </h1>
+
+<div class="container">
+       <div class="span2">Name</div>
+      <div  class="span2">Email</div>
+      <div  class="span2">Message</div>
+</div>
+
+  
+<%= will_paginate %>
+
+<div class="container">
+  <ul class="contactmessages">
+  <%= render @contacts %>
+  </ul>
+</div>
+
+
+<%= will_paginate %>
+ 
