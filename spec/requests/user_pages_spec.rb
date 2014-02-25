@@ -68,26 +68,6 @@ describe "User Pages" do
       end
     end
 
-    # create some temp users
-=begin
-    describe "with a logged in user" do
-      before do
-        sign_in FactoryGirl.create(:user)
-        FactoryGirl.create(:user, name: "Bob", email: "bob@example.com")
-        FactoryGirl.create(:user, name: "Ben", email: "ben@example.com")
-        visit users_path
-      end
-      
-      it { should have_selector('div table thead tr th', text: 'Name') }
-      it { should have_content('Listing') }
-
-      it "should list each user" do
-        User.all.each do |user|
-          expect(page).to have_selector('li', text: user.name)
-        end
-      end
-    end
-=end     
     
     describe "with a logged out user" do
        before { click_link "Sign out" }
@@ -147,8 +127,6 @@ describe "User Pages" do
     end
 
   end
-
-  
 
 ########## Signup
 describe "signup" do
