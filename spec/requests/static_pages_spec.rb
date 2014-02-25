@@ -42,14 +42,7 @@ let(:base_title) { 'Slideshow App | ' }
      it { should have_title("#{base_title} About") }
 	
    end
-   describe "Contact page" do
-      before { visit contact_path }
-      let(:heading)    { 'Contact Page Me!' }
-      let(:page_title) { "#{base_title} Contact" }
-      it_should_behave_like "all static pages"
     
-    it { should have_content('Contact Page') }
-  end
 
   describe "Unnamed page" do
     before { visit noname_path }

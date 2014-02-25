@@ -1,4 +1,5 @@
 Slideshow::Application.routes.draw do
+  get "galleries/new"
   #get "contacts/new"
   #get "users/new"
   # use this

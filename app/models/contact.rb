@@ -11,7 +11,7 @@ class Contact < ActiveRecord::Base
 	validates :email, length: { in: 6..64 }
 
 	validates :message, presence: true
-	validates :message, length: { in: 0..255 }
+	validates :message, length: { in: 0..512 }
 
 
 end

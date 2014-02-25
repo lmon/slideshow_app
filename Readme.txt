@@ -13,9 +13,9 @@ Slideshow App
 Requirements
 Tier 1
 As a user 
-	I want to be able to login
-	I want to be able to logout
-	I want to be able to register
+[X]	I want to be able to login
+[X]	I want to be able to logout
+[X]	I want to be able to register
 	I want to be able to upload images
 	I want to be able to create a gallery
 	I want to be able to put images in a gallery
@@ -25,7 +25,7 @@ As a user
 	I want to be able to share the gallery via code snippet
 Tier 2
 As the system
-	I want to ensure each user is unique in the site
+[X]	I want to ensure each user is unique in the site
 	I want uploaded images to be resized
 	I want uploaded images to be validated
 	I want uploaded images to be private
@@ -39,11 +39,12 @@ Tier 3
 As the system	
 	I want to limit use of the site per hour/per user
 	I want to limit the number of images/server space
-	I want to use HTTPS for login/logout/register
+[X]	I want to use HTTPS for login/logout/register
 	I want the site to be responsive / mobile ready 
+
 Components
-	Register
-	Authentication
+[X]	Register
+[X]	Authentication
 	Gallery Display on page
 	Gallery Display via JS
 	Image uploader
