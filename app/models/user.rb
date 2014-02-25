@@ -26,7 +26,7 @@ class User < ActiveRecord::Base
   	def User.per_page
     	10
   	end
-
+  	 
 	 private
 
 	    def create_remember_token

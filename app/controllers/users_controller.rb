@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   # these are each auto-run before the specified methods
   # allows only signed in users to access these functions
-  before_action :signed_in_user, only: [:edit, :update, :index]
+  before_action :signed_in_user, only: [:edit, :update]
   before_action :signed_in_user_no_access, only: [:new, :create]
   
   # allows users to access these functions only for them elves
@@ -10,7 +10,6 @@ class UsersController < ApplicationController
   before_action :admin_user,     only: :destroy
 
   def index
-    #@users = User.all()
     # i assume this can only be used if the display is paginated?
     @users = User.paginate(page: params[:page])
   end
@@ -62,6 +61,10 @@ class UsersController < ApplicationController
     
   end
 
+def testy
+
+  "this is a test"
+end
 
   private
 

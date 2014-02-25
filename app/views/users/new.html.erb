@@ -5,6 +5,8 @@
   <div class="span6 offset3">
     <%= form_for(@user) do |f| %> 
 
+  	<%= render 'shared/error_messages', thing: @user %>
+
       <%=render 'user_form', f:f %>
 
       <%= f.submit "Create my account", class: "btn btn-large btn-primary" %>
