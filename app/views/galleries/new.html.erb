@@ -1,0 +1,15 @@
+<% provide(:title, 'Add a Gallery') %>
+<h1>Add a Gallery</h1>
+
+<div class="row">
+  <div class="span6 offset3">
+    <%= form_for(@gallery) do |f| %> 
+
+  	<%= render 'shared/error_messages', thing: @gallery %>
+
+      <%=render 'gallery_form', f:f %>
+
+      <%= f.submit "Create my Thing", class: "btn btn-large btn-primary" %>
+    <% end %>
+  </div>
+</div>

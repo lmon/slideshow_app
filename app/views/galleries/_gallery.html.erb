@@ -1,0 +1,10 @@
+<li>
+  <div class="span2"><%= link_to gallery.title, gallery %></div>
+
+         
+  <div class="span1"><%= link_to 'Edit', edit_gallery_path(gallery) , class: "btn btn-small btn-secondaary"%></div>
+        
+     
+    <div class="span1"><%= link_to 'Destroy', gallery, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-small btn-secondaary" %></div>
+     
+</li>

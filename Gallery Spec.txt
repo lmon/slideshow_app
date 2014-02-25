@@ -1,0 +1,12 @@
+Gallery Spec
+
+galleries
+- title (string)
+- owner (number)
+- image order (list)
+- private (bool)
+- assetlist
+	images
+	- url
+	- caption
+	- owner

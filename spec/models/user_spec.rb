@@ -20,6 +20,9 @@ describe User do
   # allow for admin type users
   it { should respond_to(:admin) }
 
+  # adding for the gallery element
+  it { should respond_to(:galleries) }
+
   it { should be_valid }
   it { should_not be_admin }
 
@@ -111,4 +114,27 @@ describe User do
   end
 
 
+  describe "gallery associations" do
+ 
+    before { @user.save }
+    let!(:older_gallery) do
+      FactoryGirl.create(:gallery, user: @user, created_at: 1.day.ago)
+    end
+    let!(:newer_gallery) do
+      FactoryGirl.create(:gallery, user: @user, created_at: 1.hour.ago)
+    end
+
+    it "should have the right galleries in the right order" do
+      expect(@user.galleries.to_a).to eq [newer_gallery, older_gallery]
+    end
+
+    it "should destroy associated galleries" do
+      galleries = @user.galleries.to_a
+      @user.destroy
+      expect(galleries).not_to be_empty
+      galleries.each do |gallery|
+        expect(Gallery.where(id: gallery.id)).to be_empty
+      end
+    end
+  end
 end

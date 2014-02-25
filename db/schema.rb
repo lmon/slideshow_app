@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140225021808) do
+ActiveRecord::Schema.define(version: 20140225030618) do
 
   create_table "contacts", force: true do |t|
     t.string   "name"
@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(version: 20140225021808) do
     t.string   "title"
     t.integer  "user_id"
     t.string   "asset_order"
-    t.string   "private"
+    t.boolean  "private",       limit: 255, default: false
     t.string   "asset_list"
     t.string   "freindly_name"
     t.datetime "created_at"

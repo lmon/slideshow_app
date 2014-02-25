@@ -60,11 +60,7 @@ class UsersController < ApplicationController
    end
     
   end
-
-def testy
-
-  "this is a test"
-end
+ 
 
   private
 
