@@ -19,6 +19,10 @@ module SessionsHelper
 	def current_user=(user)
 		@current_user = user
 	end
+	# is this secure?
+	def current_user_is_admin
+		@cm = current_user.admin
+	end
 
 	def current_user
 		remember_token = User.encrypt(cookies[:remember_token])
