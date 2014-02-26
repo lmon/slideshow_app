@@ -49,8 +49,16 @@ describe "Contact pages" do
   end
 
   # should this be in pages?
+  before { visit contact_path }
   describe "with valid info it should increase record count" do
-      pending #expect { click_button submit }.to change(Contact, :count).by(1)
+       before do
+        fill_in "Name",         with: "Example User"
+        fill_in "Email",        with: "user@example.com"
+        fill_in "Message",     with: "foobar"
+      end
+      it "should create a user" do
+        expect { click_button "Submit" }.to change(Contact, :count).by(1)
+      end
   end
 
 end

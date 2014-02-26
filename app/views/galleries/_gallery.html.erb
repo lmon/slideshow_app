@@ -1,7 +1,9 @@
 <li>
   <span class="content"><%= link_to gallery.title, gallery %> <br />
    		<span class="timestamp">
-	    Posted <%= time_ago_in_words(gallery.created_at) %> ago.
+	    Posted <%= time_ago_in_words(gallery.created_at) %> ago by 
+	    	<span class="username"><%= link_to User.find(gallery.user_id).name, user_path(gallery.user_id) %>
+	    	</span>
 		</span>
 	</span>
 	<% if current_user == @user || (current_user && current_user.admin?)  %>

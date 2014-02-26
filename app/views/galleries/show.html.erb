@@ -1,11 +1,25 @@
 <% provide(:title, @gallery.title) %>
-<div class="row">
-  <aside class="span4">
-    <section>
+<div class="row galleryviewer" >
+	<aside class="span4">asdasdad</aside>
+	<section>
+	<div class="subtitle">Gallery Viewer</div>
       <h1>
-       
         <%= @gallery.title %>
       </h1>
+
+       <div>
+      <%= @gallery.freindly_name %>
+      </div>
+       <div>
+      <%= @gallery.asset_list %>
+      </div>
+       <div>
+      <%= @gallery.private %>
+      </div>
+       <div>
+      <%= @gallery.asset_order %>
+      </div>
+      
+ 
     </section>
-  </aside>
 </div>

@@ -4,8 +4,7 @@ describe Gallery do
 
   let(:user) { FactoryGirl.create(:user) }
    
-    before { @gallery = user.galleries.build(title: "Lorem ipsum") }
-  
+  before { @gallery = user.galleries.build(title: "Lorem ipsum") }
 
   subject { @gallery }
 

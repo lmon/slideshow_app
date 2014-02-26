@@ -2,7 +2,8 @@ class GalleriesController < ApplicationController
 #  restrict actiions based on this Sessions Helper function
 before_action :signed_in_user, only: [:create, :destroy]
 
-def index
+
+  def index
     # i assume this can only be used if the display is paginated?
     @galleries = Gallery.paginate(page: params[:page])
   end
@@ -11,10 +12,12 @@ def index
   	@gallery = Gallery.new
   end
 
-=begin
   def show
     @gallery = Gallery.find(params[:id])
+  
   end
+  
+=begin
   def edit
     @gallery = Gallery.find(params[:id])
 
@@ -25,7 +28,9 @@ def index
     
 =end  
 
-def create
+
+
+  def create
     @gallery = current_user.galleries.build(gallery_params)
     if @gallery.save
       flash[:success] = "gallery created!"
