@@ -1,10 +1,54 @@
 @import "bootstrap";
 @import "bootstrap-responsive";
 
-/*@media (min-width: 580px) { }
-@media (min-width: 800px) { }
-@media (min-width: 1024px) { }
-*/
+
+/* No media query since this is the default in Bootstrap */
+
+/* Extra small devices (phones, less than 768px) */
+@media (max-width: 600px) { 
+  body {
+    padding-left: 10px;
+   padding-right: 10px;
+  }
+  .hero-unit{
+   padding: 10px;
+
+    h1{
+     font-size: 2em;
+   }
+
+  }
+  .btn-large{
+    width: 80%; 
+    height: auto; 
+    font-size: 2.5em;
+    line-height: 1em;
+  }
+}
+
+/* Small devices (tablets, 768px and up) */
+@media (min-width: 768px) { 
+  body {
+    /*background-color:#00ff00;*/
+  }
+}
+
+/* Medium devices (desktops, 992px and up) */
+@media (min-width: 992px) { 
+  body {
+  /*  background-color:#0000ff;*/
+  }
+ }
+
+/* Large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) { 
+
+body {
+  background-color:#fff;
+}
+
+ }
+
 /* mixins, variables, etc. */
 
 $grayMediumLight: #eaeaea;
@@ -179,15 +223,22 @@ input {
 
 /* Users index */
 
-.users {
+.users, .galleries {
   list-style: none;
   margin: 0;
   li {
     overflow: auto;
-    padding: 10px 0;
+    padding: 7px 0;
     border-top: 1px solid $grayLighter;
     &:last-child {
       border-bottom: 1px solid $grayLighter;
+    }
+    .content{
+      display:inline-block;
+      white-space: nowrap;
+      width: 50%;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     /*div {
@@ -196,7 +247,20 @@ input {
       overflow: hidden;
      }*/
   }
- 
+ .timestamp {
+  color: $grayLight;
+  font-size: 85%;
+}
+.gravatar {
+  float: left;
+  margin-right: 10px;
+}
+aside {
+  textarea {
+    height: 100px;
+    margin-bottom: 5px;
+  }
+}
 
 }
 

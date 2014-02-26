@@ -68,7 +68,21 @@ describe "Authentication" do
 	    describe "for non-signed-in users" do
 	      let(:user) { FactoryGirl.create(:user) }
 
-	      describe "when attempting to visit a protected page" do
+	      #gallery
+	      describe "in the Galleries controller" do
+
+	        describe "submitting to the create action" do
+	          before { post galleries_path }
+	          specify { expect(response).to redirect_to(signin_path) }
+	        end
+
+	        describe "submitting to the destroy action" do
+	          before { delete gallery_path(FactoryGirl.create(:gallery)) }
+	          specify { expect(response).to redirect_to(signin_path) }
+	        end
+	      end
+
+      	describe "when attempting to visit a protected page" do
 	        before do
 	          visit edit_user_path(user)
 	          fill_in "Email",    with: user.email

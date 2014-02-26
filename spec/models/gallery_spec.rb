@@ -27,6 +27,14 @@ describe Gallery do
     before { @gallery.user_id = nil }
     it { should_not be_valid }
   end
+  describe "when title is not present" do
+    before { @gallery.title = nil }
+    it { should_not be_valid }
+  end
+  describe "when title is too long" do
+    before { @gallery.title = "a"*129 }
+    it { should_not be_valid }
+  end
 
 end
  

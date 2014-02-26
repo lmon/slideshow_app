@@ -12,10 +12,45 @@ describe "User Pages" do
 
   describe "profile page" do
   	let(:user) { FactoryGirl.create(:user) }
-  	before { visit user_path(user) }
+    # for gallery
+    let!(:m1) { FactoryGirl.create(:gallery, user: user, title: "Foo") }
+    let!(:m2) { FactoryGirl.create(:gallery, user: user, title: "Bar") }
+    
+    before { visit user_path(user) }
 
   	it { should have_content(user.name) }
   	it { should have_title(user.name) }
+
+    # for gallery
+    describe "galleries" do
+      it { should have_content(m1.title) }
+      it { should have_content(m2.title) }
+      it { should have_content(user.galleries.count) }
+    end
+
+    describe "delete links" do
+      # normal logins shouldnt see delete link
+      it { should_not have_link('Destroy') }
+
+      describe "as an admin user" do
+        #before { click_link "Sign out" }
+
+        # login as admin
+        let(:admin) { FactoryGirl.create(:admin) }
+        before do
+          sign_in admin
+          visit users_path
+        end
+
+        it { should have_link('Destroy') }
+        it "should be able to delete a gallery" do
+          expect do
+            click_link('Destroy', match: :first)
+          end.to change(Gallery, :count).by(-1)
+        end
+       end
+    end
+
 	end
 
   # list users 
@@ -161,7 +196,6 @@ describe "signup" do
         it { should have_title(user.name) }
         it { should have_selector('div.alert.alert-success', text: 'Welcome') }
       end
-      
     end
   end
   

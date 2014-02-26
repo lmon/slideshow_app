@@ -1,10 +1,17 @@
 <li>
-  <div class="span2"><%= link_to gallery.title, gallery %></div>
-
+  <span class="content"><%= link_to gallery.title, gallery %> <br />
+   		<span class="timestamp">
+	    Posted <%= time_ago_in_words(gallery.created_at) %> ago.
+		</span>
+	</span>
+	<% if current_user == @user || (current_user && current_user.admin?)  %>
+	<span>    
+	    <%= link_to 'Destroy', gallery, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-small btn-secondary" %>
+  <%= link_to 'Edit', edit_gallery_path(gallery) , class: "btn btn-small btn-secondary"%> 
+	</span>
+<% end %>  
          
-  <div class="span1"><%= link_to 'Edit', edit_gallery_path(gallery) , class: "btn btn-small btn-secondaary"%></div>
         
-     
-    <div class="span1"><%= link_to 'Destroy', gallery, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-small btn-secondaary" %></div>
-     
+ 
+  
 </li>
