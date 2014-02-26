@@ -4,7 +4,7 @@ class CreateGalleries < ActiveRecord::Migration
       t.string :title
       t.integer :user_id
       t.string :asset_order
-      t.string :private, :boolean, :default=>false
+      t.integer :private, :default=>1
       t.string :asset_list
       t.string :freindly_name
 
