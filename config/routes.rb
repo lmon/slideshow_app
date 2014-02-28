@@ -1,7 +1,9 @@
 Slideshow::Application.routes.draw do
+  #get "assets/new"
   #get "galleries/new"
   #get "contacts/new"
   #get "users/new"
+
   # use this
   # : automatically creates named routes for use in the controllers and views
   match '/help',    to: 'static_pages#help',    via: 'get'
@@ -13,7 +15,6 @@ Slideshow::Application.routes.draw do
   match '/signup',  to: 'users#new',            via: 'get'
   match '/signin',  to: 'sessions#new',         via: 'get'
   match '/signout', to: 'sessions#destroy',     via: 'delete'
-  #match '/gallery', to: 'galleries#show',       via: 'get'
 
   # not this
   # get "static_pages/home"
@@ -25,6 +26,7 @@ Slideshow::Application.routes.draw do
   # You can have the root of your site routed with "root"
   root to: "static_pages#home"
   
+  resources :assets 
   resources :galleries#, only: [:view , :create, :destroy] # others handled in users
   resources :contacts
   resources :users
