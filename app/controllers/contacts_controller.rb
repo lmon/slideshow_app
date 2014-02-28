@@ -4,7 +4,7 @@ class ContactsController < ApplicationController
   # calls an application controller function(global) to access this test.
   # I imagine we will use it in other places
   # but is it secure?
-  before_action :validate_user_as_admin,     only: [:index, :update]
+  before_action :signed_in_admin_user,     only: [:index, :update]
 
 
   def index

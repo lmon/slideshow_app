@@ -17,13 +17,14 @@ As a user
 [X]	I want to be able to logout
 [X]	I want to be able to register
 	I want to be able to upload images
-	I want to be able to create a gallery
+[X]	I want to be able to create a gallery
 	I want to be able to put images in a gallery
 	I want to be able to order images in a gallery
 	I want to be able to view the gallery
 	I want to be able to share the gallery via a link
 	I want to be able to share the gallery via code snippet
-Tier 2
+Ti
+er 2
 As the system
 [X]	I want to ensure each user is unique in the site
 	I want uploaded images to be resized
@@ -32,15 +33,17 @@ As the system
 As a user
 	I want to be able to navigate the gallery
 	I want to be able to delete images
-	I want to be able to delete a gallery
+[X]	I want to be able to delete a gallery
 	I want to be able to make the gallery private
-	I want to be able to add image captions, gallery title
+	I want to be able to add image captions, 
+[X]	I want to be able to add a gallery title
+
 Tier 3
 As the system	
 	I want to limit use of the site per hour/per user
 	I want to limit the number of images/server space
 [X]	I want to use HTTPS for login/logout/register
-	I want the site to be responsive / mobile ready 
+[.]	I want the site to be responsive / mobile ready 
 
 Components
 [X]	Register

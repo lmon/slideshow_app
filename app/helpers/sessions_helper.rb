@@ -20,9 +20,9 @@ module SessionsHelper
 		@current_user = user
 	end
 	# is this secure?
-	def current_user_is_admin
-		@cm = current_user.admin
-	end
+	#def current_user_is_admin
+	#	@cm = current_user.admin
+	#end
 
 	def current_user
 		remember_token = User.encrypt(cookies[:remember_token])
@@ -37,6 +37,10 @@ module SessionsHelper
     def signed_in_user
       store_location
       redirect_to signin_url, notice: "Please sign in." unless signed_in?
+    end
+	
+	def signed_in_admin_user
+      redirect_to(root_url) unless ( signed_in? && current_user.admin? )
     end
 
 

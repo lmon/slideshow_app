@@ -33,8 +33,6 @@ describe "User Pages" do
       it { should_not have_link('Destroy') }
 
       describe "as an admin user" do
-        #before { click_link "Sign out" }
-
         # login as admin
         let(:admin) { FactoryGirl.create(:admin) }
         before do
@@ -43,6 +41,7 @@ describe "User Pages" do
         end
 
         it { should have_link('Destroy') }
+        
         it "should be able to delete a gallery" do
           expect do
             click_link('Destroy', match: :first)
