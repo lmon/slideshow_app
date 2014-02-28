@@ -6,7 +6,7 @@
 	    	</span>
 		</span>
 	</span>
-	<% if current_user == @user || (current_user && current_user.admin?)  %>
+	<% if (current_user&&(current_user == @user)) || (current_user && current_user.admin?)  %>
 	<span>    
 	    <%= link_to 'Destroy', gallery, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-small btn-secondary" %>
   <%= link_to 'Edit', edit_gallery_path(gallery) , class: "btn btn-small btn-secondary"%> 

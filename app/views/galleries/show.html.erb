@@ -3,21 +3,24 @@
 	<aside class="span4">asdasdad</aside>
 	<section>
 	<div class="subtitle">Gallery Viewer</div>
-      <h1>
-        <%= @gallery.title %>
-      </h1>
-
+      <h1><%= @gallery.title %></h1>
+      <% if (current_user && (current_user.id == @gallery.user_id))|| (current_user && current_user.admin?)  %>
+        <span class="subtitle">
+        <%= link_to 'Edit', edit_gallery_path(@gallery)  %> 
+        </span>
+    <% end %>
        <div>
-      <%= @gallery.freindly_name %>
+      Friendly Name  <%= gallery_path(@gallery) %>
+      </div>
+      
+      <div>
+     Assets: <%= @gallery.asset_list %>
       </div>
        <div>
-      <%= @gallery.asset_list %>
+      Private? <%= @gallery.private %>
       </div>
        <div>
-      <%= @gallery.private %>
-      </div>
-       <div>
-      <%= @gallery.asset_order %>
+     Order: <%= @gallery.asset_order %>
       </div>
       
  

@@ -15,4 +15,7 @@
 /log/*.log
 /tmp
 
+# Ignore local upload files
+/public/system/assets
+
 

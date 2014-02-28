@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140228155452) do
+ActiveRecord::Schema.define(version: 20140228182831) do
 
   create_table "assets", force: true do |t|
     t.string   "name"
@@ -36,9 +36,8 @@ ActiveRecord::Schema.define(version: 20140228155452) do
     t.string   "title"
     t.integer  "user_id"
     t.string   "asset_order"
-    t.boolean  "private",       limit: 255, default: false
+    t.boolean  "private",     limit: 255, default: false
     t.string   "asset_list"
-    t.string   "freindly_name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

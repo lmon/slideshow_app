@@ -5,4 +5,9 @@ class Gallery < ActiveRecord::Base
 	validates :title, presence: true , length: { in: 3..128 }
 	validates :user_id, presence: true
 
+	def to_param
+    "#{id}-#{title.parameterize}"
+  	end
+
+
 end
