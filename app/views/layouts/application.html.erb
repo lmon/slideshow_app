@@ -9,7 +9,13 @@
     
     <%= render 'layouts/shim' %>
   </head>
-  <body>
+
+<% if (current_user && current_user.admin?)  %>
+  <body class="adminmode"> 
+<% else %>
+  <body> 
+<% end %>
+
   <%= render 'layouts/header' %>
    
     <div class="container-fluid">

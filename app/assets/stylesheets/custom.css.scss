@@ -68,6 +68,10 @@ body {
   padding-top: 60px;
 }
 
+body.adminmode {
+  padding-top: 70px;
+}
+
 section {
   overflow: auto;
 }
@@ -272,6 +276,14 @@ aside {
     padding: 10px;
     border: 1px $grayMediumLight solid;
   }
+}
+
+#adminbanner{
+  position: fixed;
+  background-color: #FFDD88;
+  width: 100%;
+  top: 40px;
+  padding: 5px 0px 0px 20px;
 }
 
 /* miscellaneous */
