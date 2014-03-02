@@ -12,7 +12,7 @@ has_attached_file :image, {
       :thumb => "-gravity Center -crop 50x50+0+0",
       :thumb => "-gravity Center -crop 100x100+0+0",
     }
-  }
+  } 
 
   validates :user_id, :presence => true
 
