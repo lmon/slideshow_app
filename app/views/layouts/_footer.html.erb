@@ -1,7 +1,13 @@
 <footer class="footer">
   <small>
     Copyright ©<%=Time.new.year   %>. All rights reserved. Do not duplicate or redistribute in any form.
-  </small>
+  
+<span id="demo"></span>
+<script type="text/javascript">
+document.getElementById("demo").innerHTML=$( document ).width();;
+</script>
+
+</small>
   <nav>
     <ul>
       <li><%= link_to "About",   about_path %></li>
