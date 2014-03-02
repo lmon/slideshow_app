@@ -26,4 +26,21 @@ Slideshow::Application.configure do
   # This option may cause significant delays in view rendering with a large
   # number of complex assets.
   config.assets.debug = true
+
+
+  # USE S3 When on  DEV
+  config.paperclip_defaults = {
+    :storage => :s3,
+    :s3_credentials => {
+      :bucket => ENV['S3_BUCKET_NAME'],
+      :access_key_id => ENV['AWS_ACCESS_KEY_ID'],
+      :secret_access_key => ENV['AWS_SECRET_ACCESS_KEY']
+    }
+  }
+=begin
+# config/initializers/paperclip.rb
+Paperclip::Attachment.default_options[:url] = ':s3_domain_url'
+Paperclip::Attachment.default_options[:path] = '/:class/:attachment/:id_partition/:style/:filename'
+=end
+
 end
