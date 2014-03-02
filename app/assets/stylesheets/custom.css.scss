@@ -9,6 +9,7 @@
   body {
     padding-left: 10px;
    padding-right: 10px;
+    background-color:#AAffAA;
   }
   .hero-unit{
    padding: 10px;
@@ -27,16 +28,23 @@
 }
 
 /* Small devices (tablets, 768px and up) */
+@media (min-width: 601px) { 
+  body {
+    background-color:#FFEEEE;
+  }
+}
+
+/* Small devices (tablets, 768px and up) */
 @media (min-width: 768px) { 
   body {
-    /*background-color:#00ff00;*/
+    background-color:#EEFEEE;
   }
 }
 
 /* Medium devices (desktops, 992px and up) */
 @media (min-width: 992px) { 
   body {
-  /*  background-color:#0000ff;*/
+    background-color:#EEEEFE;
   }
  }
 
@@ -44,7 +52,7 @@
 @media (min-width: 1200px) { 
 
 body {
-  background-color:#fff;
+  background-color:#ffffff;
 }
 
  }
@@ -66,10 +74,6 @@ html {
 
 body {
   padding-top: 60px;
-}
-
-body.adminmode {
-  padding-top: 70px;
 }
 
 section {
@@ -278,12 +282,8 @@ aside {
   }
 }
 
-#adminbanner{
-  position: fixed;
-  background-color: #FFDD88;
-  width: 100%;
-  top: 40px;
-  padding: 5px 0px 0px 20px;
+#fat-menu.admin{
+  background-color: #553333;
 }
 
 /* miscellaneous */

@@ -1,16 +1,22 @@
-       <%#= render 'shared/error_messages' %>
 
       <%= f.label :title %>
       <%= f.text_field :title %> 
 
-      <%= f.label :asset_list %>
-      <%= f.text_field :asset_list %>
-
-      <%= f.label :private %>
-      <%= f.check_box :private %>
+      <%= check_box_tag :private , @gallery.private? %>
+      <%= "Private?" %>
 
       <%= f.label :asset_order %>
       <%= f.text_field :asset_order %>
-       
  
+      <p>Has Assets:</p>
+		<% for asset in Asset.find(:all) %>
+			<div>
+			  <%= check_box_tag "gallery[asset_ids][]", 
+			  asset.id, 
+			  @gallery.assets.include?(asset) %>
+			  <%= asset.name %>
+			</div>
+
+		<% end %>
+
  

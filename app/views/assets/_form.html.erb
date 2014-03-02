@@ -20,10 +20,17 @@
       <%= f.text_field :caption %>
    </div>
  
-        <div class="avatar">
+  <div class="galleryimage">
       <%= f.label :image %>
+      
+      <div class="field"> <%=   @asset.image.url %> </div>
+
+      <% if @asset.image %>
+        <div class="avatar"> <%= image_tag @asset.image(:medium) %>   </div>
+      <% end %>
       <%= f.file_field :image %>
-    </div>
+
+  </div>
  
 
   <div class="actions">

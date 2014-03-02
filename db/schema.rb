@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140228182831) do
+ActiveRecord::Schema.define(version: 20140302030007) do
 
   create_table "assets", force: true do |t|
     t.string   "name"
@@ -22,7 +22,15 @@ ActiveRecord::Schema.define(version: 20140228182831) do
     t.datetime "image_updated_at"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_id"
   end
+
+  create_table "assets_galleries", force: true do |t|
+    t.integer "gallery_id"
+    t.integer "asset_id"
+  end
+
+  add_index "assets_galleries", ["gallery_id", "asset_id"], name: "index_assets_galleries_on_gallery_id_and_asset_id"
 
   create_table "contacts", force: true do |t|
     t.string   "name"
@@ -37,7 +45,6 @@ ActiveRecord::Schema.define(version: 20140228182831) do
     t.integer  "user_id"
     t.string   "asset_order"
     t.boolean  "private",     limit: 255, default: false
-    t.string   "asset_list"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

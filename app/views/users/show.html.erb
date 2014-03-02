@@ -8,8 +8,13 @@
       </h1>
       <p>
       <% if current_user == @user  %>
-       <%= link_to 'Create New Gallery', new_gallery_path , class: "btn btn-small btn-secondary"%> 
-      <% end %>
+       <p><%= link_to 'Create New Gallery', new_gallery_path , class: "btn btn-small btn-secondary"%> 
+       </p>
+       <p>
+       <%= link_to 'View My Images', assets_path , class: "btn btn-small btn-secondary"%> 
+      </p>
+       
+       <% end %>
     </section>
   </aside>
   

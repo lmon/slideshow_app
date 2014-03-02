@@ -1,5 +1,6 @@
 class Asset < ActiveRecord::Base
-
+  belongs_to :user
+  has_and_belongs_to_many :galleries
 
 has_attached_file :image, {
     :styles => {
@@ -12,6 +13,8 @@ has_attached_file :image, {
       :thumb => "-gravity Center -crop 100x100+0+0",
     }
   }
+
+  validates :user_id, :presence => true
 
   validates :name, presence: true
 	validates :name, length: { in: 3..64 }

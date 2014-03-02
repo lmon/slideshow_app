@@ -3,8 +3,6 @@ class GalleriesController < ApplicationController
 before_action :signed_in_user, only: [:create, :destroy]
 before_action :set_gallery, only: [:show, :edit, :update, :destroy]
 
-
-
   def index
     # i assume this can only be used if the display is paginated?
     @galleries = Gallery.paginate(page: params[:page])
@@ -63,7 +61,7 @@ before_action :set_gallery, only: [:show, :edit, :update, :destroy]
  private 
 
     def gallery_params
-      params.require(:gallery).permit(:title, :asset_list, :asset_order, :friendly_name, :private)
+      params.require(:gallery).permit(:title, {:asset_ids => []}, :asset_order, :friendly_name, :private)
     end
     def set_gallery
     @gallery = Gallery.find(params[:id])

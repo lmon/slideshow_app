@@ -10,12 +10,11 @@
         </span>
     <% end %>
        <div>
-      Friendly Name  <%= gallery_path(@gallery) %>
+      Friendly Name:  <%= gallery_path(@gallery) %>
       </div>
       
       <div>
-     Assets: <%= @gallery.asset_list %>
-      </div>
+        </div>
        <div>
       Private? <%= @gallery.private %>
       </div>
@@ -23,6 +22,18 @@
      Order: <%= @gallery.asset_order %>
       </div>
       
+      <p>Has Assets:</p>
+      <ul>
+        <% for asset in Asset.find(:all) %>
+          <% if @gallery.assets.include?(asset) %>
+            <li>
+              <%= asset.name %> 
+            </li>
+          <% end %>
+        <% end %>
+      </ul>
  
+ <p><%=link_to 'Add  images', new_asset_path %></p>
+    
     </section>
 </div>

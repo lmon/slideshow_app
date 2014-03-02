@@ -1,19 +1,16 @@
-<p id="notice"><%= notice %></p>
+Notice: <p id="notice"><%= notice %></p>
 
 <%= link_to 'Edit', edit_asset_path(@asset) %> |
 <%= link_to 'Back', assets_path %>
 
  <div class="field">
       <%= @asset.name %>
-    </div>
-        <div class="field">
-      <%=   @asset.image.url %>
-   </div>
- 
-        <div class="field">
+  </div> 
+  <div class="field">
       <%= @asset.caption %>
    </div>
-<% if @asset.image? %>
+
+<% if @asset.image? %>    
   <div class="avatar">
     <%= image_tag @asset.image(:thumb) %>
   </div>
@@ -27,8 +24,18 @@
   <div class="avatar">
     <%= image_tag @asset.image.url %>
   </div>
+      <%= link_to 'Destroy', @asset, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-small btn-secondary" %>
 
-
+    <p>In Slideshows:</p>
+    <ul>
+      <% for gallery in Gallery.find(:all) %>
+        <% if @asset.galleries.include?(gallery) %>
+          <li>
+            <%= gallery.title %>
+          </li>
+          <% end %>
+      <% end %>
+    </ul>
 <% else %>
-Sad Face
+<p>Sad Face</p>
 <% end %>
