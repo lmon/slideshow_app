@@ -23,17 +23,44 @@
       </div>
       
       <p>Has Assets:</p>
-      <ul>
-        <% for asset in Asset.find(:all) %>
+       <div class="slider-wrapper theme-default">
+            <div class="ribbon"></div>
+            <div id="sliderArea" class="ramblingSlider">
+      
+         <% for asset in Asset.find(:all) %>
           <% if @gallery.assets.include?(asset) %>
-            <li>
-              <%= asset.name %> 
-            </li>
-          <% end %>
+       
+
+               <%= image_tag asset.image(:medium) %> 
+           <% end %>
         <% end %>
-      </ul>
+
+        <div id="htmlcaption" class="rambling-html-caption">
+                <strong>A This</strong> is an example of a <em>HTML</em> caption with <a href="#">a link</a>.
+            </div>
+        <div id="htmlcaption" class="rambling-html-caption">
+                <strong>B This</strong>               <caption><%= asset.name %></caption>   <em>HTML</em> caption with <a href="#">a link</a>.
+            </div>
+
+            </div>
+       </div>
  
  <p><%=link_to 'Add  images', new_asset_path %></p>
     
     </section>
 </div>
+
+
+<!-- <div class="slider-wrapper theme-default">
+            <div class="ribbon"></div>
+            <div id="sliderArea" class="ramblingSlider">
+                <img src="../assets/images/toystory.jpg" alt="">
+                <a href="http://ramblinglabs.com"><img src="../assets/images/up.jpg" alt="" title="This is an example of a caption"></a>
+                <img src="../assets/images/walle.jpg" alt="">
+                <img src="../assets/images/nemo.jpg" alt="" title="#htmlcaption">
+            </div>
+            <div id="htmlcaption" class="rambling-html-caption">
+                <strong>This</strong> is an example of a <em>HTML</em> caption with <a href="#">a link</a>.
+            </div>
+        </div>
+-->

@@ -12,6 +12,11 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery.rambling.slider
 //= require bootstrap
 //= require turbolinks
 //= require_tree .
+
+$(function() {
+  $('#sliderArea').ramblingSlider();
+});

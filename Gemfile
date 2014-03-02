@@ -12,6 +12,9 @@ gem "paperclip", "~> 4.1"
 #add for production only?
 gem 'aws-sdk'
 
+# slider!
+gem 'rambling-slider-rails'
+
 ##
 group :development, :test do
   gem 'sqlite3', '1.3.8'
