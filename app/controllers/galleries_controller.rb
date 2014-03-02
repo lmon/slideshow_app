@@ -1,6 +1,6 @@
 class GalleriesController < ApplicationController
 #  restrict actiions based on this Sessions Helper function
-before_action :signed_in_user, only: [:create, :destroy]
+before_action :signed_in_user, only: [:create, :destroy, :update, :new, :edit]
 before_action :set_gallery, only: [:show, :edit, :update, :destroy]
 
   def index

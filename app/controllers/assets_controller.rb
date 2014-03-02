@@ -1,5 +1,7 @@
 class AssetsController < ApplicationController
  
+  before_action :signed_in_user, only: [:create, :destroy, :update, :new, :edit]
+
  # GET /assets
   # GET /assets.json
   def index
