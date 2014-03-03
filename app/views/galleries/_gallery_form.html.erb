@@ -9,7 +9,7 @@
       <%= f.text_field :asset_order %>
  
       <p>Has Assets:</p>
-		<% for asset in Asset.find(:all) %>
+		<% for asset in Asset.all() %>
 			<div>
 			  <%= check_box_tag "gallery[asset_ids][]", 
 			  asset.id, 

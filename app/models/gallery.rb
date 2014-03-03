@@ -4,8 +4,9 @@ class Gallery < ActiveRecord::Base
 
 	default_scope -> { order('created_at DESC') }
 	
-	validates :title, presence: true , length: { in: 3..128 }
+	validates :title, presence: true , length: { in: 3..128 } 
 	validates :user_id, presence: true
+
 
 	def to_param
     "#{id}-#{title.parameterize}"

@@ -13,8 +13,6 @@ describe Gallery do
 
   it { should respond_to(:asset_order) }
   it { should respond_to(:private) }
-  it { should respond_to(:asset_list) }
-  it { should respond_to(:freindly_name) }
 
   it { should respond_to(:user) }
   its(:user) { should eq user }
@@ -24,16 +22,38 @@ describe Gallery do
 
   describe "when user_id is not present" do
     before { @gallery.user_id = nil }
-    it { should_not be_valid }
+    it 'is not valid' do
+      expect{  to_not be_valid }
+    end
   end
+
   describe "when title is not present" do
     before { @gallery.title = nil }
-    it { should_not be_valid }
+    it 'is not valid' do
+      expect{  to_not be_valid }
+    end 
   end
   describe "when title is too long" do
     before { @gallery.title = "a"*129 }
-    it { should_not be_valid }
+    it 'is not valid' do
+      expect{  to_not be_valid }
+    end 
   end
+
+  describe "with code in the title" do
+     before { @gallery.title = "test<b>test"  }
+      it { should be_invalid }
+  end
+
+  describe "when is private" do
+     before { @gallery.private = true  }
+      it { should be_valid }
+  end
+  describe "when is not private" do
+     before { @gallery.private = false  }
+      it { should be_valid }
+  end
+
 
 end
  

@@ -44,7 +44,7 @@ ActiveRecord::Schema.define(version: 20140302030007) do
     t.string   "title"
     t.integer  "user_id"
     t.string   "asset_order"
-    t.boolean  "private",     limit: 255, default: false
+    t.integer  "private",     default: 1
     t.datetime "created_at"
     t.datetime "updated_at"
   end

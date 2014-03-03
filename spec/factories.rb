@@ -9,9 +9,27 @@ FactoryGirl.define do
     	  admin true
     	end
 	end
+
 	factory :gallery do
     	title "GalleryName Lorem ipsum"
     	user
-  	end
+  end
  
+ #######################
+  factory :contact do
+    name "contactingperson"
+    email "person@mycontact.com"
+    message "this is a test message" 
+  end
+
+ #######################
+  factory :asset do
+    name "mytestasset"
+    caption "this is the caption that I am including in my test"
+    image 1
+    user 2
+  end
+
+
 end
+
