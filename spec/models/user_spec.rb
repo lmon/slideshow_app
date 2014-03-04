@@ -76,6 +76,11 @@ describe User do
     it { should_not be_valid }
   end
 
+  describe "with code in the name" do
+     before { @user.name = "test<b>test"  }
+      it { should_not be_valid }
+  end
+
   describe "when email is too long" do
     before { @user.email = "a" * 65 }
     it { should_not be_valid }
@@ -84,11 +89,6 @@ describe User do
   describe "when email is too short" do
     before { @user.email = "a"  }
     it { should_not be_valid }
-  end
-
-  describe "with code in the name" do
-     before { contact.title = "test<b>test"  }
-      it { should_not be_valid }
   end
 
 
@@ -103,7 +103,6 @@ describe User do
   end
 
   describe "when email is not unique" do
-   	#pending "validate uniqueness of email" 
 	before do
       user_with_same_email = @user.dup
       user_with_same_email.email = @user.email.upcase
@@ -118,7 +117,6 @@ describe User do
     before { @user.save }
     its(:remember_token) { should_not be_blank }
   end
-
 
   describe "gallery associations" do
  
@@ -142,5 +140,39 @@ describe User do
         expect(Gallery.where(id: gallery.id)).to be_empty
       end
     end
+
   end
+
+describe "asset associations" do
+ 
+    before { @user.save } 
+    let(:testfilespath) {Rails.root + '/Library/WebServer/Documents/MonacoWork/ruby/slideshow/slideshow/lib/assets/'}
+    let(:upload) { File.new( testfilespath + 'ninam.png') }
+
+
+    let!(:older_asset) do
+      FactoryGirl.create(:asset, name: "test name", caption: "capt", image: upload, user: @user, created_at: 1.day.ago)
+    end
+    let!(:newer_asset) do
+      FactoryGirl.create(:asset, name: "test name", caption: "capt", image: upload, user: @user, created_at: 1.hour.ago)
+    end
+
+    it "should have the right assets in the right order" do
+      expect(@user.assets.to_a).to eq [newer_asset, older_asset]
+    end
+
+    it "should destroy associated assets" do
+      assets = @user.assets.to_a
+      @user.destroy
+      expect(assets).not_to be_empty
+      assets.each do |asset|
+        expect(Asset.where(id: asset.id)).to be_empty
+      end
+    end
+
+  end
+
 end
+
+
+

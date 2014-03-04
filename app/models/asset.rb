@@ -2,7 +2,9 @@ class Asset < ActiveRecord::Base
   belongs_to :user
   has_and_belongs_to_many :galleries
 
-has_attached_file :image, {
+  default_scope -> { order('created_at DESC') }
+
+  has_attached_file :image, {
     :styles => {
       :thumb => ["50x50#", :png],
       :medium => ["100x100#", :png],
@@ -21,7 +23,7 @@ has_attached_file :image, {
 
 	validates :caption, length: { maximum: 512  }
 
-	validates_attachment :image, :size => { :in => 0..4.megabytes }
+	validates_attachment :image, :size => { :in => 0..4.megabytes , :message => "must be less than 4 MB" }
 
 	validates_attachment_file_name :image, :matches => [/png\Z/, /jpe?g\Z/]
 
