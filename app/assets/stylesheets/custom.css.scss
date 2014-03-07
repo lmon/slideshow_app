@@ -297,6 +297,64 @@ aside {
 #fat-menu.admin{
   background-color: #553333;
 }
+/* jQuery sortable */
+
+  #sortable { 
+    list-style-type: none; 
+    margin: 0; 
+    padding: 0; 
+    width: 90%; 
+
+    li { 
+      margin: 0 5px 5px 5px; 
+      padding: 1px; 
+      font-size: 1em; 
+      height: 3em; 
+      border: 1px black solid;
+      overflow:hidden;
+    }
+    
+    /*
+    html>body #sortable li { 
+      height: 2em; 
+      line-height: 1.2em; 
+      }
+    .ui-state-highlight { height: 2em; line-height: 1.2em; }
+  */
+
+  .handle{
+    display:inline-block;
+    height: 100%;
+    width:  25px;
+    background-color: #999;
+  }
+
+  .containercheck, .containerthumb, .containertext{
+    display:inline-block;
+    height:  100%;
+    width:  50px;
+    overflow: none;
+  }
+  .containercheck{
+    background-color: #BBB;
+    width:  30px;
+  }
+  .containerthumb{
+      width:  50px;
+      height: 100%;
+      overflow:hidden;
+      margin: 0 5px 0 5px;
+  }
+
+  .containertext{
+      width:  59%;
+      height: 100%;
+      overflow:hidden;
+    background-color: #EEE;
+  }
+
+  }
+
 
 /* miscellaneous */
 

@@ -9,14 +9,18 @@
       <%= f.text_field :asset_order %>
  
       <p>Has Assets:</p>
+	<ul id="sortable">
 		<% for asset in Asset.all() %>
-			<div>
-			  <%= check_box_tag "gallery[asset_ids][]", 
-			  asset.id, 
-			  @gallery.assets.include?(asset) %>
-			  <%= asset.name %>
-			</div>
+		<li class="ui-state-default"><div class="handle"></div><div class="containerthumb"><%= image_tag asset.image(:thumb), :title=> asset.caption  %></div><div class="containertext"><%= asset.name %></div><div class="containercheck"><%= check_box_tag "gallery[asset_ids][]", 
+			asset.id, 
+			@gallery.assets.include?(asset) %></div></li>
 
-		<% end %>
+		<% end %>	
+	</ul>
 
- 
+
+<!--
+			
+			-->
+		 
+		

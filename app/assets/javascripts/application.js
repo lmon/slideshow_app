@@ -13,10 +13,29 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery.rambling.slider
+//= require jquery.ui.all
 //= require bootstrap
 //= require turbolinks
 //= require_tree .
 
+
 $(function() {
   $('#sliderArea').ramblingSlider();
 });
+
+  $(function() {
+    $( "#sortable" ).sortable({
+      placeholder: "ui-state-highlight",
+       handle: '.handle',
+	  axis: 'y'
+
+    });
+    $( "#sortable" ).disableSelection();
+  });
+
+/*       dropOnEmpty: false,
+       cursor: 'crosshair',
+       items: 'li',
+       opacity: 0.4,
+       scroll: true,
+       */

@@ -4,20 +4,21 @@ describe "Gallery Pages" do
   subject { page }
 
   let(:user) { FactoryGirl.create(:user) }
+  after(:all)  { User.delete_all }
+  
   before { sign_in user }
 
   describe "gallery creation" do
     before { visit new_gallery_path }
 
     describe "with invalid information" do
-
-      it "should not create a gallery" do
+      it "does not create a gallery" do
         expect { click_button "Create" }.not_to change(Gallery, :count)
       end
 
-      describe "error messages" do
-        before { click_button "Create" }
-        it { should have_content('error') }
+      it "has error messages" do
+        click_button "Create" 
+        expect(page).to have_content('error') 
       end
     end
 
@@ -29,55 +30,125 @@ describe "Gallery Pages" do
     end
   end
 
-describe "gallery access" do
+ describe "index" do
 	# all people, no editing
-  	before { @gallery = user.galleries.build(title: "My Testing Gallery Title") }
-  	
-  	describe "as a regular user" do
-	    before { visit galleries_path } # goes to index
-  	  	it {should have_content('Listing') }
-	    before{click_link(@gallery.title)} 
-     
-        it "should show gallery" do   	
-			expect(page).to have_content('Gallery Viewer') 
+
+  	describe "pagination" do
+      before { 50.times { FactoryGirl.create(:gallery, user: user)  } } 
+      after { Gallery.delete_all }
+
+      before { visit galleries_path } # goes to index
+
+    it "has listing copy" do
+        expect(page).to have_content('Listing') 
+    end  
+
+    it "should list each gallery" do
+      expect(Gallery.count).to eq(50) 
+        Gallery.paginate(page: 1).each do |gallery|
+           expect(page).to have_selector('li', text: gallery.title)
+           expect(user).to eq gallery.user
+         end
+    end
+  end
+
+    describe "click view link" do            
+      before { 
+          @gallery = FactoryGirl.create(:gallery, user: user, title: "Foo")
+          visit gallery_path(@gallery)  
+        }
+
+    it "has listing copy" do
+        expect(page).to have_content(@gallery.title) 
+    end   
+
+      it "should show gallery" do   	
+        expect(page).to have_content('Gallery Viewer') 
+      end
+    end
+
+    before { visit gallery_path(:id => 1000 ) }
+  	it "shows a nice not found page" do
+      expect(page).to have_content('Not Found') 
+    end
+
+ 	  it "should not show editing functions" do
+       expect(page).to_not have_content('Edit') 
+    end
+
+	 
+
+end
+
+ 	describe "when updating" do
+       
+      before { 
+        @gallery = FactoryGirl.create(:gallery, user: user, title: "My Testing Gallery Title") 
+        visit edit_gallery_path(@gallery) 
+      } 
+
+      it "with  content 'Update your gallery'" do 
+        #passes  expect(@gallery.title).to eq("My Testing Gallery Title") 
+        #passes expect(page.title).to eq("Slideshow App | Update Gallery") 
+        #passes expect(page).to have_selector('h1', text: "Update your gallery") 
+        expect(page).to have_content("Update your gallery") 
+        expect(page).to have_content(@gallery.title) 
+      end
+
+
+      describe "with a new title" do
+        let(:new_title)  { "An updated Title" }
+        # change form data
+        before { 
+          fill_in 'gallery_title', with: new_title 
+          click_button "Save changes"
+        }
+        # change form data
+        it "has updated title" do
+            expect(@gallery.reload.title).to  eq new_title  
         end
-	end
-  	describe "should show a nice not found page" do
- #     before { visit gallery_path(:id => 1000 ) }
- #       it { should have_content('Not Found') }
+      end
     end
 
- 	describe "should not show editing functions" do
-  #      it { should_not have_content('Edit') }
-    end
+  describe "when deleting" do
+  	  # create a gallery
+      before { 
+        @gallery = FactoryGirl.create(:gallery, user: user, title: "My Gallery To Del") 
+        visit user_path(user) 
+     } 
 
-	#logged in people, can see edit functions if proper user
- 	describe "should show editing functions for own galleries" do
-      pending
-      #  it { should have_content('Edit') }
-    end
+     it "has the right page" do
+      expect(page).to have_content("My Galleries") 
+     end
 
-end
+     it "has the title" do
+      expect(page).to have_content(@gallery.title) 
+     end
+ 
+     it "should remove this gallery" do
+  		  expect do
+            click_link('Destroy', match: :first)
+         end.to change(Gallery, :count).by(-1)
+  	 end
 
-describe "gallery update" do
- 	describe "should update data" do
-      pending
-      # create a gallery
-      # view gallery
-      # change form data
-      # it should have new content
-      #  it { should have_content('Edit') }
-    end
-end
+      before { 
+        visit user_path(user) 
+     } 
 
-describe "gallery delete" do
-	describe "should remove this gallery and go to the Profile" do
-		# create a gallery
-      	# view gallery
-      	# delete the gallery
-      	# revisit gallery
-      	#  gallery page should say not found
-	end
+     it "should no longer have this gallery on the page" do
+      expect(page).to have_content("My Galleries") 
+
+      expect(page).to_not have_content(@gallery.title) 
+     end
+  end
+
+describe "gallery show" do
+  describe "should show all the images included in that gallery" do
+    # create a gallery
+    # upload 2 assets
+    # view gallery
+    # test for presence of those assets
+  end
 end
 
 

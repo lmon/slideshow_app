@@ -15,6 +15,9 @@ gem 'aws-sdk'
 # slider!
 gem 'rambling-slider-rails'
 
+#sortable!
+gem 'jquery-ui-rails'
+
 ##
 group :development, :test do
   gem 'sqlite3', '1.3.8'

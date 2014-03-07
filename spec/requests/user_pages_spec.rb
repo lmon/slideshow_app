@@ -71,6 +71,8 @@ describe "User Pages" do
       it { should have_selector('div.pagination') }
 
       it "should list each user" do
+
+     expect(User.count).to eq(31) 
         User.paginate(page: 1).each do |user|
           expect(page).to have_selector('li', text: user.name)
         end
@@ -114,6 +116,7 @@ describe "User Pages" do
 # edit a user 
   describe "edit" do
     let(:user) { FactoryGirl.create(:user) }
+    let(:avatar_link) { "http://gravatar.com/emails".to_s }
     before do
       sign_in user
       visit edit_user_path(user)
@@ -122,7 +125,7 @@ describe "User Pages" do
       describe "page" do
         it{should have_content('Update your profile')}
         it{should have_title('Update your profile')}
-        it{should have_link('change'), href: 'http://gravatar.com/emails'}
+        it{should have_link('change', href: avatar_link) }
       end
 
       describe "with invalid information" do
