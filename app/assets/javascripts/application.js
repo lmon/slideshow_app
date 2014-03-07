@@ -18,7 +18,8 @@
 //= require turbolinks
 //= require_tree .
 
- var AUTH_TOKEN = (AUTH_TOKEN != null ? AUTH_TOKEN : "asdasdasdadsasd");
+ var AUTH_TOKEN = (AUTH_TOKEN != null ? AUTH_TOKEN : "987987987b98798798bIU&kjhhgjhgjgj7657657");
+ //var gid = (gid != null ? gid : 304);
 
 $(function() {
   $('#sliderArea').ramblingSlider();
@@ -32,8 +33,9 @@ $(function() {
        handle: '.handle',
 	  axis: 'y',
     update: function(){
-        //alert($( "#sortable" ).sortable( "toArray" ))
-          $.get('/galleries/sort', 
+        if(!$( "#sortable" ).attr( "gid" )){alert('there was an error');return;}
+
+         $.post('/galleries/'+$( "#sortable" ).attr( "gid" )+'sort', 
         '_method=put&authenticity_token='+AUTH_TOKEN+'&'+$(this).sortable('serialize'));
     }
     });

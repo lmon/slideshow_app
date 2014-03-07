@@ -9,7 +9,7 @@
       <%= f.text_field :asset_order %>
  
       <p>Has Assets:</p>
-	<ul id="sortable">
+	<ul id="sortable" gid="304">
 		<% for asset in Asset.all() %>
 		<li class="ui-state-default" id="asset_<%=asset.id %>"><div class="handle"></div><div class="containerthumb"><%= image_tag asset.image(:thumb), :title=> asset.caption  %></div><div class="containertext"><%= asset.name %></div><div class="containercheck"><%= check_box_tag "gallery[asset_ids][]", 
 			asset.id, 
