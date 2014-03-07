@@ -37,7 +37,7 @@ before_action :set_gallery, only: [:show, :edit, :update, :destroy]
     @gallery = current_user.galleries.build(gallery_params)
     if @gallery.save
       flash[:success] = "gallery created!"
-      redirect_to root_url
+      redirect_to @gallery
     else
       #redirect_to user_path(current_user)
       render 'new'
@@ -63,6 +63,7 @@ before_action :set_gallery, only: [:show, :edit, :update, :destroy]
     def gallery_params
       params.require(:gallery).permit(:title, {:asset_ids => []}, :asset_order, :friendly_name, :private)
     end
+    
     def set_gallery
     @gallery = Gallery.find(params[:id])
   

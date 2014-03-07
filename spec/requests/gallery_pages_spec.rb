@@ -23,9 +23,15 @@ describe "Gallery Pages" do
     end
 
     describe "with valid information" do
-      before { fill_in 'gallery_title', with: "Lorem ipsum" }
+      before { fill_in 'gallery_title', with: "Lorem ipsum Title" }
       it "should create a gallery" do
         expect { click_button "Create" }.to change(Gallery, :count).by(1)
+        expect(page).to have_selector('h1', text: "Lorem ipsum Title")
+      end
+
+      #before { @gallery = FactoryGirl.create(:gallery, user: user, title: "My new Gallery")  } 
+      
+      it "should put me on the new gallery's page" do
       end
     end
   end
