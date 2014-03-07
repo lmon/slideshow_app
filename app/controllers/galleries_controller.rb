@@ -55,8 +55,19 @@ before_action :set_gallery, only: [:show, :edit, :update, :destroy]
       flash[:success] = "Action Not Allowed by You"
       redirect_to root_url
    end
-
   end
+
+def sort
+  order = params[:asset]
+  gid = params[:id]
+  if Gallery.find(gid).update_attributes(:asset_order => order.join(','))
+    render json: {:order => order, :gid=>gid} 
+  else
+    render json: 'error' 
+  end
+
+  #render :text => order.inspect
+end
 
  private 
 

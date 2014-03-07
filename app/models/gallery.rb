@@ -12,5 +12,9 @@ class Gallery < ActiveRecord::Base
     "#{id}-#{title.parameterize}"
   	end
 
+	# Set passed-in order for passed-in ids.
+	def order(ids)
+		update_attributes(:asset_order => ids.join(','))
+	end
 
 end

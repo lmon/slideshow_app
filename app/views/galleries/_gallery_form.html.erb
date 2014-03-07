@@ -11,7 +11,7 @@
       <p>Has Assets:</p>
 	<ul id="sortable">
 		<% for asset in Asset.all() %>
-		<li class="ui-state-default"><div class="handle"></div><div class="containerthumb"><%= image_tag asset.image(:thumb), :title=> asset.caption  %></div><div class="containertext"><%= asset.name %></div><div class="containercheck"><%= check_box_tag "gallery[asset_ids][]", 
+		<li class="ui-state-default" id="asset_<%=asset.id %>"><div class="handle"></div><div class="containerthumb"><%= image_tag asset.image(:thumb), :title=> asset.caption  %></div><div class="containertext"><%= asset.name %></div><div class="containercheck"><%= check_box_tag "gallery[asset_ids][]", 
 			asset.id, 
 			@gallery.assets.include?(asset) %></div></li>
 

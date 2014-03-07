@@ -18,6 +18,7 @@
 //= require turbolinks
 //= require_tree .
 
+ var AUTH_TOKEN = (AUTH_TOKEN != null ? AUTH_TOKEN : "asdasdasdadsasd");
 
 $(function() {
   $('#sliderArea').ramblingSlider();
@@ -25,10 +26,16 @@ $(function() {
 
   $(function() {
     $( "#sortable" ).sortable({
+       cursor: 'crosshair',
+       opacity: 0.4,
       placeholder: "ui-state-highlight",
        handle: '.handle',
-	  axis: 'y'
-
+	  axis: 'y',
+    update: function(){
+        //alert($( "#sortable" ).sortable( "toArray" ))
+          $.get('/galleries/sort', 
+        '_method=put&authenticity_token='+AUTH_TOKEN+'&'+$(this).sortable('serialize'));
+    }
     });
     $( "#sortable" ).disableSelection();
   });
@@ -38,4 +45,10 @@ $(function() {
        items: 'li',
        opacity: 0.4,
        scroll: true,
+
+       update: function() {
+    $ .post('/galleries/sort', 
+        '_method=put&authenticity_token='+AUTH_TOKEN+'&'+$(this).sortable('serialize'));
+    });
+
        */

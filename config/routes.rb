@@ -8,7 +8,7 @@ Slideshow::Application.routes.draw do
   # : automatically creates named routes for use in the controllers and views
   match '/help',    to: 'static_pages#help',    via: 'get'
   match '/about',   to: 'static_pages#about',   via: 'get'
-  match '/contact', to: 'contacts#new', via: 'get'
+  match '/contact', to: 'contacts#new',         via: 'get'
   match '/',        to: 'static_pages#home',    via: 'get'
   match '/noname',  to: 'static_pages#noname',  via: 'get'
   # users
@@ -27,11 +27,14 @@ Slideshow::Application.routes.draw do
   root to: "static_pages#home"
   
   resources :assets 
-  resources :galleries#, only: [:view , :create, :destroy] # others handled in users
+  resources :galleries#, only: [:view , :create, :destroy]
   resources :contacts
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
   
+  #handle req to change order in the gallery
+  get 'galleries/:id/sort/:ids' => 'galleries#sort'#, {:sort => :get }
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
