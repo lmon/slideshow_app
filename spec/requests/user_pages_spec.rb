@@ -6,8 +6,13 @@ describe "User Pages" do
   describe "signup page" do
     before { visit signup_path }
 
-    it { should have_content('Sign up') }
-    it { should have_title( 'Sign up' ) }
+    it "has sing up link" do
+      expect(page).to have_content('Sign up') 
+    end
+    it "has sign up in title" do
+      expect(page).to have_title( 'Sign up' ) 
+    end
+
   end
 
   describe "profile page" do
@@ -18,19 +23,35 @@ describe "User Pages" do
     
     before { visit user_path(user) }
 
-  	it { should have_content(user.name) }
-  	it { should have_title(user.name) }
+  	it "shows username "do
+      expect(page).to have_content(user.name) 
+    end
+
+    it "shows username in title" do
+  	 expect(page).to have_title(user.name) 
+    end
 
     # for gallery
     describe "galleries" do
-      it { should have_content(m1.title) }
-      it { should have_content(m2.title) }
-      it { should have_content(user.galleries.count) }
+      it "has the title of the new gallery" do
+        expect(page).to have_content(m1.title) 
+      end
+
+      it "has the title of the new gallery 2" do
+        expect(page).to have_content(m2.title) 
+      end
+      
+      it "has the right number of galleries" do
+        expect(page).to have_content(user.galleries.count) 
+      end
+      
     end
 
     describe "delete links" do
       # normal logins shouldnt see delete link
-      it { should_not have_link('Destroy') }
+      it "does not have destroy link" do
+        expect(page).to_not have_link('Destroy') 
+       end
 
       describe "as an admin user" do
         # login as admin
@@ -40,7 +61,9 @@ describe "User Pages" do
           visit users_path
         end
 
-        it { should have_link('Destroy') }
+        it "does have destroy link" do
+        expect(page).to have_link('Destroy') 
+       end
         
         it "should be able to delete a gallery" do
           expect do
@@ -60,16 +83,19 @@ describe "User Pages" do
       visit users_path
     end
 
-    it { should have_title('Listing') }
-    it { should have_content('Listing') }
+    it "does have Listing in Title" do
+        expect(page).to have_title('Listing') 
+       end
 
     describe "pagination" do
 
       before(:all) { 30.times { FactoryGirl.create(:user) } }
       after(:all)  { User.delete_all }
 
-      it { should have_selector('div.pagination') }
-
+      it "has pagination area" do 
+        expect(page).to have_selector('div.pagination') 
+       end
+        
       it "should list each user" do
 
      expect(User.count).to eq(31) 
@@ -81,8 +107,10 @@ describe "User Pages" do
 
     describe "delete links" do
       # normal logins shouldnt see delete link
-      it { should_not have_link('Destroy') }
-
+      it "does not have destroy link" do
+        expect(page).to_not have_link('Destroy') 
+       end
+        
       describe "as an admin user" do
         before { click_link "Sign out" }
 
@@ -93,14 +121,20 @@ describe "User Pages" do
           visit users_path
         end
 
-        it { should have_link('Destroy') }
-        it "should be able to delete another user" do
+      it "does have destroy link" do
+        expect(page).to have_link('Destroy') 
+       end
+      
+        it "can delete another user" do
           expect do
             click_link('Destroy', match: :first)
           end.to change(User, :count).by(-1)
         end
         # it should not have a link to delete self
-        it { should_not have_link('Destroy', href: user_path(admin)) }
+      it "does not have admin's destroy link" do
+        expect(page).to_not have_link('Destroy', href: user_path(admin) )
+       end
+
       end
     end
 
@@ -108,7 +142,10 @@ describe "User Pages" do
     describe "with a logged out user" do
        before { click_link "Sign out" }
       before { visit users_path }
-      it { should have_selector('div', text: 'Sign in') }
+      
+      it "has sign in" do
+       expect(page).to have_selector('div', text: 'Sign in') 
+      end
     end
 
   end
@@ -123,15 +160,29 @@ describe "User Pages" do
     end
 
       describe "page" do
-        it{should have_content('Update your profile')}
-        it{should have_title('Update your profile')}
-        it{should have_link('change', href: avatar_link) }
+      it "does have 'Update your profile' in Title" do
+        expect(page).to have_title('Update your profile') 
+       end
+  
+        it "does have Avatar link " do
+          expect(page).to have_link('change', href: avatar_link) 
+        end
       end
 
       describe "with invalid information" do
         before { click_button "Save changes" }
-        it { should have_content('error') }
+
+        it "does have content error" do
+          expect(page).to have_content('error') 
+        end        
       end
+      
+      describe "with invalid information" do
+          before { click_button "Save changes" }
+          specify { expect(response).to redirect_to(edit_user_path(user)) }
+      end
+
+
 
       describe "with valid information" do
           let(:new_name)  { "New Name" }

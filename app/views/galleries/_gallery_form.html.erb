@@ -2,21 +2,70 @@
       <%= f.label :title %>
       <%= f.text_field :title %> 
 
-      <%= check_box_tag :private , @gallery.private? %>
-      <%= "Private?" %>
+     
+      <p> <%= check_box_tag :private , @gallery.private? %> <%= "Private?" %></p>
 
-      <%= f.label :asset_order %>
-      <%= f.text_field :asset_order %>
+Order ids <%= @gallery.asset_order %> <br>
+
+		<% if Rails.env.development?  
+				a = @gallery.asset_order.split(",")
+				b = allassets 
+
+				allusedsortedids = 
+				a.sort do |e1, e2|
+				  b.index(e1) <=> b.index(e2)
+				end
+
+				%> Need to sort: <br> <%
+
+				usedsortedassets.each do |something| %>
+
+				Hi <%=something.id %><br>
+
+				<% end %>
+
+				allusedsortedids  only <%=allusedsortedids %><br> 
+				usedsortedassets:<%=usedsortedassets %><br>
+		<% end %>
+
+      <!--<%= f.label :asset_order %>
+      <%= f.text_field :asset_order %>-->
  
-      <p>Has Assets:</p>
-	<ul id="sortable" gid="304">
-		<% for asset in Asset.all() %>
-		<li class="ui-state-default" id="asset_<%=asset.id %>"><div class="handle"></div><div class="containerthumb"><%= image_tag asset.image(:thumb), :title=> asset.caption  %></div><div class="containertext"><%= asset.name %></div><div class="containercheck"><%= check_box_tag "gallery[asset_ids][]", 
-			asset.id, 
-			@gallery.assets.include?(asset) %></div></li>
+<div id="header">
+	<div id="headerleft">
+		<p>Has Assets</p>
+	</div>
+	<div id="headerright">
+		<p>To Add Assets</p>
+	</div>
+</div>
 
-		<% end %>	
-	</ul>
+
+<div id="sortarea">
+	<div id="sortdiv1">
+		<ul id="sortable" class="connectedSortable" gid="<%=@gallery.id %>">
+			<% for asset in usedsortedassets %>
+	              <% if @gallery.assets.include?(asset) %>
+					<li class="ui-state-default" id="asset_<%=asset.id %>"><div class="handle"></div><div class="containerthumb"><%= image_tag asset.image(:thumb), :title=> asset.caption  %></div><div class="containertext"><%= asset.name %> / <%=asset.id %></div><div class="containercheck"><%= check_box_tag "gallery[asset_ids][]", 
+						asset.id, 
+						@gallery.assets.include?(asset) %></div></li>
+	              <% end %>
+			<% end %>	
+		</ul>
+	</div>
+
+	<div id="sortdiv2">
+		<ul id="sortable-toadd" class="connectedSortable" gid="<%=@gallery.id %>">
+			<% for asset in allassets %>
+				<% unless @gallery.assets.include?(asset) %>
+					<li class="ui-state-default" id="asset_<%=asset.id %>"><div class="handle"></div><div class="containerthumb"><%= image_tag asset.image(:thumb), :title=> asset.caption  %></div><div class="containertext"><%= asset.name %> // <%=asset.user_id %></div><div class="containercheck"><%= check_box_tag "gallery[asset_ids][]", 
+					asset.id, 
+					@gallery.assets.include?(asset) %></div></li>
+					<% end %>	
+			<% end %>	
+		</ul>
+	</div>
+</div>
 
 
 <!--

@@ -32,8 +32,10 @@ Slideshow::Application.routes.draw do
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
   
-  #handle req to change order in the gallery
-  get 'galleries/:id/sort/:ids' => 'galleries#sort'#, {:sort => :get }
+  # handle req to gallery / sort :json
+  # maps to galleries#sort
+  # sample URL /galleries/304/sort/id?asset[]=23&asset[]=21&asset[]=22&asset[]=19&asset[]=14&asset[]=13&asset[]=7&asset[]=6
+  post 'galleries/:id/sort/:ids' => 'galleries#sort'#, {:sort => :get }
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
