@@ -299,18 +299,36 @@ aside {
 }
 /* jQuery sortable */
 
-  #sortable { 
+#header{ 
+ #headerleft, #headerright {
+      display:inline-block;
+      width: 49%; 
+      background-color:#DDD;
+ }
+}
+
+ #sortarea{
+      border: 1px #666 solid;
+      padding-left: 2px;
+ 
+ #sortdiv1, #sortdiv2 {
+      display:inline-block;
+      width: 49%; 
+      background-color:#CCC;
+ }
+}
+  #sortable, #sortable-toadd { 
     list-style-type: none; 
     margin: 0; 
     padding: 0; 
-    width: 90%; 
+    width: 100; 
 
     li { 
-      margin: 0 5px 5px 5px; 
+      margin: 0 0 5px 0; 
       padding: 1px; 
       font-size: 1em; 
       height: 3em; 
-      border: 1px black solid;
+      border: 1px #888 solid;
       overflow:hidden;
     }
     
@@ -337,23 +355,56 @@ aside {
   }
   .containercheck{
     background-color: #BBB;
-    width:  30px;
+    width:  7%;
   }
   .containerthumb{
-      width:  50px;
+      width:  16%;
       height: 100%;
       overflow:hidden;
-      margin: 0 5px 0 5px;
+      margin: 0 1% 0 1%;
   }
 
   .containertext{
-      width:  59%;
+      width:  65%;
       height: 100%;
       overflow:hidden;
     background-color: #EEE;
   }
 
-  }
+}
+
+/* animated loader */
+#dvLoading{
+   
+   height: 100%;
+   width: 100%;
+   position: fixed;
+   z-index: 1000;
+   left: 1px;
+   top: 1px;
+   display: none;
+   
+   #animator{
+    background:url(loading.gif) no-repeat center center;
+    height: 32px;
+    width: 32px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+   }
+
+   #bg{ 
+     background:#000000;
+     opacity: .5;
+     height: 100%;
+     width: 100%;
+     position: fixed;
+     left: 1px;
+     top: 1px;
+   }
+
+}
+
 
 
 /* miscellaneous */
