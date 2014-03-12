@@ -319,8 +319,8 @@ aside {
 }
   #sortable, #sortable-toadd { 
     list-style-type: none; 
-    margin: 0; 
-    padding: 0; 
+    margin: 4px; 
+    padding: 4px; 
     width: 100; 
 
     li { 
@@ -383,7 +383,7 @@ aside {
    left: 1px;
    top: 1px;
    display: none;
-   
+
    #animator{
     background:url(loading.gif) no-repeat center center;
     height: 32px;

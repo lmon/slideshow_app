@@ -31,7 +31,7 @@ slideshow.loader = function(mode){
 
     }else{
       //hide
-      $('#dvLoading').fadeOut(1000);
+      $('#dvLoading').fadeOut(500);
     }
 }
 
@@ -42,6 +42,10 @@ slideshow.loader = function(mode){
        opacity: 0.4,
        placeholder: "ui-state-highlight",
        handle: '.handle',
+       receive: function(event, ui) { 
+        // on drop, uncheck the check box
+        ui.item.find( "input:checkbox" ).prop('checked', false);
+       },
   });
 
   $( "#sortable, #sortable-toadd" ).sortable({
@@ -58,6 +62,12 @@ slideshow.loader = function(mode){
        opacity: 0.4,
        placeholder: "ui-state-highlight",
        handle: '.handle',
+      receive: function(event, ui) { 
+        // on drop, check the check box
+        console.log(ui.item.find( "input:checkbox" )) //containercheck
+        ui.item.find( "input:checkbox" ).prop('checked', true);
+
+       },
       update: function(){
         if(!$( "#sortable" ).attr( "gid" )){alert('there was an error');return;}
         
