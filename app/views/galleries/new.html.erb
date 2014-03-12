@@ -7,7 +7,7 @@
 
   	<%= render 'shared/error_messages', thing: @gallery %>
 
-      <%=render 'gallery_form', f:f %>
+      <%=render 'gallery_form', f:f , allassets: @allassets , usedsortedassets: @usedsortedassets %>
 
       <%= f.submit "Create", class: "btn btn-large btn-primary" %>
     <% end %>

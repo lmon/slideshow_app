@@ -8,7 +8,7 @@
 Order ids <%= @gallery.asset_order %> <br>
 
 		<% if Rails.env.development?  
-				a = @gallery.asset_order.split(",")
+				a = @gallery.asset_order.to_s.split(",")
 				b = allassets 
 
 				allusedsortedids = 
@@ -18,10 +18,12 @@ Order ids <%= @gallery.asset_order %> <br>
 
 				%> Need to sort: <br> <%
 
+							if allassets.any? 
 				usedsortedassets.each do |something| %>
 
 				Hi <%=something.id %><br>
 
+					<% end %>
 				<% end %>
 
 				allusedsortedids  only <%=allusedsortedids %><br> 

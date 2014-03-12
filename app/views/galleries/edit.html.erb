@@ -8,7 +8,7 @@
     <%= form_for(@gallery) do |f| %>
        
         <%=render 'shared/error_messages', thing: @gallery%>
-		<%=render 'gallery_form', f:f   , allassets: @allassets , usedsortedassets: @usedsortedassets%>
+		<%=render 'gallery_form', f:f   , allassets: @allassets , usedsortedassets: @usedsortedassets %>
 
       <%= f.submit "Save changes", class: "btn btn-large btn-primary" %>
     <% end %>

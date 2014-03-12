@@ -2,6 +2,7 @@ class GalleriesController < ApplicationController
 #  restrict actiions based on this Sessions Helper function
 before_action :signed_in_user, only: [:create, :destroy, :update, :new, :edit]
 before_action :set_gallery, only: [:show, :edit, :update, :destroy]
+before_action :set_assets, only: [:show, :edit, :new, :create,]
 
 protect_from_forgery only: [:sort]
 
@@ -20,47 +21,14 @@ protect_from_forgery only: [:sort]
   end
   
  def edit
-    # all my assets
-    @allassets = Asset.where(:user_id => current_user.id)
     # this gallery
     @gallery2 = Gallery.find(params[:id])
-    #@allassets2 = Asset.where(:user_id => current_user.id)
     # array of ids from asste order column
-    @asset_orderids = @gallery2.asset_order.split(",")
+    @asset_orderids = @gallery2.asset_order.to_s.split(",")
     # assets of those ids, in the right order
-  
-  
 
-
-=begin  
-  
-@usedsortedassets = 
-@asset_orderids.sort do |e1, e2|
-  if @allassets.index(e1) <=>  @allassets.index(e2) 
-    @allassets.index(e1)
-  else
-   @allassets.index(e2)
-  end
-end
-=end
-
-
-a2=@allassets#["one", "two", "three"]
-a1=@asset_orderids#["two", "one", "three"]
-
-#a2.sort_by{|x| a1.index x.id}
-
-
-#a1.each_with_index do |id, idx|
-#  found_idx = aZ.find_index { |c| c.id == id }
-#  replace_elem = a2[found_idx]
-#  a2[found_idx] = a2[idx]
-#  a2[idx] = replace_elem
-#end  
-
-@usedsortedassets = a2
-
-#    @usedsortedassets = Asset.find(@asset_orderids)  
+# need to get this properly ordered
+#@usedsortedassets = @allassets#a2
 
   end
 
@@ -128,8 +96,12 @@ end
     end
     
     def set_gallery
-    @gallery = Gallery.find(params[:id])
-  
-  end
+      @gallery = Gallery.find(params[:id])  
+    end
+
+    def set_assets
+      @allassets = Asset.where(:user_id => current_user.id) 
+      @usedsortedassets = @allassets
+    end
   
 end
