@@ -3,36 +3,24 @@
       <%= f.text_field :title %> 
 
      
-      <p> <%= check_box_tag :private , @gallery.private? %> <%= "Private?" %></p>
+      <p> 
+      <%= f.label(:private, "Private") %>
+		<%= f.check_box(:private) %>
+   	</p>
 
 Order ids <%= @gallery.asset_order %> <br>
 
 		<% if Rails.env.development?  
-				a = @gallery.asset_order.to_s.split(",")
-				b = allassets 
-
-				allusedsortedids = 
-				a.sort do |e1, e2|
-				  b.index(e1) <=> b.index(e2)
-				end
-
-				%> Need to sort: <br> <%
-
-							if allassets.any? 
-				usedsortedassets.each do |something| %>
-
-				Hi <%=something.id %><br>
-
-					<% end %>
-				<% end %>
-
-				allusedsortedids  only <%=allusedsortedids %><br> 
-				usedsortedassets:<%=usedsortedassets %><br>
-		<% end %>
-
-      <!--<%= f.label :asset_order %>
-      <%= f.text_field :asset_order %>-->
- 
+			if !usedsortedassets.any? %>
+				Nothing in usedsortedassets!,
+				<%
+			end
+			usedsortedassets.each do |something| %>
+				<%=something.id %>,
+			<% end %>
+			<br>
+ 		<% end %>
+		
 <div id="header">
 	<div id="headerleft">
 		<p>Has Assets</p>
@@ -60,7 +48,7 @@ Order ids <%= @gallery.asset_order %> <br>
 		<ul id="sortable-toadd" class="connectedSortable" gid="<%=@gallery.id %>">
 			<% for asset in allassets %>
 				<% unless @gallery.assets.include?(asset) %>
-					<li class="ui-state-default" id="asset_<%=asset.id %>"><div class="handle"></div><div class="containerthumb"><%= image_tag asset.image(:thumb), :title=> asset.caption  %></div><div class="containertext"><%= asset.name %> // <%=asset.user_id %></div><div class="containercheck"><%= check_box_tag "gallery[asset_ids][]", 
+					<li class="ui-state-default" id="asset_<%=asset.id %>"><div class="handle"></div><div class="containerthumb"><%= image_tag asset.image(:thumb), :title=> asset.caption  %></div><div class="containertext"><%= asset.name %> // <%=asset.id %></div><div class="containercheck"><%= check_box_tag "gallery[asset_ids][]", 
 					asset.id, 
 					@gallery.assets.include?(asset) %></div></li>
 					<% end %>	

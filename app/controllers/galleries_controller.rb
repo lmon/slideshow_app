@@ -24,11 +24,8 @@ protect_from_forgery only: [:sort]
     # this gallery
     @gallery2 = Gallery.find(params[:id])
     # array of ids from asste order column
-    @asset_orderids = @gallery2.asset_order.to_s.split(",")
-    # assets of those ids, in the right order
-
-# need to get this properly ordered
-#@usedsortedassets = @allassets#a2
+    #@usedsortedassets = get_usedorderdassets
+ 
 
   end
 
@@ -101,7 +98,23 @@ end
 
     def set_assets
       @allassets = Asset.where(:user_id => current_user.id) 
-      @usedsortedassets = @allassets
+    
+      @usedsortedassets = Array.new 
+
+      if !@gallery.nil?    
+        a = @gallery.asset_order.to_s.split(",")
+        
+        # another try (very inefficient)
+        a.each do |targetid| 
+          @allassets.each do |element|
+            if element.id.to_s == targetid.to_s
+                @usedsortedassets.push( element )
+                break
+            end
+          end
+        end 
+      end # end if any
+        @usedsortedassets
     end
   
 end

@@ -1,6 +1,8 @@
 <% provide(:title, @gallery.title) %>
 <div class="row galleryviewer" >
-	<aside class="span4">this is an aside</aside>
+	<aside class="span4">
+  <p><%=link_to 'Upload  images', new_asset_path , class: "btn btn-small btn-secondary"%></p>
+  </aside>
 	<section>
 	<div class="subtitle">Gallery Viewer</div>
 
@@ -32,7 +34,7 @@
                <% end %>
               <% end %>
             </div>      
-      <p><%=link_to 'Add  images', new_asset_path %></p>
+      <p><%=link_to 'Upload  images', new_asset_path %></p>
     </section>
 </div>
 

@@ -27,7 +27,7 @@ slideshow.loader = function(mode){
     console.log('inside load function')
     if(mode == false){
       //show
-      $('#dvLoading').fadeIn();
+      $('#dvLoading').fadeIn(100);
 
     }else{
       //hide
@@ -52,11 +52,12 @@ slideshow.loader = function(mode){
       connectWith: ".connectedSortable"
     });
 
+  $( "#sortable, #sortable-toadd" ).disableSelection();
+
+//});
 
 
-});
-
-  $(function() {
+ // $(function() {
     $( "#sortable" ).sortable({
        cursor: 'crosshair',
        opacity: 0.4,
@@ -66,14 +67,17 @@ slideshow.loader = function(mode){
         // on drop, check the check box
         console.log(ui.item.find( "input:checkbox" )) //containercheck
         ui.item.find( "input:checkbox" ).prop('checked', true);
+        ui.item.find( "input:checkbox" ).attr('checked', 'checked');
+        
+        console.log('checkbox checked')
 
        },
       update: function(){
-        if(!$( "#sortable" ).attr( "gid" )){alert('there was an error');return;}
+        if(!$( "#sortable" ).attr( "gid" )){console.error('there was an error w gid');return;}
         
         AUTH_TOKEN = $('meta[name=csrf-token]').attr('content');
 
-        if( AUTH_TOKEN == null ){ alert('there was an error 2');return;}
+        if( AUTH_TOKEN == null ){ console.error('there was an error w Auth');return;}
 
 /* works :  $.get('/galleries/'+$( "#sortable" ).attr( "gid" )+'/sort/id?', '_method=put&authenticity_token='+AUTH_TOKEN+'&'+$(this).sortable('serialize')); */
 
@@ -103,7 +107,6 @@ slideshow.loader = function(mode){
     } // end update
     });
 
-    $( "#sortable" ).disableSelection();
   });
 
  
