@@ -355,7 +355,9 @@ aside {
   }
   .containercheck{
     background-color: #BBB;
-    width:  7%;
+    width:  0px;
+    text-indent: -1000px;
+    overflow:hidden;
   }
   .containerthumb{
       width:  16%;
