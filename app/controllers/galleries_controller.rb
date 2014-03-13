@@ -100,8 +100,13 @@ end
     end
 
     def set_assets
-      @allassets = Asset.where(:user_id => current_user.id) 
-    
+      if current_user.nil? 
+        # logged out viewing, use the id of the user from the gallery
+        @allassets = Asset.where(:user_id => @gallery.user_id) 
+      else
+        @allassets = Asset.where(:user_id => current_user.id)       
+      end
+
       @usedsortedassets = Array.new 
 
       if !@gallery.nil?    
