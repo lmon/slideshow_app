@@ -388,7 +388,8 @@ aside {
    display: none;
 
    #animator{
-    background:url(loading.gif) no-repeat center center;
+    background:  no-repeat center center;
+    background-image: url(image-path('loading.gif'));
     height: 32px;
     width: 32px;
     position: fixed;
