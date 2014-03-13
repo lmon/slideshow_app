@@ -1,25 +1,24 @@
 
-      <%= f.label :title %>
-      <%= f.text_field :title %> 
+  <%= f.label :title %>
+  <%= f.text_field :title %> 
 
-    <p> 
-      <%= f.label(:private, "Private") %>
-		<%= f.check_box(:private) %>
-   	</p>
-	<p> 
-		Order ids <%= @gallery.asset_order %> <br>
-   	</p>
+  <p>Private  <%= f.check_box(:private) %> </p>
 
-		<% if Rails.env.development?  
-			if !usedsortedassets.any? %>
-				Nothing in usedsortedassets!,
-				<%
-			end
-			usedsortedassets.each do |something| %>
-				<%=something.id %>,
-			<% end %>
-			<br>
- 		<% end %>
+	<% if Rails.env.development? %> 
+
+		<% if !usedsortedassets.any? %>
+			<%= debug_layout('Nothing in usedsortedassets!') %>
+		<%
+		end
+		
+		s = "Order ids #{@gallery.asset_order} <br/>"
+
+		usedsortedassets.each do |something|
+			s = s + "#{something.id},"
+		end %>
+
+		<%= debug_layout(s) %>
+	<% end %>
 		
 <div id="header">
 	<div id="headerleft">
@@ -56,10 +55,4 @@
 		</ul>
 	</div>
 </div>
-
-
-<!--
-			
-			-->
-		 
-		
+ 

@@ -9,4 +9,8 @@ module ApplicationHelper
 		end
 	end
 
+	def debug_layout(s)
+		"<div class=\"debug\"> #{s} </div>".html_safe
+	end	
+
 end

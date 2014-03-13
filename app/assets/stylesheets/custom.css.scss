@@ -297,6 +297,7 @@ aside {
 #fat-menu.admin{
   background-color: #553333;
 }
+
 /* jQuery sortable */
 
 #header{ 
@@ -308,13 +309,13 @@ aside {
 }
 
  #sortarea{
-      border: 1px #666 solid;
+      border: 1px #DDD solid;
       padding-left: 2px;
  
  #sortdiv1, #sortdiv2 {
       display:inline-block;
       width: 49%; 
-      background-color:#CCC;
+      background-color:#DDD;
  }
 }
   #sortable, #sortable-toadd { 
@@ -413,11 +414,26 @@ aside {
 
 /* miscellaneous */
 
-.debug_dump {
+.debug_dump, .debug {
   clear: both;
   float: left;
   width: 100%;
   margin-top: 45px;
   @include box_sizing;
 } 
+.debug {
+  display: block;
+  padding: 5.5px;
+  margin: 0 0 5px;
+  font-size: 12px;
+  line-height: 18px;
+  word-break: break-all;
+  word-wrap: break-word;
+  background-color: #FFFFDD;
+  border: 1px solid #ccc;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
 
+}

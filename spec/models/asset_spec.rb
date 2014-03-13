@@ -1,10 +1,9 @@
 require 'spec_helper'
 
 describe Asset do
-  	let(:testfilespath) {Rails.root + '/Library/WebServer/Documents/MonacoWork/ruby/slideshow/slideshow/lib/assets/'}
-  	let(:upload) { File.new( testfilespath + 'ninam.png') }
- 	let(:user) { FactoryGirl.create(:user) }
-
+   let(:testfilespath) {Rails.root + '/Library/WebServer/Documents/MonacoWork/ruby/slideshow/slideshow/lib/assets/'}
+   let(:upload) { File.new( testfilespath + 'ninam.png') }
+ 	 let(:user) { FactoryGirl.create(:user) }
    let(:asset) { FactoryGirl.create(:asset, name: "test title", caption: "my test caption", image: upload, user: user ) }
 
 
