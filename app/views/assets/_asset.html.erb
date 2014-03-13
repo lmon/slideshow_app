@@ -6,7 +6,7 @@
 	    	</span>
 		</span>
 	</span>
-	<% if (current_user && (current_user == @user)) || (current_user && current_user.admin?)  %>
+	<% if (current_user && (current_user.id == asset.user_id)) || (current_user && current_user.admin?)  %>
 	<span>    
 	    <%= link_to 'Destroy', asset, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-small btn-secondary" %>
   <%= link_to 'Edit', edit_asset_path(asset) , class: "btn btn-small btn-secondary"%> 

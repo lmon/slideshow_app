@@ -104,7 +104,7 @@ end
         # change form data
         before { 
           fill_in 'gallery_title', with: new_title 
-          click_button "Save changes"
+          click_button "Update Gallery"
         }
         # change form data
         it "has updated title" do
