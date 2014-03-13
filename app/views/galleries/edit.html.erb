@@ -1,6 +1,6 @@
 <% provide(:title, "Update Gallery") %>
 
-<div class="subtitle"><%=@gallery.title %></div>
+<div class="subtitle"><%=@gallery.title %> by <%=User.find(@gallery.user_id).name %></div>
 <h1>Update your gallery</h1>
 
 <div class="row">

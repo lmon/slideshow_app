@@ -1,6 +1,9 @@
 class AssetsController < ApplicationController
  
   before_action :signed_in_user, only: [:create, :destroy, :update, :new, :edit]
+  before_action :set_asset,   only: [:edit, :update, :show]
+  # allows users to access these functions only for them elves
+  before_action :correct_user,   only: [:edit, :update]
 
  # GET /assets
   # GET /assets.json
@@ -17,7 +20,7 @@ end
   # GET /assets/1
   # GET /assets/1.json
   def show
-    @asset = Asset.find(params[:id])
+    #@asset = Asset.find(params[:id])
   end
 
   # GET /assets/new
@@ -27,7 +30,7 @@ end
 
   # GET /assets/1/edit
   def edit
-    @asset = Asset.find(params[:id])
+    #@asset = Asset.find(params[:id])
   end
 
 def update
@@ -48,11 +51,6 @@ def update
      Asset.find(params[:id]).destroy()
       flash[:success] = "Asset Removed"
       redirect_to users_url
-    #@asset.destroy
-    #respond_to do |format|
-    #  format.html { redirect_to assets_url }
-    #  format.json { head :no_content }
-    #end
   end
 
 	# POST /assets
@@ -62,18 +60,24 @@ def update
     if @asset.save
          flash[:success] = "Asset created!"
          redirect_to @asset
-         #format.html { redirect_to @asset, notice: 'Asset was successfully created.' }
-        #format.json { render action: 'show', status: :created, location: @asset }
     else
         render 'new'
-        #format.html { render action: 'new' }
-        #format.json { render json: @asset.errors, status: :unprocessable_entity }
     end
   end
   
 
 
 private
+  def correct_user
+    @user = User.find(@asset.user_id)
+    redirect_to(root_url) unless current_user?(@user)
+  end  
+
+    def set_asset
+       @asset = Asset.find(params[:id])
+    end
+
+
   def asset_params
    # params[:asset][:galleries] ||= []
     params.require(:asset).permit(:name, :caption, :image)

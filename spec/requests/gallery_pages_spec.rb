@@ -92,11 +92,8 @@ end
         @gallery = FactoryGirl.create(:gallery, user: user, title: "My Testing Gallery Title") 
         visit edit_gallery_path(@gallery) 
       } 
-
-      it "with  content 'Update your gallery'" do 
-        #passes  expect(@gallery.title).to eq("My Testing Gallery Title") 
-        #passes expect(page.title).to eq("Slideshow App | Update Gallery") 
-        #passes expect(page).to have_selector('h1', text: "Update your gallery") 
+ 
+      it "with content 'Update your gallery'" do 
         expect(page).to have_content("Update your gallery") 
         expect(page).to have_content(@gallery.title) 
       end

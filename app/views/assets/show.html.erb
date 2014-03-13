@@ -1,6 +1,8 @@
-Notice: <p id="notice"><%= notice %></p>
+ 
 
+<% if (current_user && (current_user == @user)) || (current_user && current_user.admin?)  %>
 <%= link_to 'Edit', edit_asset_path(@asset) %> |
+<% end %>
 <%= link_to 'Back', assets_path %>
 
  <div class="field">
@@ -24,14 +26,16 @@ Notice: <p id="notice"><%= notice %></p>
   <div class="avatar">
     <%= image_tag @asset.image.url %>
   </div>
+<% if (current_user && (current_user == @user)) || (current_user && current_user.admin?)  %>
       <%= link_to 'Destroy', @asset, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-small btn-secondary" %>
+<% end %>
 
     <p>In Slideshows:</p>
     <ul>
       <% for gallery in Gallery.find(:all) %>
         <% if @asset.galleries.include?(gallery) %>
           <li>
-            <%= gallery.title %>
+            <%= link_to gallery.title, gallery_path(gallery) %> 
           </li>
           <% end %>
       <% end %>

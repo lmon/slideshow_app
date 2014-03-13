@@ -2,13 +2,13 @@
       <%= f.label :title %>
       <%= f.text_field :title %> 
 
-     
-      <p> 
+    <p> 
       <%= f.label(:private, "Private") %>
 		<%= f.check_box(:private) %>
    	</p>
-
-Order ids <%= @gallery.asset_order %> <br>
+	<p> 
+		Order ids <%= @gallery.asset_order %> <br>
+   	</p>
 
 		<% if Rails.env.development?  
 			if !usedsortedassets.any? %>

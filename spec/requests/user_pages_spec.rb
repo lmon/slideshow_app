@@ -141,7 +141,7 @@ describe "User Pages" do
     
     describe "with a logged out user" do
        before { click_link "Sign out" }
-      before { visit users_path }
+       before { visit users_path }
       
       it "has sign in" do
        expect(page).to have_selector('div', text: 'Sign in') 

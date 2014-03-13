@@ -4,6 +4,9 @@ before_action :signed_in_user, only: [:create, :destroy, :update, :new, :edit]
 before_action :set_gallery, only: [:show, :edit, :update, :destroy]
 before_action :set_assets, only: [:show, :edit, :new, :create,]
 
+# allows users to access these functions only for them elves
+before_action :correct_user,   only: [:edit, :update]
+
 protect_from_forgery only: [:sort]
 
   def index
@@ -117,4 +120,8 @@ end
         @usedsortedassets
     end
   
+    def correct_user
+      @user = User.find(@gallery.user_id)
+      redirect_to(root_url) unless current_user?(@user)
+    end
 end

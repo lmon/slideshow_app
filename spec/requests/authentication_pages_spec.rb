@@ -29,12 +29,6 @@ describe "Authentication" do
 	  		let(:user) {FactoryGirl.create(:user) }
 	  		before { sign_in user }
 
-	  		#before do
-	    	#	fill_in "Email",        with: user.email.upcase
-	    	#	fill_in "Password",     with: user.password
-	  		#	click_button 'Sign in' 
-		  	#end
-
 	        it { should have_link('Users',       href: users_path) }
 	        it { should have_link('Profile',     href: user_path(user)) }
 	        it { should have_link('Settings',    href: edit_user_path(user)) }
@@ -50,11 +44,7 @@ describe "Authentication" do
  	  	describe "signed in user shouldnt see sign-in form" do 	  		
  	  		let(:user) {FactoryGirl.create(:user) }
 	  		before { sign_in user }
-	  		#before do
-	    	#	fill_in "Email",        with: user.email.upcase
-	    	#	fill_in "Password",     with: user.password
-	  		#	click_button 'Sign in' 
-		  	#end
+
  	  		it { should_not have_selector('div', text: 'Sign in') }
 	        it { should have_link('Sign out',    href: signout_path) }
 	        it { should_not have_link('Sign in', href: signin_path) }
@@ -159,11 +149,31 @@ describe "Authentication" do
 	   describe "as wrong user" do
 	      let(:user) { FactoryGirl.create(:user) }
 	      let(:wrong_user) { FactoryGirl.create(:user, email: "wrong@example.com") }
+	      let(:gallery) { FactoryGirl.create(:gallery, user: user, title: "Joe's Testing Gallery Title") }
+          let(:wrong_gallery) { FactoryGirl.create(:gallery, user: wrong_user, title: "Joe's Testing Gallery Title") }
+
+   		  let(:testfilespath) {Rails.root + '/Library/WebServer/Documents/MonacoWork/ruby/slideshow/slideshow/lib/assets/'}
+   		  let(:upload) { File.new( testfilespath + 'ninam.png') }
+   		  let(:wrong_asset) { FactoryGirl.create(:asset, name: "Wrong Asset", caption: "test caption", image: upload, user: wrong_user ) }
+
+
 	      before { sign_in user, no_capybara: true }
 
 	      describe "submitting a GET request to the Users#edit action" do
 	        before { get edit_user_path(wrong_user) }
 	        specify { expect(response.body).not_to match(full_title('Edit user')) }
+	        specify { expect(response).to redirect_to(root_url) }
+	      end
+
+		  describe "submitting a GET request to the Asset#edit action" do
+		  	#before { sign_in user, no_capybara: true }
+  			before { get edit_asset_path(wrong_asset) }
+	        specify { expect(response).to redirect_to(root_url) }
+	      end
+
+		  describe "submitting a GET request to the Gallery#edit action" do
+		  	#before { sign_in user, no_capybara: true }
+  			before { get edit_gallery_path(wrong_gallery) }
 	        specify { expect(response).to redirect_to(root_url) }
 	      end
 
