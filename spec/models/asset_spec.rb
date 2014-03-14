@@ -84,5 +84,10 @@ describe Asset do
       it { should be_invalid }
   end
 
+  describe "when the user is trying to upload more than 40 images" do
+      it { should be_invalid }
+  end
+
+
 
 end

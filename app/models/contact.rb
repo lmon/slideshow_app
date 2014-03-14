@@ -1,11 +1,5 @@
 class Contact < ActiveRecord::Base
-
-	  class CodelessValidator < ActiveModel::EachValidator
-	    def validate_each(record, attribute, value)
-	      record.errors.add attribute, "Unacceptable characters." if value =~ /<.*>/m
-	    end
-	  end
-
+	include Validations #testing. Delete??
 
 	#validates :name, presence: true
 	validates :name, length: { maximum: 32 }, codeless:  true
@@ -13,15 +7,14 @@ class Contact < ActiveRecord::Base
 	VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 
   	validates :email, presence: true, 
-  					format: { with: VALID_EMAIL_REGEX } 
-
-	validates :email, length: { in: 6..64 }, codeless:  true
+  			length: { in: 6..64 }, 
+  			codeless:  true, 
+  			email: true # <-- custom email validator
 
 	validates :message, presence: true,
-			 length: { in: 0..512 }
+			 		length: { in: 0..512 }
  
 	validates :message, codeless:  true
-
 
 
 end

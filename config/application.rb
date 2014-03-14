@@ -28,5 +28,8 @@ module Slideshow
     # http://stackoverflow.com/questions/20361428/rails-i18n-validation-deprecation-warning
     config.i18n.enforce_available_locales = true
 
+    # add custom validators path
+    config.autoload_paths += %W["#{config.root}/app/validators/"]
+
   end
 end

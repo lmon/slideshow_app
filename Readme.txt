@@ -53,3 +53,10 @@ Components
 	Gallery Display via JS
 [X]	Image uploader			-- Paperclip
 [X]	Image Order				-- Jquery
+
+Issues to be addressed 
+Gallery edit: On load sometimes the sorting functionality doesnt work(jquery)
+Gallery view: On load of  page, some times images dont load
+Gallery edit: Ajax Sort call doesnt require AUTH_TOKEN
+Gallery edit: Sorting of Gallery assets is not scalable
+Gallery View: Formatting doesnt handle different size images well

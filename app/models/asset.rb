@@ -18,10 +18,9 @@ class Asset < ActiveRecord::Base
 
   validates :user_id, :presence => true
 
-  validates :name, presence: true
-	validates :name, length: { in: 3..64 }
+  validates :name, presence: true, length: { in: 3..64 }, codeless: true #custom validator
 
-	validates :caption, length: { maximum: 512  }
+	validates :caption, length: { maximum: 512  }, codeless: true #custom validator
 
 	validates_attachment :image, :size => { :in => 0..4.megabytes , :message => "must be less than 4 MB" }
 

@@ -35,7 +35,10 @@ slideshow.loader = function(mode){
     }
 }
 
-  $('#sliderArea').ramblingSlider();
+  $('#sliderArea').ramblingSlider({
+    useLargerImage: false,
+    effect: 'slideInRight'
+  });
 
     $( "#sortable-toadd" ).sortable({
        cursor: 'crosshair',

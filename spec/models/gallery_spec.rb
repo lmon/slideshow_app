@@ -54,6 +54,11 @@ describe Gallery do
       it { should be_valid }
   end
 
+  describe "when the user is trying to create more than 10 galleries" do
+      it { should be_invalid }
+  end
+
+
 
 end
  
