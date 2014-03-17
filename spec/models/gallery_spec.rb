@@ -54,6 +54,14 @@ describe Gallery do
       it { should be_valid }
   end
 
+  describe "when AUTH_TOKEN is missing" do
+     pending
+     #before { @gallery.private = false  }
+     # it 'is not valid' do
+     # expect{  to_not be_valid }
+     # end 
+  end
+
   describe "when the user is trying to create more than 10 galleries" do
       it { should be_invalid }
   end

@@ -97,14 +97,13 @@ describe "User Pages" do
        end
         
       it "should list each user" do
-
-     expect(User.count).to eq(31) 
+        expect(User.count).to eq(31) 
         User.paginate(page: 1).each do |user|
           expect(page).to have_selector('li', text: user.name)
         end
       end
     end
-
+    
     describe "delete links" do
       # normal logins shouldnt see delete link
       it "does not have destroy link" do

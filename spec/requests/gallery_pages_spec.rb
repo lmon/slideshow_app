@@ -3,7 +3,8 @@ require 'spec_helper'
 describe "Gallery Pages" do
   subject { page }
 
-  let(:user) { FactoryGirl.create(:user) }
+  let(:user) { FactoryGirl.create(:user, name: "lucas") }
+  let(:otheruser) { FactoryGirl.create(:user) }
   after(:all)  { User.delete_all }
   
   before { sign_in user }
@@ -64,13 +65,28 @@ describe "Gallery Pages" do
           visit gallery_path(@gallery)  
         }
 
-    it "has listing copy" do
-        expect(page).to have_content(@gallery.title) 
-    end   
+        it "has listing copy" do
+            expect(page).to have_content(@gallery.title) 
+        end   
 
-      it "should show gallery" do   	
-        expect(page).to have_content('Gallery Viewer') 
+        it "should show gallery" do   	
+          expect(page).to have_content('Gallery Viewer') 
+        end
+    
+      describe "with user who is owner" do
+       it "should have Upload images link" do
+        expect(page).to have_content('Upload images') 
+        end
       end
+  
+      describe "with user who is mot owner" do
+        before{ sign_in otheruser, no_capybara: true }
+        it "should not have Upload images link" do
+          expect(response.body).to match(full_title('Edit user'))
+        end
+      end
+
+
     end
 
     before { visit gallery_path(:id => 1000 ) }
@@ -113,6 +129,30 @@ end
       end
     end
 
+  describe "when managing images" do
+
+     it "has the right images in the asset_order with new gallery" do
+       pending
+     end
+
+     it "has correct order in the asset_order when image added" do
+       pending
+     end
+
+     it "has correct order in the asset_order when image removed" do
+       pending
+     end
+
+     it "has correct order in the asset_order when images reordered" do
+       pending
+     end
+     
+     it "has empty asset_order after all images removed" do
+       pending
+     end
+  
+  end
+    
   describe "when deleting" do
   	  # create a gallery
       before { 

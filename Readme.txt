@@ -17,9 +17,10 @@ As a user
 [X]	I want to be able to logout
 [X]	I want to be able to register
 [X]	I want to be able to upload images
+[ ] I want to be able edit image metadata w/o re-uploading
 [X]	I want to be able to create a gallery
 [X]	I want to be able to put images in a gallery
-	I want to be able to order images in a gallery
+[X]	I want to be able to order images in a gallery
 [X]	I want to be able to view the gallery
 	I want to be able to share the gallery via a link
 	I want to be able to share the gallery via code snippet
@@ -35,7 +36,7 @@ As a user
 [X]	I want to be able to navigate the gallery
 [X]	I want to be able to delete images
 [X]	I want to be able to delete a gallery
-	I want to be able to make the gallery private
+[X]	I want to be able to make the gallery private
 [X]	I want to be able to add image captions, 
 [X]	I want to be able to add a gallery title
 
@@ -43,8 +44,11 @@ Tier 3
 As the system	
 	I want to limit use of the site per hour/per user
 	I want to limit the number of images/server space
+	I want to limit the number of galleries
 [X]	I want to use HTTPS for login/logout/register
 [.]	I want the site to be responsive / mobile ready 
+As the User	
+[ ] I want to be able to recover my password
 
 Components
 [X]	Register  -- User Model
@@ -53,10 +57,12 @@ Components
 	Gallery Display via JS
 [X]	Image uploader			-- Paperclip
 [X]	Image Order				-- Jquery
+[ ]	Emailer
+[ ] Amazon image storage
 
 Issues to be addressed 
-Gallery edit: On load sometimes the sorting functionality doesnt work(jquery)
-Gallery view: On load of  page, some times images dont load
-Gallery edit: Ajax Sort call doesnt require AUTH_TOKEN
-Gallery edit: Sorting of Gallery assets is not scalable
-Gallery View: Formatting doesnt handle different size images well
+[ ] Gallery edit: On load sometimes the sorting functionality doesnt work(jquery)
+[ ] Gallery view: On load of  page, some times images dont load
+[ ] Gallery edit: Ajax Sort call doesnt require AUTH_TOKEN
+[ ] Gallery edit: Sorting algorithim of Gallery assets is not scalable
+[ ] Gallery View: Formatting doesnt handle different size images well
