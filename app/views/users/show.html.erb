@@ -6,22 +6,19 @@
         <%= gravatar_for @user %>
         <%= @user.name %>
       </h1>
-      <p>
-      <% if current_user == @user  %>
-       <p><%= link_to 'Create New Gallery', new_gallery_path , class: "btn btn-small btn-secondary"%> 
-       </p>
-       <p>
-       <%= link_to 'View My Images', assets_path , class: "btn btn-small btn-secondary"%>   <%=link_to 'Upload  images', new_asset_path , class: "btn btn-small btn-secondary"%> 
 
-      </p>
+      <%if user_has_privileges @user.id %>
+       <div id="user_buttons">
+       <p><%= link_to 'Create New Gallery', new_gallery_path , class: "btn btn-small btn-secondary"%>  </p>
+       <p><%= link_to 'View My Images', assets_path , class: "btn btn-small btn-secondary"%>   <%=link_to 'Upload  images', new_asset_path , class: "btn btn-small btn-secondary"%>  </p>
+       </div>
        
        <% end %>
     </section>
   </aside>
   
   <div class="span8">
-    <% if @user.galleries.any? %>
-      
+    <% if @user.galleries.any? %>      
       <h3>My Galleries (<%= @user.galleries.count %>)</h3>
       
       <ol class="galleries">
@@ -30,7 +27,8 @@
 
       <%= will_paginate @galleries %>
     <% else %>
-    Sorry nothing to display.   <% if current_user == @user  %>
+        Sorry nothing to display.    
+        <%if user_has_privileges @user.id %>
        <%= link_to 'Create a new one', new_gallery_path  %>.
       <% end %>
     <% end %>

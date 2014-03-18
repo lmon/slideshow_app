@@ -1,9 +1,9 @@
 <li>
   <div class="span2"><%= link_to user.name, user %></div>
-  <div class="span3"><%= user.email %></div>
-        <% if current_user == user || (current_user && current_user.admin?)  %>
-  <div class="span1"><%= link_to 'Edit', edit_user_path(user) , class: "btn btn-small btn-secondaary"%></div>
-      <% end %>     
+  <!--<div class="span3"><%= user.email %></div>-->
+	<%if user_has_privileges user.id %>
+	  <div class="span1"><%= link_to 'Edit', edit_user_path(user) , class: "btn btn-small btn-secondaary"%></div>
+	<% end %>     
 
         <% if (current_user && current_user.admin?)  && !current_user?(user) %>      
     <div class="span1"><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-small btn-secondaary" %></div>

@@ -1,45 +1,71 @@
  
-
-<% if (current_user && (current_user.id == @asset.user_id)) || (current_user && current_user.admin?)  %>
-<%= link_to 'Edit', edit_asset_path(@asset) %> |
-<% end %>
-<%= link_to 'Back', assets_path %>
-
- <div class="field">
-      <%= @asset.name %>
-  </div> 
-  <div class="field">
-      <%= @asset.caption %>
-   </div>
-
-<% if @asset.image? %>    
-  <div class="avatar">
-    <%= image_tag @asset.image(:thumb) %>
-  </div>
- <div class="avatar">
-    <%= image_tag @asset.image(:medium) %>
-  </div>
-    <div class="avatar">
-    <%= image_tag @asset.image(:large) %>
-  </div>
-
-  <div class="avatar">
-    <%= image_tag @asset.image.url %>
-  </div>
-<% if (current_user && (current_user.id == @asset.user_id)) || (current_user && current_user.admin?)  %>
-      <%= link_to 'Destroy', @asset, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-small btn-secondary" %>
-<% end %>
-
+<div class="row">
+  <aside class="span4">
+    <section>
     <p>In Slideshows:</p>
     <ul>
       <% for gallery in Gallery.find(:all) %>
         <% if @asset.galleries.include?(gallery) %>
-          <li>
-            <%= link_to gallery.title, gallery_path(gallery) %> 
-          </li>
+          <li> <%= link_to gallery.title, gallery_path(gallery) %>   </li>
           <% end %>
       <% end %>
     </ul>
-<% else %>
-<p>Sad Face</p>
-<% end %>
+
+
+  <%if user_has_privileges @asset.user_id %> 
+  <%= link_to 'Edit', edit_asset_path(@asset) %> |
+  <% end %>
+  <%= link_to 'Back', assets_path %>
+
+   <div class="field">
+     Name:   <%= @asset.name %>
+    </div> 
+    <div class="field">
+      Caption:  <%= @asset.caption %>
+     </div>
+
+  <%if user_has_privileges @asset.user_id %>
+    <div class="">
+        <%= link_to 'Destroy this image', @asset, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-small btn-secondary" %>
+    </div>
+  <% end %>
+
+
+     </section>
+</aside>
+
+
+<div class="span8" >
+
+  <% if @asset.image? %>    
+  <div id="tabs">
+    <ul>
+      <li><a href="#tabs-1">Small</a></li>
+      <li><a href="#tabs-2">Medium</a></li>
+      <li><a href="#tabs-3">Large</a></li>
+      <li><a href="#tabs-4">Full</a></li>
+    </ul>
+    
+    <div id="tabs-1">
+       <%= image_tag @asset.image(:thumb) %>
+    </div>
+    
+   <div id="tabs-2">
+      <%= image_tag @asset.image(:medium) %>
+    </div>
+    
+    <div id="tabs-3">
+      <%= image_tag @asset.image(:large) %>
+    </div>
+
+    <div id="tabs-4">
+      <%= image_tag @asset.image.url %>
+    </div>
+  
+  </div>
+    <% else %>
+    <p>Sad Face</p>
+  <% end %>
+</div>
+<div style="clear:both"> </div>
+

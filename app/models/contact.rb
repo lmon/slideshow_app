@@ -4,7 +4,7 @@ class Contact < ActiveRecord::Base
 	#validates :name, presence: true
 	validates :name, length: { maximum: 32 }, codeless:  true
 
-	VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+	#VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 
   	validates :email, presence: true, 
   			length: { in: 6..64 }, 

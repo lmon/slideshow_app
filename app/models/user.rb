@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
 	before_create :create_remember_token
 
 	validates :name, presence: true, 
-		length: { in: 3..64 },
+		length: { in: 3..64 },  
 		codeless:  true #custom validator
 
   	validates :email, presence: true, 

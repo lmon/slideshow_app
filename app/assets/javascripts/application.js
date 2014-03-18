@@ -18,10 +18,12 @@
 //= require turbolinks
 //= require_tree .
 
- //var gid = (gid != null ? gid : 304);
+
 if(!slideshow){ var slideshow = {}; }
 
 $(function() {
+
+$( "#tabs" ).tabs();
 
 slideshow.loader = function(mode){
     console.log('inside load function')
