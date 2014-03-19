@@ -25,7 +25,7 @@ class Asset < ActiveRecord::Base
 
 	validates_attachment :image, :size => { :in => 0..4.megabytes , :message => "must be less than 4 MB" }
 
-	validates_attachment_file_name :image, :matches => [/png\Z/, /jpe?g\Z/]
+	validates_attachment_file_name :image, :matches => [/png\Z/, /jpe?g\Z/i]
 
 	validates_attachment :image, :presence => true
 
