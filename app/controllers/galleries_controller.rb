@@ -46,7 +46,7 @@ protect_from_forgery only: [:sort]
   def create
     @gallery = current_user.galleries.build(gallery_params)
     if @gallery.save
-      flash[:success] = "gallery created!"
+      flash[:success] = "Gallery created!"
       redirect_to @gallery
     else
       #redirect_to user_path(current_user)
@@ -59,8 +59,7 @@ protect_from_forgery only: [:sort]
     if current_user && (@gallery.user_id == current_user.id )
       Gallery.find(params[:id]).destroy()
       flash[:success] = "Gallery Removed"
-      redirect_to users_url
-
+      redirect_to current_user 
      else # you don
       flash[:success] = "Action Not Allowed by You"
       redirect_to root_url
