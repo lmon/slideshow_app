@@ -1,7 +1,7 @@
 class AssetsController < ApplicationController
  
   before_action :signed_in_user, only: [:create, :destroy, :update, :new, :edit]
-  before_action :set_asset,   only: [:edit, :update, :show]
+  before_action :set_asset,     only: [:edit, :update, :show]
   # allows users to access these functions only for them elves
   before_action :correct_user,   only: [:edit, :update]
 
@@ -11,8 +11,8 @@ class AssetsController < ApplicationController
     if signed_in_as_admin_user?  # logged in as admin? show all
       @assets = Asset.paginate(page: params[:page])  # gets all assets  
      elsif signed_in?
-      @assets = Asset.where("user_id = ?", current_user.id).paginate(page: params[:page])#current_user.feed.paginate(page: params[:page])
-    else
+      @assets = Asset.where("user_id = ?", current_user.id).paginate(page: params[:page])
+     else
       redirect_to root_url
     end
 end
@@ -33,24 +33,21 @@ end
     #@asset = Asset.find(params[:id])
   end
 
-def update
-    respond_to do |format|
-      if @asset.update(user_params)
-        format.html { redirect_to @asset, notice: 'Asset was successfully updated.' }
-        format.json { head :no_content }
+  def update
+      if @asset.update_attributes(asset_params)
+         flash[:success] = "Asset updated!"
+         redirect_to @asset
       else
-        format.html { render action: 'edit' }
-        format.json { render json: @asset.errors, status: :unprocessable_entity }
+         render 'edit'
       end
-    end
   end
 
   # DELETE /assets/1
   # DELETE /assets/1.json
   def destroy
      Asset.find(params[:id]).destroy()
-      flash[:success] = "Asset Removed"
-      redirect_to users_url
+      flash[:success] = "Asset Deleted"
+      redirect_to assets_url
   end
 
 	# POST /assets
@@ -79,8 +76,11 @@ private
 
 
   def asset_params
-   # params[:asset][:galleries] ||= []
+    #if params[:image].nil? # either im not uploading my image yet or i dont want to change it
+    #params.require(:asset).permit(:name, :caption)
+    #else
     params.require(:asset).permit(:name, :caption, :image)
+    #end
   end
 
 end

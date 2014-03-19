@@ -15,6 +15,7 @@ Slideshow::Application.routes.draw do
   match '/signup',  to: 'users#new',            via: 'get'
   match '/signin',  to: 'sessions#new',         via: 'get'
   match '/signout', to: 'sessions#destroy',     via: 'delete'
+  match '/assets',  to: 'assets#update',        via: 'patch'
 
   # not this
   # get "static_pages/home"
@@ -26,11 +27,11 @@ Slideshow::Application.routes.draw do
   # You can have the root of your site routed with "root"
   root to: "static_pages#home"
   
-  resources :assets 
-  resources :galleries#, only: [:view , :create, :destroy]
   resources :contacts
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
+  resources :assets 
+  resources :galleries #, only: [:view , :create, :destroy]
   
   # handle req to gallery / sort :json
   # maps to galleries#sort

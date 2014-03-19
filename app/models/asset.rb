@@ -13,7 +13,8 @@ class Asset < ActiveRecord::Base
     :convert_options => {
       :thumb => "-gravity Center -crop 50x50+0+0",
       :thumb => "-gravity Center -crop 100x100+0+0",
-    }
+    },
+    :default_url => "/assets/missing.png"
   } 
 
   validates :user_id, :presence => true
@@ -29,5 +30,9 @@ class Asset < ActiveRecord::Base
 	validates_attachment :image, :presence => true
 
 	validates_attachment_content_type :image, :content_type => %w(image/jpeg image/jpg image/png)
+
+    def Asset.per_page
+      10
+    end
 
 end
