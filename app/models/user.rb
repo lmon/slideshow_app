@@ -1,4 +1,8 @@
 class User < ActiveRecord::Base
+  	 
+  	GALLERIES_LIMIT =  30
+  	ASSETS_LIMIT = 50
+
 	has_many :galleries, dependent: :destroy
 	has_many :assets, dependent: :destroy
 	
@@ -29,7 +33,16 @@ class User < ActiveRecord::Base
   	def User.per_page
     	10
   	end
-  	 
+  	
+	##
+	def reached_assets_limit?
+	  self.assets.count >= ASSETS_LIMIT
+	end
+	##
+	def reached_galleries_limit?
+	  self.galleries.count >= GALLERIES_LIMIT
+	end
+	##
 	 private
 
 	    def create_remember_token

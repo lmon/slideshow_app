@@ -25,38 +25,53 @@ describe "Gallery Pages" do
 
     describe "with valid information" do
       before { fill_in 'gallery_title', with: "Lorem ipsum Title" }
+      
       it "should create a gallery" do
         expect { click_button "Create" }.to change(Gallery, :count).by(1)
         expect(page).to have_selector('h1', text: "Lorem ipsum Title")
       end
-
-      #before { @gallery = FactoryGirl.create(:gallery, user: user, title: "My new Gallery")  } 
       
       it "should put me on the new gallery's page" do
+        expect(page).to have_selector('h1', "Lorem ipsum Title")       
+      end
+
+      describe "testing maximum" do
+        #create the limit
+        before { 30.times { FactoryGirl.create(:gallery, user: user)  } } 
+        after { Gallery.delete_all }
+
+        it "should allow 30 galleries" do
+          expect(Gallery.count).to eq(30) 
+        end
+
+        # add one over max
+        it "should prevent me from creating more than 30 galleries" do
+          expect { FactoryGirl.create(:gallery, user: user) }.not_to change(Gallery, :count)
+
+        end
       end
     end
   end
 
  describe "index" do
 	# all people, no editing
-
   	describe "pagination" do
-      before { 50.times { FactoryGirl.create(:gallery, user: user)  } } 
+      before { 15.times { FactoryGirl.create(:gallery, user: user)  } } 
       after { Gallery.delete_all }
 
       before { visit galleries_path } # goes to index
 
-    it "has listing copy" do
-        expect(page).to have_content('Listing') 
-    end  
+      it "has listing copy" do
+          expect(page).to have_content('Listing') 
+      end  
 
-    it "should list each gallery" do
-      expect(Gallery.count).to eq(50) 
-        Gallery.paginate(page: 1).each do |gallery|
-           expect(page).to have_selector('li', text: gallery.title)
-           expect(user).to eq gallery.user
-         end
-    end
+      it "should list each gallery" do
+        expect(Gallery.count).to eq(15) 
+          Gallery.paginate(page: 1).each do |gallery|
+             expect(page).to have_selector('li', text: gallery.title)
+             expect(user).to eq gallery.user
+           end
+      end
   end
 
     describe "click view link" do            

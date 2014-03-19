@@ -28,14 +28,9 @@ Slideshow::Application.configure do
   config.assets.debug = true
 
 
-  # USE S3 When on  DEV
+  # USE local When on  DEV
   config.paperclip_defaults = {
-    :storage => :s3,
-    :s3_credentials => {
-      :bucket => 'heroku_dev_slideshow', 
-      :access_key_id => ENV['AWS_ACCESS_KEY_ID'],
-      :secret_access_key => ENV['AWS_SECRET_ACCESS_KEY']
-    }
+
   }
 
 end

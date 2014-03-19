@@ -1,6 +1,8 @@
 class Asset < ActiveRecord::Base
   belongs_to :user
   has_and_belongs_to_many :galleries
+  validate :check_assets_limit, :on => :create
+
 
   default_scope -> { order('created_at DESC') }
 
@@ -34,5 +36,12 @@ class Asset < ActiveRecord::Base
     def Asset.per_page
       10
     end
+  
+    def check_assets_limit
+    if User.find(self.user_id).reached_assets_limit?
+      self.errors[:base] << "Cannot add any more Assets"
+    end
+  end
+
 
 end

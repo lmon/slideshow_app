@@ -2,7 +2,11 @@
 <div class="row galleryviewer" >
 	<aside class="span4">
     <%if user_has_privileges @gallery.user_id %>
-        <p><%=link_to 'Upload  images', new_asset_path , class: "btn btn-small btn-secondary"%></p>
+        <p><%if limitcheck? 'assets' %>
+        <%=link_to 'Upload images', new_asset_path , class: "btn btn-small btn-secondary"%>
+        <%else%>
+        You have reached the maximum number of Assets
+        <%end%></p> 
     <% end %>
 
   </aside>
@@ -38,7 +42,12 @@
               <% end %>
             </div>     
             <%if user_has_privileges @gallery.user_id %>
-            <p><%=link_to 'Upload  images', new_asset_path %></p>
+
+             <p><%if limitcheck? 'assets' %>
+              <%=link_to 'Upload  images', new_asset_path %>
+              <%else%>
+              You have reached the maximum number of Assets
+              <%end%></p> 
             <% end %>
       
     </section>

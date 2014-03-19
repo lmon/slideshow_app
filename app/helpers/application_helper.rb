@@ -13,4 +13,13 @@ module ApplicationHelper
 		"<div class=\"debug\"> #{s} </div>".html_safe
 	end	
 
+	def limitcheck?(s)
+		if s == 'assets'
+			return true unless User.find(current_user.id).reached_assets_limit? 
+
+		elsif s == 'galleries'
+			return true unless User.find(current_user.id).reached_galleries_limit? 
+
+		end	
+	end	
 end

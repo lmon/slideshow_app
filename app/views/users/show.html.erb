@@ -9,8 +9,21 @@
 
       <%if user_has_privileges @user.id %>
        <div id="user_buttons">
-       <p><%= link_to 'Create New Gallery', new_gallery_path , class: "btn btn-small btn-secondary"%>  </p>
-       <p><%= link_to 'View My Images', assets_path , class: "btn btn-small btn-secondary"%>   <%=link_to 'Upload  images', new_asset_path , class: "btn btn-small btn-secondary"%>  </p>
+        <p><%if limitcheck? 'galleries' %>
+          <%= link_to 'Create New Gallery', new_gallery_path , class: "btn btn-small btn-secondary"%>
+       <%else%>
+       You have reached the maximum number of Galleries
+       <%end%></p>
+
+       <p><%= link_to 'View My Images', assets_path , class: "btn btn-small btn-secondary"%>   
+
+        <p><%if limitcheck? 'assets' %>
+       <%=link_to 'Upload  images', new_asset_path , class: "btn btn-small btn-secondary"%>  
+       <%else%>
+       You have reached the maximum number of Assets
+        <% end %>
+
+       </p>
        </div>
        
        <% end %>
@@ -27,9 +40,9 @@
 
       <%= will_paginate @galleries %>
     <% else %>
-        Sorry nothing to display.    
+        Sorry! Nothing to display.    
         <%if user_has_privileges @user.id %>
-       <%= link_to 'Create a new one', new_gallery_path  %>.
+       <%= link_to 'Create a new Gallery', new_gallery_path  %>.
       <% end %>
     <% end %>
   </div>

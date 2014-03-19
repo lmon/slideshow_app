@@ -10,6 +10,9 @@
 </div>
 
 <%= will_paginate %>
-<br>
 
-<%=link_to 'Upload images', new_asset_path , class: "btn btn-small btn-secondary"%> 
+ <p><%if limitcheck? 'assets' %>
+        <%=link_to 'Upload images', new_asset_path , class: "btn btn-small btn-secondary"%>
+        <%else%>
+        You have reached the maximum number of Assets
+        <%end%></p> 

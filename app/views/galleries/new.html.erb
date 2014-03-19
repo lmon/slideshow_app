@@ -1,8 +1,14 @@
 <% provide(:title, 'Add a Gallery') %>
 <h1>Add a Gallery</h1>
-
 <div class="row">
   <div class="span6 offset3">
+
+<p><%if !limitcheck? 'galleries' %>
+
+You have reached the maximum number of Galleries. 
+
+<%end%></p>
+
     <%= form_for(@gallery) do |f| %> 
 
   	<%= render 'shared/error_messages', thing: @gallery %>

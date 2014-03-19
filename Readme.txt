@@ -31,6 +31,9 @@ As the system
 [X]	I want uploaded images to be resized
 [X]	I want uploaded images to be validated
 [X]	I want uploaded images to be private
+[X] I want Dev to upload to dev
+[ ] I want to be able to upload images with UPPERCASE in name or suffix
+[ ] I want to be able to upload images with a space in name
 
 As a user
 [X]	I want to be able to navigate the gallery
