@@ -9,10 +9,8 @@
 		<% if !usedsortedassets.any? %>
 			<%= debug_layout('Nothing in usedsortedassets!') %>
 		<%
-		end
-		
+		end		
 		s = "Order ids #{@gallery.asset_order} <br/>"
-
 		usedsortedassets.each do |something|
 			s = s + "#{something.id},"
 		end %>

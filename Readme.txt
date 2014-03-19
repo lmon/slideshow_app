@@ -49,6 +49,7 @@ As the system
 [.]	I want the site to be responsive / mobile ready 
 As the User	
 [ ] I want to be able to recover my password
+[ ] I want to be able to email the admin via contact
 
 Components
 [X]	Register  -- User Model
@@ -56,7 +57,7 @@ Components
 [X]	Gallery Display on page -- 'rambling-slider'
 	Gallery Display via JS
 [X]	Image uploader			-- Paperclip
-[X]	Image Order				-- Jquery
+[X]	Image Order				-- Jquery Draggable
 [ ]	Emailer
 [ ] Amazon image storage
 

@@ -17,4 +17,9 @@ class Gallery < ActiveRecord::Base
 		update_attributes(:asset_order => ids.join(','))
 	end
 
+	def Gallery.per_page
+    	10
+  	end
+
+
 end
