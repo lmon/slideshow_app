@@ -1,4 +1,4 @@
-<%= form_for @asset, :html => { :multipart => true }  do |f| %>
+<%= form_for @asset, :html => { :multipart => true , id: "assetform" }  do |f| %>
   <% if @asset.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@asset.errors.count, "error") %> prohibited this asset from being saved:</h2>
@@ -54,6 +54,6 @@
 
   <div class="actions">
   <br />
-    <%= f.submit class: "btn btn-small btn-primary" %> <%=link_to 'Cancel', assets_path , class: "btn btn-small btn-secondary"%> 
+    <%= f.submit class: "btn btn-small btn-primary" , id: "assetsubmit" %> <%=link_to 'Cancel', assets_path , class: "btn btn-small btn-secondary"%> 
   </div>
 <% end %>

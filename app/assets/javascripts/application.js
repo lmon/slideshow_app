@@ -42,7 +42,7 @@ $(function() {
     effect: 'slideInRight'
   });
 
-    $( "#sortable-toadd" ).sortable({
+  $( "#sortable-toadd" ).sortable({
        cursor: 'crosshair',
        opacity: 0.4,
        placeholder: "ui-state-highlight",
@@ -59,10 +59,7 @@ $(function() {
 
   $( "#sortable, #sortable-toadd" ).disableSelection();
 
-//});
-
-
- // $(function() {
+ 
     $( "#sortable" ).sortable({
        cursor: 'crosshair',
        opacity: 0.4,
@@ -111,6 +108,12 @@ $(function() {
       ); // end call
     } // end update
     });
+
+  $('#assetsubmit').click( function(event){ 
+    slideshow.loader(false);
+    $('#assetform').submit();
+  });
+
   // checking
   console.log('Sortable: '+ $("#sortable" ).attr('id'))
   console.log('Tabs: '+ $( "#tabs" ).attr('id'))

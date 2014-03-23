@@ -55,6 +55,8 @@ As the system
 As the User	
 [ ] I want to be able to recover my password
 [ ] I want to be able to email the admin via contact
+[ ] I want a animation on upload
+[ ] I want preview on upload
 
 Components
 [X]	Register  -- User Model
