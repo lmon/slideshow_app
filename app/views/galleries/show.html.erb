@@ -7,18 +7,19 @@
         <%else%>
         You have reached the maximum number of Assets
         <%end%></p> 
+
+        <span class="subtitle">
+        <%=link_to 'Edit', edit_gallery_path(@gallery) , class: "btn btn-small btn-secondary"%>
+         
+        </span>
     <% end %>
 
   </aside>
 	<section>
-	<div class="subtitle">Gallery Viewer</div>
+  	<div class="subtitle">Gallery Viewer
+    </div>
 
       <h1><%= @gallery.title %></h1>
-      <%if user_has_privileges @gallery.user_id %>
-              <span class="subtitle">
-        <%= link_to 'Edit', edit_gallery_path(@gallery)  %> 
-        </span>
-      <% end %>
       
       <div>
       Friendly Name:  <%= gallery_path(@gallery) %>
@@ -31,15 +32,16 @@
         Order: <%= @gallery.asset_order %>
       </div>
       
-      <p>Has Assets:</p>
+      <p>Has Assets: Count: <%=@gallery.assets.count %></p>
        <div class="slider-wrapper theme-default">
             <div class="ribbon"></div>
             <div id="sliderArea" class="ramblingSlider adaptingSlider">   
              <% for asset in Asset.all %>
-              <% if @gallery.assets.include?(asset) %>
-                   <%= image_tag asset.image(:large), :title=> asset.caption  %> 
-               <% end %>
-              <% end %>
+                <% if @gallery.assets.include?(asset) %>
+                    <span><%=asset.caption%></span>
+                   <%= image_tag asset.image(:large), :title=>asset.caption  %> 
+                <% end %>
+             <% end %>
             </div>     
             <%if user_has_privileges @gallery.user_id %>
 
@@ -49,7 +51,7 @@
               You have reached the maximum number of Assets
               <%end%></p> 
             <% end %>
-      
+      </div>
     </section>
 </div>
 

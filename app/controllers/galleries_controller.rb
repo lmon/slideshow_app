@@ -19,16 +19,12 @@ protect_from_forgery only: [:sort]
   end
 
   def show
-    #@gallery = Gallery.find(params[:id])
 
   end
   
  def edit
     # this gallery
     @gallery2 = Gallery.find(params[:id])
-    # array of ids from asste order column
-    #@usedsortedassets = get_usedorderdassets
- 
 
   end
 
@@ -72,21 +68,20 @@ def sort
       render json: {:kind => 'error', message: 'missing order' } 
     end
 
-  gid = params[:id]
+    gid = params[:id]
   
     if gid.nil?
-    render json: {:kind => 'error', order: 'missing gid' } unless gid.nil?
+      render json: {:kind => 'error', order: 'missing gid' } unless gid.nil?
+    end
+
+
+    if Gallery.find(gid).update_attributes(:asset_order => order.join(','))
+      render json: {:kind => 'success', :order => order, :gid=>gid} 
+    else
+      render json: {:kind => 'error', :message=>'update order'} 
+    end
+
   end
-
-
-  if Gallery.find(gid).update_attributes(:asset_order => order.join(','))
-    render json: {:kind => 'success', :order => order, :gid=>gid} 
-  else
-    render json: {:kind => 'error', :message=>'update order'} 
-  end
-
-  #render :text => order.inspect
-end
 
  private 
 
@@ -99,18 +94,23 @@ end
     end
 
     def set_assets
+      
       if current_user.nil? 
         # logged out viewing, use the id of the user from the gallery
-        @allassets = Asset.where(:user_id => @gallery.user_id) 
+        @myid = @gallery.user_id 
       else
-        @allassets = Asset.where(:user_id => current_user.id)       
+        @myid = current_user.id
       end
+      
+      @allassets = Asset.where(:user_id => @myid)       
 
       @usedsortedassets = Array.new 
 
       if !@gallery.nil?    
         a = @gallery.asset_order.to_s.split(",")
         
+        #[TODO]
+        #[OPTIMIZE]
         # another try (very inefficient)
         a.each do |targetid| 
           @allassets.each do |element|

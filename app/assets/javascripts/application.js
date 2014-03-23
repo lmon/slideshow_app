@@ -23,19 +23,19 @@ if(!slideshow){ var slideshow = {}; }
 
 $(function() {
 
-$( "#tabs" ).tabs();
+  $( "#tabs" ).tabs();
 
-slideshow.loader = function(mode){
-    console.log('inside load function')
-    if(mode == false){
-      //show
-      $('#dvLoading').fadeIn(100);
+  slideshow.loader = function(mode){
+      console.log('inside load function')
+      if(mode == false){
+        //show
+        $('#dvLoading').fadeIn(100);
 
-    }else{
-      //hide
-      $('#dvLoading').fadeOut(500);
-    }
-}
+      }else{
+        //hide
+        $('#dvLoading').fadeOut(500);
+      }
+  }
 
   $('#sliderArea').ramblingSlider({
     useLargerImage: false,
@@ -111,6 +111,9 @@ slideshow.loader = function(mode){
       ); // end call
     } // end update
     });
+  // checking
+  console.log($('Sortable: '+  "#sortable" ).attr('id'))
+  console.log('Tabs: '+ $( "#tabs" ).attr('id'))
 
   });
 
