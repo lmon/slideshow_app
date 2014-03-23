@@ -13,3 +13,27 @@ def sign_in(user, options={})
     click_button "Sign in"
   end
 end
+
+def sign_out
+  click_link "Sign out" 
+end
+
+def imagepath
+  "/Library/WebServer/Documents/MonacoWork/ruby/slideshow/slideshow/lib/assets/ninam.png"
+end
+
+def imagepath_spaces
+  "/Library/WebServer/Documents/MonacoWork/ruby/slideshow/slideshow/lib/assets/test ninam copy.png"
+end
+
+def imagepath_invalid_type
+  "/Library/WebServer/Documents/MonacoWork/ruby/slideshow/slideshow/lib/assets/D6Flex.swf"
+end
+
+def imagepath_spoof
+  "/Library/WebServer/Documents/MonacoWork/ruby/slideshow/slideshow/lib/assets/D6Flex_swf.jpg"
+end
+
+def imagepath_too_big
+  "/Library/WebServer/Documents/MonacoWork/ruby/slideshow/slideshow/lib/assets/test_large4.3mb.jpg"
+end

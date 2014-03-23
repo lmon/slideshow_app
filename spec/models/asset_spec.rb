@@ -1,8 +1,7 @@
 require 'spec_helper'
 
 describe Asset do
-   let(:testfilespath) {Rails.root + '/Library/WebServer/Documents/MonacoWork/ruby/slideshow/slideshow/lib/assets/'}
-   let(:upload) { File.new( testfilespath + 'ninam.png') }
+   let(:upload) { File.new( imagepath) }
  	 let(:user) { FactoryGirl.create(:user) }
    let(:asset) { FactoryGirl.create(:asset, name: "test title", caption: "my test caption", image: upload, user: user ) }
 
@@ -65,29 +64,25 @@ describe Asset do
   end
 
   describe "with image name has spaces" do
-    before {asset.image = File.new(testfilespath + 'test ninam copy.png') }    
+    before {asset.image = File.new(imagepath_spaces) }    
       it { should be_valid }
   end
 
   describe "with image of invalid type" do
-    before {asset.image = File.new(testfilespath + 'D6Flex.swf') }    
+    before {asset.image = File.new(imagepath_invalid_type) }    
       it { should be_invalid }
   end
 
   describe "with image of invalid type spoof" do
-    before {asset.image = File.new(testfilespath + 'D6Flex_swf.jpg') }    
+    #http://stackoverflow.com/questions/10722875/file-upload-rspec-integration-negative-test-fails ?
+    before {asset.image = File.new(imagepath_spoof) }    
       it { should be_invalid }
   end
 
  describe "with image is too big" do
-    before {asset.image = File.new(testfilespath + 'test_large4.3mb.jpg') }    
+    before {asset.image = File.new(imagepath_too_big) }    
       it { should be_invalid }
   end
-
-  describe "when the user is trying to upload more than 40 images" do
-      it { should be_invalid }
-  end
-
 
 
 end

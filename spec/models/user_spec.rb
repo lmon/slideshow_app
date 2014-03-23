@@ -146,8 +146,7 @@ describe User do
 describe "asset associations" do
  
     before { @user.save } 
-    let(:testfilespath) {Rails.root + '/Library/WebServer/Documents/MonacoWork/ruby/slideshow/slideshow/lib/assets/'}
-    let(:upload) { File.new( testfilespath + 'ninam.png') }
+    let(:upload) { File.new( imagepath) }
 
 
     let!(:older_asset) do

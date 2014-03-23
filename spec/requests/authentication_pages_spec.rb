@@ -2,6 +2,9 @@ require 'spec_helper'
 
 describe "Authentication" do
 
+let(:user) { FactoryGirl.create(:user) }
+	      
+
   subject { page }
 
   describe "signin page" do
@@ -26,7 +29,6 @@ describe "Authentication" do
 		end
 
 		describe "with valid information" do
-	  		let(:user) {FactoryGirl.create(:user) }
 	  		before { sign_in user }
 
 	        it { should have_link('Users',       href: users_path) }
@@ -42,7 +44,7 @@ describe "Authentication" do
  	  	end
 
  	  	describe "signed in user shouldnt see sign-in form" do 	  		
- 	  		let(:user) {FactoryGirl.create(:user) }
+ 	  		#let(:user) {FactoryGirl.create(:user) }
 	  		before { sign_in user }
 
  	  		it { should_not have_selector('div', text: 'Sign in') }
@@ -54,9 +56,23 @@ describe "Authentication" do
 	end
 
 	describe "authorization" do
+		let(:upload) { File.new( imagepath)  }
 
 	    describe "for non-signed-in users" do
-	      let(:user) { FactoryGirl.create(:user) }
+
+	      #asset
+	      describe "in the Assets controller" do
+
+	        describe "submitting to the create action" do
+	          before { post assets_path }
+	          specify { expect(response).to redirect_to(signin_path) }
+	        end
+
+	        describe "submitting to the destroy action" do
+	          before { delete asset_path(FactoryGirl.create(:asset, image: upload, user: user) ) }
+	          specify { expect(response).to redirect_to(signin_path) }
+	        end
+	      end
 
 	      #gallery
 	      describe "in the Galleries controller" do
@@ -110,7 +126,6 @@ describe "Authentication" do
 
 	    #prevents non admins from accessing the destroy action
 	    describe "as non-admin user" do
-	      let(:user) { FactoryGirl.create(:user) }
 	      let(:non_admin) { FactoryGirl.create(:user) }
 
 	      before { sign_in non_admin, no_capybara: true }
@@ -147,15 +162,11 @@ describe "Authentication" do
 
 	    # prevents users from accessing other user's edit and update actions
 	   describe "as wrong user" do
-	      let(:user) { FactoryGirl.create(:user) }
+	      #let(:user) { FactoryGirl.create(:user) }
 	      let(:wrong_user) { FactoryGirl.create(:user, email: "wrong@example.com") }
 	      let(:gallery) { FactoryGirl.create(:gallery, user: user, title: "Joe's Testing Gallery Title") }
           let(:wrong_gallery) { FactoryGirl.create(:gallery, user: wrong_user, title: "Joe's Testing Gallery Title") }
-
-   		  let(:testfilespath) {Rails.root + '/Library/WebServer/Documents/MonacoWork/ruby/slideshow/slideshow/lib/assets/'}
-   		  let(:upload) { File.new( testfilespath + 'ninam.png') }
    		  let(:wrong_asset) { FactoryGirl.create(:asset, name: "Wrong Asset", caption: "test caption", image: upload, user: wrong_user ) }
-
 
 	      before { sign_in user, no_capybara: true }
 

@@ -177,8 +177,8 @@ describe "User Pages" do
       end
       
       describe "with invalid information" do
-          before { click_button "Save changes" }
-          specify { expect(response).to redirect_to(edit_user_path(user)) }
+            before { click_button "Save changes" }
+            specify { expect(response).to redirect_to(edit_user_path(user)) }
       end
 
 

@@ -35,9 +35,11 @@ end
 
   def update
       if @asset.update_attributes(asset_params)
+         #[TODO]
          flash[:success] = "Asset updated!"
          redirect_to @asset
       else
+         flash.now[:error] = "You've got Issues."
          render 'edit'
       end
   end
@@ -61,7 +63,6 @@ end
         render 'new'
     end
   end
-  
 
 
 private
@@ -76,11 +77,7 @@ private
 
 
   def asset_params
-    #if params[:image].nil? # either im not uploading my image yet or i dont want to change it
-    #params.require(:asset).permit(:name, :caption)
-    #else
     params.require(:asset).permit(:name, :caption, :image)
-    #end
   end
 
 end

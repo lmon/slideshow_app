@@ -46,8 +46,7 @@ describe "Gallery Pages" do
 
         # add one over max
         it "should prevent me from creating more than 30 galleries" do
-          expect { FactoryGirl.create(:gallery, user: user) }.not_to change(Gallery, :count)
-
+          expect { FactoryGirl.create(:gallery, user: user) }.to raise_error(ActiveRecord::RecordInvalid, 'Validation failed: Cannot add any more Galleries') # OR raise_exception 
         end
       end
     end
@@ -94,26 +93,31 @@ describe "Gallery Pages" do
         end
       end
   
-      describe "with user who is mot owner" do
-        before{ sign_in otheruser, no_capybara: true }
+      describe "with user who is not owner" do
+        before { 
+          click_link "Sign out"
+          sign_in otheruser, no_capybara: true 
+          visit gallery_path(@gallery)  
+        }
+
         it "should not have Upload images link" do
-          expect(response.body).to match(full_title('Edit user'))
+          expect(page).to_not have_content('Edit') 
+          expect(page).to have_content('Gallery Viewer') 
+          expect(page).to have_content(@gallery.title) 
         end
       end
-
-
     end
 
+  describe "with user who is not owner" do
     before { visit gallery_path(:id => 1000 ) }
   	it "shows a nice not found page" do
-      expect(page).to have_content('Not Found') 
+      expect(page).to have_content('Record Not Found') 
     end
 
  	  it "should not show editing functions" do
        expect(page).to_not have_content('Edit') 
     end
-
-	 
+  end
 
 end
 
@@ -179,33 +183,49 @@ end
       expect(page).to have_content("My Galleries") 
      end
 
-     it "has the title" do
+     it "has the gallery title in list" do
       expect(page).to have_content(@gallery.title) 
      end
  
      it "should remove this gallery" do
-  		  expect do
-            click_link('Destroy', match: :first)
-         end.to change(Gallery, :count).by(-1)
-  	 end
-
-      before { 
-        visit user_path(user) 
-     } 
-
-     it "should no longer have this gallery on the page" do
-      expect(page).to have_content("My Galleries") 
-
-      expect(page).to_not have_content(@gallery.title) 
+  		  expect{ click_link('Destroy', match: :first) }.to change(Gallery, :count).by(-1)      	 
+        expect(page).to_not have_content(@gallery.title) 
      end
+
   end
 
 describe "gallery show" do
   describe "should show all the images included in that gallery" do
+      before { 
     # create a gallery
-    # upload 2 assets
+        @gallery = FactoryGirl.create(:gallery, user: user, title: "My Gallery To Del") 
+        visit gallery_path(@gallery)
+     } 
+   # upload 2 assets
+=begin   
+    
+   let(:upload) { File.new( imagepath) }
+   let(:asset1) { FactoryGirl.create(:asset, name: "test title1", caption: "my test caption1", image: upload, user: user ) }
+   let(:asset2) { FactoryGirl.create(:asset, name: "test title2", caption: "my test caption2", image: upload, user: user ) }
+
+   describe "it has the correct count" do
+   # attach asset to gallery
+   before { @image = @gallery.assets.build(:name=>"test title3", :caption=> "my test caption3", :image=> upload, user: user ) }
+=end   
+     it "should have Assets area" do
+      #@gallery.assets.include?(asset) 
+      expect(page).to have_content("Has Assets: Count: 1") 
+    end
+  #end
+
     # view gallery
+
+     it "should have sliderArea area" do
     # test for presence of those assets
+      expect(page).to have_selector('span', 'xxx')    
+    end
+
+
   end
 end
 

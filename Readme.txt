@@ -17,7 +17,7 @@ As a user
 [X]	I want to be able to logout
 [X]	I want to be able to register
 [X]	I want to be able to upload images
-[ ] I want to be able edit image metadata w/o re-uploading
+[X] I want to be able edit image metadata w/o re-uploading
 [X]	I want to be able to create a gallery
 [X]	I want to be able to put images in a gallery
 [X]	I want to be able to order images in a gallery
@@ -32,8 +32,8 @@ As the system
 [X]	I want uploaded images to be validated
 [X]	I want uploaded images to be private
 [X] I want Dev to upload to dev
-[ ] I want to be able to upload images with UPPERCASE in name or suffix
-[ ] I want to be able to upload images with a space in name
+[X] I want to be able to upload images with UPPERCASE in name or suffix
+[X] I want to be able to upload images with a space in name
 
 As a user
 [X]	I want to be able to navigate the gallery
@@ -45,11 +45,13 @@ As a user
 
 Tier 3
 As the system	
-	I want to limit use of the site per hour/per user
-	I want to limit the number of images/server space
-	I want to limit the number of galleries
+[ ]	I want to limit use of the site per hour/per user
+[X]	I want to limit the number of images 
+[ ]	I want to limit the server space 
+[X]	I want to limit the number of galleries
 [X]	I want to use HTTPS for login/logout/register
 [.]	I want the site to be responsive / mobile ready 
+
 As the User	
 [ ] I want to be able to recover my password
 [ ] I want to be able to email the admin via contact
@@ -58,15 +60,15 @@ Components
 [X]	Register  -- User Model
 [X]	Authentication  -- Authentication Controller
 [X]	Gallery Display on page -- 'rambling-slider'
-	Gallery Display via JS
+[ ]	Gallery Display via JS
 [X]	Image uploader			-- Paperclip
 [X]	Image Order				-- Jquery Draggable
 [ ]	Emailer
-[ ] Amazon image storage
+[X] Amazon image storage
 
 Issues to be addressed 
 [ ] Gallery edit: On load sometimes the sorting functionality doesnt work(jquery)
-[ ] Gallery view: On load of  page, some times images dont load
-[ ] Gallery edit: Ajax Sort call doesnt require AUTH_TOKEN
+[ ] Gallery view: On load of  page, some times images dont load (jquery)
+[ ] Gallery edit: Ajax Sort call doesnt require AUTH_TOKEN 
 [ ] Gallery edit: Sorting algorithim of Gallery assets is not scalable
 [ ] Gallery View: Formatting doesnt handle different size images well

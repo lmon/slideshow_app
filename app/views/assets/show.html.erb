@@ -1,10 +1,10 @@
- 
-<div class="row">
+<% provide(:title, @asset.name) %>
+<div class="row assetviewer" >
   <aside class="span4">
     <section>
     <p>In Slideshows:</p>
     <ul>
-      <% for gallery in Gallery.find(:all) %>
+      <% for gallery in Gallery.all %>
         <% if @asset.galleries.include?(gallery) %>
           <li> <%= link_to gallery.title, gallery_path(gallery) %>   </li>
           <% end %>
@@ -67,5 +67,8 @@
     <p>Sad Face</p>
   <% end %>
 </div>
+
+</div>
+
 <div style="clear:both"> </div>
 

@@ -13,8 +13,6 @@ FactoryGirl.define do
 	factory :gallery do
     sequence(:title)  { |n| "Gallery Title #{n}" }
      user
-
-#    	title "GalleryName Lorem ipsum"
   end
  
  #######################
@@ -25,12 +23,20 @@ FactoryGirl.define do
   end
 
  #######################
-  factory :asset do
+  factory :oldasset do
     name "mytestasset"
     caption "this is the caption that I am including in my test"
     image 1
     user 2
   end
+
+  factory :asset do |f|
+    f.name "my test asset"
+    f.image 1
+    f.user 2
+    f.caption "this is the caption that I am including in my test"
+   end
+  
 
 
 end
