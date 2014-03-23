@@ -28,6 +28,9 @@ end
 # for monitoring. Not sure if this should go here or inside production:
 gem 'newrelic_rpm'
 
+# for mailer
+gem 'postmark-rails'
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
 

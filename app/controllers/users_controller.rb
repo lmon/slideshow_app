@@ -29,6 +29,10 @@ class UsersController < ApplicationController
       sign_in @user # auto sign in
       link = ""#view_context.link_to( "Sign up now!", signup_path )    
     	flash[:success] = " Welcome to the inner circle. #{link} ".html_safe
+
+      # Tell the UserMailer to send a welcome Email after save
+      UserMailer.welcome_email(@user).deliver
+ 
       redirect_to @user
     else
       render 'new'

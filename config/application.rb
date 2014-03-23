@@ -31,5 +31,9 @@ module Slideshow
     # add custom validators path
     config.autoload_paths += %W["#{config.root}/app/validators/"]
 
+    # for mail
+    config.action_mailer.delivery_method   = :postmark
+    config.action_mailer.postmark_settings = { :api_key => ENV['POSTMARK_API_KEY'] }
+
   end
 end
