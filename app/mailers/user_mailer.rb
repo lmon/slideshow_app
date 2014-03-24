@@ -21,7 +21,7 @@ class UserMailer < ActionMailer::Base
 
 	end
 	
-	def contactusemail(contact)
+	def contactus_email(contact)
 		@contact_name = contact.name
 		@contact_email = contact.email
 		@contact_message = contact.message
