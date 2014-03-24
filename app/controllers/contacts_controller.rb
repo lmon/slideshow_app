@@ -23,7 +23,10 @@ class ContactsController < ApplicationController
   def create
     @contact = Contact.new(contact_params)   
     if @contact.save && contact_email
-      flash[:success] = "Your Contact Message has been sent." 
+      flash[:success] = "Your Contact Message has been sent, #{@contact.name}" 
+
+      UserMailer.welcome_email(@contact).deliver
+
       redirect_to root_url
     else
       render 'new'

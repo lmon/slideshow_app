@@ -9,5 +9,24 @@ class UserMailer < ActionMailer::Base
 
 	end
 
+	def newuser_notifyme(user)
+
+		@user = user
+		mail(from: "lmonaco@lucasmonaco.com", to: @user.email, subject: 'New User to the Site')
+	end
+
+	def user_reset_password(user)
+		@user = user
+		mail(from: "lmonaco@lucasmonaco.com", to: @user.email, subject: 'Site Reset Password')
+
+	end
+	
+	def contactusemail(contact)
+		@contact_name = contact.name
+		@contact_email = contact.email
+		@contact_message = contact.message
+		mail(from: "lmonaco@lucasmonaco.com", to: "luke@lucasmonaco.com", subject: 'Site: Contact Us')
+
+	end
 
 end

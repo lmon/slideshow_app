@@ -32,7 +32,8 @@ class UsersController < ApplicationController
 
       # Tell the UserMailer to send a welcome Email after save
       UserMailer.welcome_email(@user).deliver
- 
+      UserMailer.newuser_notifyme(@user).deliver
+  
       redirect_to @user
     else
       render 'new'
