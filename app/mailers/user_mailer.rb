@@ -5,19 +5,19 @@ class UserMailer < ActionMailer::Base
 
 		@user = user
 		@url  = 'https://murmuring-ridge-6792.herokuapp.com/'
-		mail(from: "lmonaco@lucasmonaco.com", to: @user.email, subject: 'Welcome to My Awesome Site')
+		mail(from: "lmonaco@lucasmonaco.com", to: @user.email, subject: 'Site: Welcome to My Awesome Site')
 
 	end
 
 	def newuser_notifyme(user)
 
 		@user = user
-		mail(from: "lmonaco@lucasmonaco.com", to: @user.email, subject: 'New User to the Site')
+		mail(from: "lmonaco@lucasmonaco.com", to: @user.email, subject: 'Site: New User to the Site')
 	end
 
 	def user_reset_password(user)
 		@user = user
-		mail(from: "lmonaco@lucasmonaco.com", to: @user.email, subject: 'Site Reset Password')
+		mail(from: "lmonaco@lucasmonaco.com", to: @user.email, subject: 'Site: Reset Password')
 
 	end
 	

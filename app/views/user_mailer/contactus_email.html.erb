@@ -6,16 +6,16 @@
   <body>
     <h1>Contact Us Email</h1>
     <p>
-      Name  @contact_name
+      Name  <%= @contact_name %>
     </p>
     <p>
-      Email  @contact_email
+      Email  <%= @contact_email %>
     </p>
     <p>
-     Message  @contact_message
+     Message  <%= @contact_message %>
     </p>
     <p>
-      Click here to view it on the site
+      Click <%= link_to 'here', 'http://stilltesting.com'%> to view it on the site
       </p>
 
   </body>
