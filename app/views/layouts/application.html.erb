@@ -7,11 +7,6 @@
 
    <%= stylesheet_link_tag "colorbox.css", media: "all",
                                            "data-turbolinks-track" => true %>
-
-    <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
-
-<%= javascript_include_tag "jquery.colorbox.js", "data-turbolinks-track" => true %>
-
     
     <%= csrf_meta_tags %>
 
@@ -36,6 +31,16 @@
   <%= render 'layouts/footer' %>
 <%= debug(params) if Rails.env.development? %>
     </div>
+
+
+<%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+
+<%= javascript_include_tag "jquery.colorbox.js", "data-turbolinks-track" => true %>
+
+<script type="text/javascript">
+  document.getElementById("demo").innerHTML=$( document ).width();;
+</script>
+
 
   </body>
 </html>
