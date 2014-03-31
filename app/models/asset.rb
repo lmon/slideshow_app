@@ -8,9 +8,9 @@ class Asset < ActiveRecord::Base
 
   has_attached_file :image, {
     :styles => {
-      :thumb => ["50x50#", :png],
-      :medium => ["100x100#", :png],
-      :large => ["300x300>", :png]
+      :thumb => ["75x75#", :png],
+      :medium => ["250x250#", :png],
+      :large => ["600x600>", :png]
     },
     :convert_options => {
       :thumb => "-gravity Center -crop 50x50+0+0",

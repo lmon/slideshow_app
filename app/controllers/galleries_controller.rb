@@ -1,13 +1,17 @@
 class GalleriesController < ApplicationController
 #  restrict actiions based on this Sessions Helper function
 before_action :signed_in_user, only: [:create, :destroy, :update, :new, :edit]
-before_action :set_gallery, only: [:show, :edit, :update, :destroy]
+before_action :set_gallery, only: [:show, :shareview, :edit, :update, :destroy]
 before_action :set_assets, only: [:show, :edit, :new, :create,]
+before_action :set_options, only: [:show, :shareview]
 
 # allows users to access these functions only for them elves
 before_action :correct_user,   only: [:edit, :update]
 
 protect_from_forgery only: [:sort]
+
+layout :resolve_layout
+
 
   def index
     # i assume this can only be used if the display is paginated?
@@ -19,13 +23,11 @@ protect_from_forgery only: [:sort]
   end
 
   def show
-
   end
-  
- def edit
+
+  def edit
     # this gallery
     @gallery2 = Gallery.find(params[:id])
-
   end
 
   def update
@@ -61,7 +63,31 @@ protect_from_forgery only: [:sort]
       redirect_to root_url
    end
   end
+  
+# the share able version of the gallery
+# handles all loaded slideshow options
+# uses a different layout 
+# view options:
+# 2 (default) -  a homemde Jquery click through gallery 
+# 3 - color box
+# 4 - Bootstrap gallery
+  def shareview
+    if @view_options.has_key?(params[:v].to_i) 
+      if params[:v] == "2"
+        render 'show_basic' 
+      else
+        page = 'show'+ params[:v] 
+        render page
+      end
+    else
+      render 'show_basic' 
+    end
 
+  end 
+
+
+# for use on sorting of assets
+# called via ajax from the gallery edit form
 def sort
   order = params[:asset]
     if order.nil?
@@ -85,12 +111,26 @@ def sort
 
  private 
 
-    def gallery_params
+  def resolve_layout
+    case action_name
+      when "shareview"
+        "shareview"
+      else
+        "application"
+      end
+  end
+
+    
+  def gallery_params
       params.require(:gallery).permit(:title, {:asset_ids => []}, :asset_order, :friendly_name, :private)
     end
     
     def set_gallery
       @gallery = Gallery.find(params[:id])  
+    end
+
+    def set_options
+      @view_options = { 2=>"basic" ,3=>"cb" ,4=>"bs", 5=>"rambling"  }
     end
 
     def set_assets

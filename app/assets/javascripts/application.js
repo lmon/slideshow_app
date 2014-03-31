@@ -118,6 +118,9 @@ $(function() {
   console.log('Sortable: '+ $("#sortable" ).attr('id'))
   console.log('Tabs: '+ $( "#tabs" ).attr('id'))
 
-  });
+
+
+});
+
 
  

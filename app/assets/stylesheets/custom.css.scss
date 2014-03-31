@@ -426,6 +426,66 @@ aside {
 
 }
 
+/* new gallery slideshow css */
+/* bootstrp version */
+#carousel-example-generic{
+  height: 350px;
+  width: 75%;
+  margin: auto;
+  
+  .carousel-inner {
+    background-color: #000;
+    width: 100%;
+    height: 100%;
+    
+    .item {
+      height: 90%;
+      xmargin-top: 10%;
+    }
+
+    .item img{
+      height: 100%;
+      margin:auto;
+    }
+  }
+  .carousel-caption{
+  padding-top: 5px;
+  padding-bottom: 5px;
+  height: 10px;
+  
+  }
+} /* end #carousel-example-generic */
+
+/* custom version */
+.row.gallery{
+	clear:both;
+	height:350px;
+	width: 100%;
+	overflow:hidden;
+	padding: 0;
+}
+
+.galleryviewer{
+	clear:both;
+	overflow:hidden;
+	width:100%;
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+li.slide{
+	height:100%; 
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	overflow: hidden;
+}
+
+li.slide img{ 
+	height:100%; 
+}
+
 
 
 /* miscellaneous */

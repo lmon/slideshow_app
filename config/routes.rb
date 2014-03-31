@@ -16,6 +16,8 @@ Slideshow::Application.routes.draw do
   match '/signin',  to: 'sessions#new',         via: 'get'
   match '/signout', to: 'sessions#destroy',     via: 'delete'
   match '/assets',  to: 'assets#update',        via: 'patch'
+  match '/share/:v/:id', to: 'galleries#shareview', :as => "share_for_gallery", via: 'get' 
+
 
   # not this
   # get "static_pages/home"
@@ -37,6 +39,7 @@ Slideshow::Application.routes.draw do
   # maps to galleries#sort
   # sample URL /galleries/304/sort/id?asset[]=23&asset[]=21&asset[]=22&asset[]=19&asset[]=14&asset[]=13&asset[]=7&asset[]=6
   post 'galleries/:id/sort/:ids' => 'galleries#sort'#, {:sort => :get }
+
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

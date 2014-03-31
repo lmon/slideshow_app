@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
 
   include SessionsHelper
 
-  def validate_user_as_admin() #might need to pass id and current_user
+  def validate_user_as_admin() # might need to pass id and current_user
     if current_user_is_admin # in sessions helper
  
      else

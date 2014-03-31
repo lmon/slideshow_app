@@ -1,0 +1,24 @@
+
+    <script>
+      $(document).ready(function(){
+        $(".group4").colorbox({
+            rel:'group4', 
+            open:true, 
+            slideshow:true,  
+            width:"80%", 
+            height:"80%", 
+            transition:"fade",
+            speed:100
+          });
+      });
+    </script>
+
+    <div class="gallerylinks hidden">
+     <% for asset in Asset.all %>
+          <% if @gallery.assets.include?(asset) %>
+            <p><a class="group4"  href="<%=asset.image(:large) %>" title="<%=asset.caption%>"><%=asset.name%></a></p>
+
+          <% end %>
+       <% end %>
+    </div>
+

@@ -18,24 +18,11 @@
     <%= render 'layouts/shim' %>
   </head>
 
-<% if (current_user && current_user.admin?)  %>
-  <body class="adminmode"> 
-<% else %>
-  <body> 
-<% end %>
-
-  <%= render 'layouts/header' %>
-   
-    <div class="container-fluid">
-    <% flash.each do |key, value| %>
-        <div class="alert alert-<%= key %>"><%= value %></div>
-      <% end %>
 
         <%= yield %>
-
-  <%= render 'layouts/footer' %>
+ 
 <%= debug(params) if Rails.env.development? %>
-    </div>
+ 
 
   </body>
 </html>

@@ -22,36 +22,30 @@
       <h1><%= @gallery.title %></h1>
       
       <div>
-      Friendly Name:  <%= gallery_path(@gallery) %>
+        <b>Links:</b><br />  
+        This page <%= link_to gallery_path(@gallery) %> <br />
+        <ul>
+        <% for k,v in @view_options %>
+         <li>"<%= v %>" version  <%= link_to share_for_gallery_path(k, @gallery.to_param()), share_for_gallery_path(k, @gallery.to_param())  %> </li>
+        <% end %>
+        </ul>
+        
       </div>
       
        <div>
-        Private? <%= @gallery.private %>
+        Private? <%= 'Yes' unless @gallery.private == 0 %>
       </div>
        <div>
         Order: <%= @gallery.asset_order %>
       </div>
       
       <p>Has Assets: Count: <%=@gallery.assets.count %></p>
-       <div class="slider-wrapper theme-default">
-            <div class="ribbon"></div>
-            <div id="sliderArea" class="ramblingSlider adaptingSlider">   
-             <% for asset in Asset.all %>
-                <% if @gallery.assets.include?(asset) %>
-                    <span><%=asset.caption%></span>
-                   <%= image_tag asset.image(:large), :title=>asset.caption  %> 
-                <% end %>
-             <% end %>
-            </div>     
-            <%if user_has_privileges @gallery.user_id %>
-
-             <p><%if limitcheck? 'assets' %>
-              <%=link_to 'Upload  images', new_asset_path %>
-              <%else%>
-              You have reached the maximum number of Assets
-              <%end%></p> 
-            <% end %>
-      </div>
+      
+             
+      <p>This gallery has <%=@gallery.assets.count %> assets.</p>
+          <%= render 'slideshow_rambling' %>      
+    
+    
     </section>
 </div>
 
