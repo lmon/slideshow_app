@@ -72,17 +72,15 @@ layout :resolve_layout
 # 3 - color box
 # 4 - Bootstrap gallery
   def shareview
+    # set default
+    @template = 'slideshow_customv3'
     if @view_options.has_key?(params[:v].to_i) 
-      if params[:v] == "2"
-        render 'show_basic' 
-      else
-        page = 'show'+ params[:v] 
-        render page
-      end
-    else
-      render 'show_basic' 
+            @template = 'slideshow_customv'+ params[:v] 
     end
-
+    # the main share view
+    # pulls in the child view
+    render 'shareshow' 
+  
   end 
 
 

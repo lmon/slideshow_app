@@ -1,0 +1,15 @@
+<% provide(:title, @gallery.title) %>
+<div class="row galleryviewer" >
+	 <!-- template <%= @template %>-->
+	<section> 
+ 
+    <%= render @template %>
+
+    </section>
+
+      <div class="gallery_share_link">
+        Link:  <%= gallery_path(@gallery) %>
+      </div>
+
+</div>
+
