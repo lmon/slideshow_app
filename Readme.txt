@@ -22,7 +22,7 @@ As a user
 [X]	I want to be able to put images in a gallery
 [X]	I want to be able to order images in a gallery
 [X]	I want to be able to view the gallery
-	I want to be able to share the gallery via a link
+[?]	I want to be able to share the gallery via a link
 	I want to be able to share the gallery via code snippet
 
 Tier 2
@@ -42,6 +42,8 @@ As a user
 [X]	I want to be able to make the gallery private
 [X]	I want to be able to add image captions, 
 [X]	I want to be able to add a gallery title
+[X]	I want to be able to edit my profile w/o re-editing pw
+[X]	I want to be able to recover my password
 
 Tier 3
 As the system	
@@ -53,8 +55,7 @@ As the system
 [.]	I want the site to be responsive / mobile ready 
 
 As the User	
-[ ] I want to be able to recover my password
-[ ] I want to be able to email the admin via contact
+[X] I want to be able to email the admin via contact
 [ ] I want a animation on upload
 [ ] I want preview on upload
 
@@ -62,10 +63,10 @@ Components
 [X]	Register  -- User Model
 [X]	Authentication  -- Authentication Controller
 [X]	Gallery Display on page -- 'rambling-slider'
-[ ]	Gallery Display via JS
+[.]	Gallery Display via JS
 [X]	Image uploader			-- Paperclip
 [X]	Image Order				-- Jquery Draggable
-[ ]	Emailer
+[X]	Emailer
 [X] Amazon image storage
 
 Issues to be addressed 

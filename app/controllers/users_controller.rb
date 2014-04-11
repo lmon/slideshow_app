@@ -47,6 +47,14 @@ class UsersController < ApplicationController
 
   def update
     # User is now loaded with before_action :correct_user
+    
+    # on update, you might not want to re-enter password. if its blank, dont try to update
+    # see model for second part
+    if user_params[:password].blank?
+      user_params.delete(:password)
+      user_params.delete(:password_confirmation)
+    end
+
     if @user.update_attributes(user_params)
       flash[:success] = "Profile updated"
       redirect_to @user

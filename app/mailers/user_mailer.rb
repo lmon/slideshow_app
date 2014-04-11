@@ -15,11 +15,17 @@ class UserMailer < ActionMailer::Base
 		mail(from: "lmonaco@lucasmonaco.com", to: @user.email, subject: 'Site: New User to the Site')
 	end
 
-	def user_reset_password(user)
-		@user = user
-		mail(from: "lmonaco@lucasmonaco.com", to: @user.email, subject: 'Site: Reset Password')
+	#def user_reset_password(user)
+	#	@user = user
+	#	mail(from: "lmonaco@lucasmonaco.com", to: @user.email, subject: 'Site: Reset Password')
+	#
+	#end
 
+	def password_reset(user)
+  		@user = user
+  		mail :to => user.email, :subject => "Site: Password Reset"
 	end
+
 	
 	def contactus_email(contact)
 		@contact_name = contact.name

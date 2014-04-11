@@ -1,4 +1,5 @@
 Slideshow::Application.routes.draw do
+  get "password_resets/new"
   #get "assets/new"
   #get "galleries/new"
   #get "contacts/new"
@@ -34,6 +35,7 @@ Slideshow::Application.routes.draw do
   resources :sessions, only: [:new, :create, :destroy]
   resources :assets 
   resources :galleries #, only: [:view , :create, :destroy]
+  resources :password_resets
   
   # handle req to gallery / sort :json
   # maps to galleries#sort
