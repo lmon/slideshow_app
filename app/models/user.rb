@@ -8,6 +8,7 @@ class User < ActiveRecord::Base
 	
 	before_save { self.email = email.downcase }
 	before_create :create_remember_token
+	before_create { generate_token(:auth_token) } 
 
 	validates :name, presence: true, 
 		length: { in: 3..64 },  
@@ -18,10 +19,17 @@ class User < ActiveRecord::Base
                     uniqueness: { case_sensitive: false }, 
                     email: true # <-- custom email validator
 
-	validates :password, length: { minimum: 6 }
+	validates :password, length: { minimum: 6 }, :if => :password
 
 	has_secure_password
 
+	def send_password_reset
+		generate_token(:password_reset_token)
+		self.password_reset_sent_at = Time.zone.now
+		save!
+		UserMailer.password_reset(self).deliver
+	end
+		
 	def User.new_remember_token
 	    SecureRandom.urlsafe_base64
 	end
@@ -43,8 +51,14 @@ class User < ActiveRecord::Base
 	  self.galleries.count >= GALLERIES_LIMIT
 	end
 	##
-	 private
+	# used for login remember 
+	def generate_token(column)
+		begin self[column] = SecureRandom.urlsafe_base64(10)
+		end while User.exists?(column => self[column])
+	end
 
+	 private
+	 	# used for for login cookie
 	    def create_remember_token
 	      self.remember_token = User.encrypt(User.new_remember_token)
 	    end
