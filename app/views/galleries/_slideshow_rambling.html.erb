@@ -1,9 +1,0 @@
-<div class="slider-wrapper theme-default">
-    <div class="ribbon"></div>
-    <div id="sliderArea" class="ramblingSlider adaptingSlider">   
-     <% for asset in Asset.all %>
-        <% if @gallery.assets.include?(asset) %> 
-           <%= image_tag asset.image(:large), :title=>asset.caption  %> 
-        <% end %>
-     <% end %>
-</div>     
