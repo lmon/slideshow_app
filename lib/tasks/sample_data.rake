@@ -4,9 +4,9 @@ namespace :db do
     User.create!(name: "Example User",
                  email: "example@railstutorial.org",
                  password: "tabby99",
-                 password_confirmation: "tabby99",
+                 password_confirmation: " ",
                  admin: true)
-    99.times do |n|
+    29.times do |n|
       name  = Faker::Name.name
       email = "example-#{n+1}@railstutorial.org"
       password  = "jimmy99"
@@ -17,7 +17,7 @@ namespace :db do
     end
 
     users = User.all(limit: 6)
-    50.times do
+    10.times do
       content = Faker::Lorem.sentence(5)
       users.each { |user| user.galleries.create!(title: content) }
     end
