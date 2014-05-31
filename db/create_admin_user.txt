@@ -1,0 +1,2 @@
+
+u = User.create!(name: 'admin', admin: true, email: 'luke2@lucasmonaco.com', password: 'admin99', password_confirmation: 'admin99')

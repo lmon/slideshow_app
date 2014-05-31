@@ -32,7 +32,7 @@ describe "Asset Pages" do
             visit assets_path
         } 
         after { Asset.delete_all }
-        it "shoul have the right amount of assets" do
+        it "should have the right amount of assets" do
           expect(Asset.count).to eq(9) 
         end
 

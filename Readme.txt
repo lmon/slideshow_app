@@ -43,7 +43,7 @@ As a user
 [X]	I want to be able to add image captions, 
 [X]	I want to be able to add a gallery title
 [X]	I want to be able to edit my profile w/o re-editing pw
-[X]	I want to be able to recover my password
+[ ]	I want to be able to recover my password
 
 Tier 3
 As the system	
@@ -56,7 +56,7 @@ As the system
 
 As the User	
 [X] I want to be able to email the admin via contact
-[ ] I want a animation on upload
+[.] I want a animation on upload
 [ ] I want preview on upload
 
 Components
@@ -71,7 +71,7 @@ Components
 
 Issues to be addressed 
 [ ] Gallery edit: On load sometimes the sorting functionality doesnt work(jquery)
-[ ] Gallery view: On load of  page, some times images dont load (jquery)
-[ ] Gallery edit: Ajax Sort call doesnt require AUTH_TOKEN 
+[ ] Gallery view: On load of page, some times images dont load (jquery)
+[ ] Gallery edit: Gallery/Ajax Sort call doesnt require AUTH_TOKEN 
 [ ] Gallery edit: Sorting algorithim of Gallery assets is not scalable
 [ ] Gallery View: Formatting doesnt handle different size images well
