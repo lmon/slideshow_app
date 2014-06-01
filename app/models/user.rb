@@ -51,7 +51,7 @@ class User < ActiveRecord::Base
 	  self.galleries.count >= GALLERIES_LIMIT
 	end
 	##
-	# used for login remember 
+	# used for password reset & remember me
 	def generate_token(column)
 		begin self[column] = SecureRandom.urlsafe_base64(10)
 		end while User.exists?(column => self[column])
