@@ -1,5 +1,5 @@
 Slideshow::Application.routes.draw do
-  get "password_resets/new"
+  #get "password_resets/new"
   #get "assets/new"
   #get "galleries/new"
   #get "contacts/new"

@@ -89,6 +89,6 @@ Slideshow::Application.configure do
     }
   }
 
-    config.action_mailer.default_url_options = {:host=>"https://murmuring-ridge-6792.herokuapp.com/"}
+    config.action_mailer.default_url_options = {:host=>"https://murmuring-ridge-6792.herokuapp.com"}
 
 end
