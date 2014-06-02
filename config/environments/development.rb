@@ -34,4 +34,13 @@ Slideshow::Application.configure do
   }
   config.action_mailer.default_url_options = {:host=>"localhost:3000"}
 
+  Rails.configuration.site_name = "The Slidesharator"
+  Rails.configuration.site_url = "http://localhost:3000/"
+  # Read:
+  # Rails.configuration.site_url
+
+  # Slideshow::Application.config.custom_config_variable  = "WakaWaka"
+  # Read:
+  # Slideshow::Application.config.custom_config_variable
+
 end

@@ -4,16 +4,18 @@
  <h1>Slideshow App</h1>
 
   <h2>
-    This is the home page for the  application.
+    This is the home page for the  <%= Rails.configuration.site_name %>.
   </h2>
 <% if signed_in? %>
- Content only signed in people can see
+ 
+ Click here to browse somw of the content!
+
 <% else %>
   <%= link_to "Sign up now!", signup_path, class: "btn btn-large btn-primary" %>
 <% end %>
 
 </div>
 
-<%= image_tag("rails.png", alt: "Rails")  %>
+
 
   

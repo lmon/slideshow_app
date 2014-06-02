@@ -90,5 +90,7 @@ Slideshow::Application.configure do
   }
 
     config.action_mailer.default_url_options = {:host=>"https://murmuring-ridge-6792.herokuapp.com"}
+    Rails.configuration.site_name = "The Slidesharator"
+    Rails.configuration.site_url = "https://murmuring-ridge-6792.herokuapp.com"
 
 end
