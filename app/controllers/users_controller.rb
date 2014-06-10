@@ -19,8 +19,9 @@ class UsersController < ApplicationController
   end
 
   def show
-  	@user = User.find(params[:id])
+  	@user = User.includes(:assets).find(params[:id])
     @galleries = @user.galleries.paginate(page: params[:page])
+    #@assets = @user.assets
   end
 
   def create
@@ -65,12 +66,17 @@ class UsersController < ApplicationController
 
   def destroy
     # prevents user from deleting self
-    if User.find(params[:id]).id == current_user.id 
+    @user = User.find(params[:id])
+    if @user.id == current_user.id 
       redirect_to root_url
     else
-      User.find(params[:id]).destroy()
-      flash[:success] = "User Removed"
-      redirect_to users_url
+      @user.destroy
+      respond_to do |format|
+      format.html
+      format.js
+      #flash[:success] = "User Removed"
+      #redirect_to users_url
+      end
    end
     
   end

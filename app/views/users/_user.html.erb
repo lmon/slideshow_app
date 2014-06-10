@@ -1,4 +1,4 @@
-<li>
+<li id="user_<%= user.id %>">
   <div class="span2"><%= link_to user.name, user %></div>
   <!--<div class="span3"><%= user.email %></div>-->
 	<%if user_has_privileges user.id %>
@@ -6,6 +6,6 @@
 	<% end %>     
 
         <% if (current_user && current_user.admin?)  && !current_user?(user) %>      
-    <div class="span1"><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-small btn-secondaary" %></div>
+    <div class="span1"><%= link_to 'Destroy', user, method: :delete, remote: true, data: { confirm: 'Are you sure?' }, class: "btn btn-small btn-secondaary" %></div>
       <% end %>     
 </li>

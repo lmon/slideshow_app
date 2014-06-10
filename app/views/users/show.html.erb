@@ -16,6 +16,7 @@
        <%end%></p>
 
        <p><%= link_to 'View My Images', assets_path , class: "btn btn-small btn-secondary"%>   
+       I have <%= @user.assets.any? %> images
 
         <p><%if limitcheck? 'assets' %>
        <%=link_to 'Upload  images', new_asset_path , class: "btn btn-small btn-secondary"%>  
