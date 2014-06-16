@@ -1,18 +1,20 @@
+<% provide(:title, 'Asset Listing') %>
 <h1>Listing assets (<%= @assets.count %>) </h1>
 
-
- <%= will_paginate %>
+<%= will_paginate %>
 
 <div class="container">
-  <ul class="galleries">
+  <ul class="assets">
   <%= render @assets %>
   </ul>
 </div>
 
 <%= will_paginate %>
 
- <p><%if limitcheck? 'assets' %>
+<div class="container">
+ 	<p><%if limitcheck? 'assets' %>
         <%=link_to 'Upload images', new_asset_path , class: "btn btn-small btn-secondary"%>
         <%else%>
         You have reached the maximum number of Assets
         <%end%></p> 
+</div>

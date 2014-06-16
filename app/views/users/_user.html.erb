@@ -1,6 +1,9 @@
 <li id="user_<%= user.id %>">
-  <div class="span2"><%= link_to user.name, user %></div>
-  <!--<div class="span3"><%= user.email %></div>-->
+  <div class="span3"><h5><%= link_to user.name, user %>
+        <% if (current_user && current_user.admin?)  %>      
+		 <small>(<%= user.email %>)</small>
+		 <% end %></h5>
+	</div>	 
 	<%if user_has_privileges user.id %>
 	  <div class="span1"><%= link_to 'Edit', edit_user_path(user) , class: "btn btn-small btn-secondaary"%></div>
 	<% end %>     

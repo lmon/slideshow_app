@@ -59,8 +59,12 @@ layout :resolve_layout
       flash[:success] = "Gallery Removed"
       redirect_to current_user 
      else # you don
-      flash[:success] = "Action Not Allowed by You"
-      redirect_to root_url
+      respond_to do |format|
+      format.html
+      format.js
+     end
+      #flash[:success] = "Action Not Allowed by You"
+      #redirect_to root_url
    end
   end
   

@@ -1,14 +1,14 @@
-<li>
+<li id="gallery_<%= gallery.id %>">
   <span class="content"><%= link_to gallery.title, gallery %> <br />
    		<span class="timestamp">
 	    Posted <%= time_ago_in_words(gallery.created_at) %> ago by 
-	    	<span class="username"><%= link_to User.find(gallery.user_id).name, user_path(gallery.user_id) %>
+	    	<span class="username"><%= link_to gallery.user.name, user_path(gallery.user) %>
 	    	</span>
 		</span>
 	</span>
 	<%if user_has_privileges gallery.user_id %>
 	<span>    
-	    <%= link_to 'Destroy', gallery, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-small btn-secondary" %>
+	    <%= link_to 'Destroy', gallery, method: :delete, remote: true, data: { confirm: 'Are you sure?' }, class: "btn btn-small btn-secondary" %>
   <%= link_to 'Edit', edit_gallery_path(gallery) , class: "btn btn-small btn-secondary"%> 
 	</span>
 <% end %>  

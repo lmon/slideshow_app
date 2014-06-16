@@ -75,3 +75,13 @@ Issues to be addressed
 [ ] Gallery edit: Gallery/Ajax Sort call doesnt require AUTH_TOKEN 
 [ ] Gallery edit: Sorting algorithim of Gallery assets is not scalable
 [ ] Gallery View: Formatting doesnt handle different size images well
+
+Refactoring Needed
+[ ] Nested Resources (update form,controller, links)
+[ ] Nested Models
+[ ] Ajaxify links
+[ ] On [ACTION] handlers (before_save/after_update, etc)
+[ ] Optimize Queries 
+[ ] Add "includes"
+[ ] Make Routes more restful
+[ ] Use Path & URL helpers
