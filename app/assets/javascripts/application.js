@@ -11,6 +11,7 @@
 // about supported directives.
 //
 //= require jquery
+//= require jquery.turbolinks 
 //= require jquery_ujs
 //= require jquery.rambling.slider
 //= require jquery.ui.all
@@ -21,10 +22,9 @@
 
 if(!slideshow){ var slideshow = {}; }
 
-$(function() {
+$(document).ready(function () {
 
-  $( "#tabs" ).tabs();
-
+  
   slideshow.loader = function(mode){
       console.log('inside load function')
       if(mode == false){
@@ -37,11 +37,15 @@ $(function() {
       }
   }
 
+/************ FOR GALLERY ************/
+
   $('#sliderArea').ramblingSlider({
     useLargerImage: false,
     effect: 'slideInRight'
   });
 
+
+/*********** FOR Gallery Form Sortable ********/
   $( "#sortable-toadd" ).sortable({
        cursor: 'crosshair',
        opacity: 0.4,
@@ -60,7 +64,7 @@ $(function() {
   $( "#sortable, #sortable-toadd" ).disableSelection();
 
  
-    $( "#sortable" ).sortable({
+  $( "#sortable" ).sortable({
        cursor: 'crosshair',
        opacity: 0.4,
        placeholder: "ui-state-highlight",
@@ -107,17 +111,21 @@ $(function() {
        }
       ); // end call
     } // end update
-    });
+  });
 
   $('#assetsubmit').click( function(event){ 
     slideshow.loader(false);
     $('#assetform').submit();
   });
 
-  // checking
-  console.log('Sortable: '+ $("#sortable" ).attr('id'))
-  console.log('Tabs: '+ $( "#tabs" ).attr('id'))
+/*********** FOR Image Area Tabs ********/
+if($( "#tabs" ).length > 0){ $( "#tabs" ).tabs(); }
 
+/*********** FOR Forms sortable area ********/
+if($("#sortable" ).length > 0){ console.log('Got Sortable' )  }
+
+/*********** FOR Gallery Slideshow ********/
+if($('#sliderArea').length > 0){ console.log('Got Slider' )  }
 
 
 });

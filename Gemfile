@@ -18,6 +18,9 @@ gem 'rambling-slider-rails'
 #sortable!
 gem 'jquery-ui-rails'
 
+# solves issue with jquery only working on eloads
+gem 'jquery-turbolinks'
+
 ##
 group :development, :test do
   gem 'sqlite3', '1.3.8'
