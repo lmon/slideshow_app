@@ -17,6 +17,15 @@ class AssetsController < ApplicationController
     end
 end
 
+def index_all
+    if signed_in_as_admin_user?  # logged in as admin? show all
+      @assets = Asset.paginate(page: params[:page])  # gets all assets  
+      render 'index'
+     else
+      redirect_to root_url
+    end
+end
+
   # GET /assets/1
   # GET /assets/1.json
   def show

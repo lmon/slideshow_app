@@ -3,7 +3,7 @@ class Gallery < ActiveRecord::Base
 	has_and_belongs_to_many :assets
 	# limits number of galleries user can have	
 	validate :check_galleries_limit, :on => :create
-
+	# ADD AN ON DELETE, CLEAN UP ASSET RELATIONSHIPS
 
 	default_scope -> { order('created_at DESC') }
 	

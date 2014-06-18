@@ -15,11 +15,11 @@
         You have reached the maximum number of Galleries
        <%end%></p>
 
-       <p><%= link_to 'View My Images', assets_path , class: "btn btn-small btn-secondary"%>   
+       <p><%= link_to 'View My Images', user_assets_path(@user) , class: "btn btn-small btn-secondary"%>   
        I have <%= @user.assets.any? %> images
 
         <p><%if limitcheck? 'assets' %>
-       <%=link_to 'Upload  images', new_asset_path , class: "btn btn-small btn-secondary"%>  
+       <%=link_to 'Upload  images', new_user_asset_path(@user) , class: "btn btn-small btn-secondary"%>  
        <%else%>
        You have reached the maximum number of Assets
         <% end %>

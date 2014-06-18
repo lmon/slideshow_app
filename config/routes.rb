@@ -1,9 +1,4 @@
 Slideshow::Application.routes.draw do
-  #get "password_resets/new"
-  #get "assets/new"
-  #get "galleries/new"
-  #get "contacts/new"
-  #get "users/new"
 
   # use this
   # : automatically creates named routes for use in the controllers and views
@@ -17,12 +12,8 @@ Slideshow::Application.routes.draw do
   match '/signin',  to: 'sessions#new',         via: 'get'
   match '/signout', to: 'sessions#destroy',     via: 'delete'
   match '/assets',  to: 'assets#update',        via: 'patch'
-  match '/share/:v/:id', to: 'galleries#shareview', :as => "share_for_gallery", via: 'get' 
-
-
-  # not this
-  # get "static_pages/home"
- 
+  match '/all_assets',  to: 'assets#index_all',  :as => "all_assets",    via: 'get'
+  match '/share/:v/:id', to: 'galleries#shareview', :as => "share_for_gallery", via: 'get'  
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
@@ -31,9 +22,13 @@ Slideshow::Application.routes.draw do
   root to: "static_pages#home"
   
   resources :contacts
-  resources :users
+  resources :users do
+    resources :assets 
+  end
+
+  
   resources :sessions, only: [:new, :create, :destroy]
-  resources :assets 
+  #resources :assets 
   resources :galleries #, only: [:view , :create, :destroy]
   resources :password_resets
   
