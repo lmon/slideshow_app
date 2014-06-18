@@ -5,9 +5,7 @@ class AssetsController < ApplicationController
   # allows users to access these functions only for them elves
   before_action :correct_user,   only: [:edit, :update]
 
- # GET /assets
-  # GET /assets.json
-  def index
+   def index
     if signed_in_as_admin_user?  # logged in as admin? show all
       @assets = Asset.paginate(page: params[:page])  # gets all assets  
      elsif signed_in?
@@ -19,15 +17,13 @@ end
 
 def index_all
     if signed_in_as_admin_user?  # logged in as admin? show all
-      @assets = Asset.paginate(page: params[:page])  # gets all assets  
+      @assets = Asset.includes(:user).paginate(page: params[:page])  # gets all assets  
       render 'index'
      else
       redirect_to root_url
     end
 end
 
-  # GET /assets/1
-  # GET /assets/1.json
   def show
     #@asset = Asset.find(params[:id])
   end

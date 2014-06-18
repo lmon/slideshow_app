@@ -1,4 +1,4 @@
-<%= form_for @asset, :html => { :multipart => true , id: "assetform" }  do |f| %>
+<%= form_for [current_user, @asset], :html => { :multipart => true , id: "assetform" }  do |f| %>
   <% if @asset.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@asset.errors.count, "error") %> prohibited this asset from being saved:</h2>

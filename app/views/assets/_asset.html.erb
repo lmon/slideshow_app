@@ -1,15 +1,15 @@
 <li>
-  <span class="content"><%= link_to asset.name, asset %> <br />
+  <span class="content"><%= link_to asset.name, user_asset_path(asset.user, asset)%> <br />
    		<span class="timestamp">
 	    Uploaded on <%= time_ago_in_words(asset.created_at) %> ago by 
-	    	<span class="username"><%= link_to User.find(asset.user_id).name, asset_path(asset.user_id) %>
+	    	<span class="username"><%= link_to asset.user.name, user_path(asset.user_id) %>
 	    	</span>
 		</span>
 	</span>
 	<%if user_has_privileges asset.user_id %>
 	<span>    
 	    <%= link_to 'Destroy', asset, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-small btn-secondary" %>
-  <%= link_to 'Edit', edit_user_asset_path(asset, asset.user) , class: "btn btn-small btn-secondary"%> 
+  <%= link_to 'Edit', edit_user_asset_path(asset.user, asset) , class: "btn btn-small btn-secondary"%> 
 	</span>
 <% end %>  
   

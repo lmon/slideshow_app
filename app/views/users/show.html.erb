@@ -6,17 +6,15 @@
         <%= gravatar_for @user %>
         <%= @user.name %>
       </h1>
-
-      <%if user_has_privileges @user.id %>
+ 
        <div id="user_buttons">
+
+      <%if (user_has_privileges @user.id ) && (current_user.id == @user.id) %>
         <p><%if limitcheck? 'galleries' %>
           <%= link_to 'Create New Gallery', new_gallery_path , class: "btn btn-small btn-secondary"%>
        <%else%>
         You have reached the maximum number of Galleries
        <%end%></p>
-
-       <p><%= link_to 'View My Images', user_assets_path(@user) , class: "btn btn-small btn-secondary"%>   
-       I have <%= @user.assets.any? %> images
 
         <p><%if limitcheck? 'assets' %>
        <%=link_to 'Upload  images', new_user_asset_path(@user) , class: "btn btn-small btn-secondary"%>  
@@ -25,9 +23,13 @@
         <% end %>
 
        </p>
-       </div>
-       
        <% end %>
+
+              <p><%= link_to 'View My Images', user_assets_path(@user) , class: "btn btn-small btn-secondary"%>   
+       I have <%= @user.assets.any? %> images
+
+       </div>       
+
     </section>
   </aside>
   
