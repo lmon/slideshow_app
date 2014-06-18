@@ -70,8 +70,8 @@ Components
 [X] Amazon image storage
 
 Issues to be addressed 
-[ ] Gallery edit: On load sometimes the sorting functionality doesnt work(jquery)
-[ ] Gallery view: On load of page, some times images dont load (jquery)
+[X] Gallery edit: On load sometimes the sorting functionality doesnt work(jquery)
+[X] Gallery view: On load of page, some times images dont load (jquery)
 [ ] Gallery edit: Gallery/Ajax Sort call doesnt require AUTH_TOKEN 
 [ ] Gallery edit: Sorting algorithim of Gallery assets is not scalable
 [ ] Gallery View: Formatting doesnt handle different size images well
@@ -79,7 +79,7 @@ Issues to be addressed
 Refactoring Needed
 [ ] Nested Resources (update form,controller, links)
 [ ] Nested Models
-[ ] Ajaxify links
+[. ] Ajaxify links (User delete, Gallery delete)
 [ ] On [ACTION] handlers (before_save/after_update, etc)
 [ ] Optimize Queries 
 [ ] Add "includes"

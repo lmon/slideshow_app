@@ -332,36 +332,38 @@ aside {
       display:inline-block;
       width: 49%; 
       background-color:#DDD;
+      min-height: 50px;
  }
 }
-  #sortable, #sortable-toadd { 
-    list-style-type: none; 
-    margin: 4px; 
-    padding: 4px; 
-    width: 100; 
+#sortable, #sortable-toadd { 
+  list-style-type: none; 
+  margin: 4px; 
+  padding: 4px; 
+  width: 100; 
 
-    li { 
-      margin: 0 0 5px 0; 
-      padding: 1px; 
-      font-size: 1em; 
-      height: 3em; 
-      border: 1px #888 solid;
-      overflow:hidden;
+  li { 
+    margin: 0 0 5px 0; 
+    padding: 1px; 
+    font-size: 1em; 
+    height: 3em; 
+    border: 1px #888 solid;
+    overflow:hidden;
+  }
+  
+  /*
+  html>body #sortable li { 
+    height: 2em; 
+    line-height: 1.2em; 
     }
-    
-    /*
-    html>body #sortable li { 
-      height: 2em; 
-      line-height: 1.2em; 
-      }
-    .ui-state-highlight { height: 2em; line-height: 1.2em; }
-  */
+  .ui-state-highlight { height: 2em; line-height: 1.2em; }
+*/
 
   .handle{
     display:inline-block;
     height: 100%;
     width:  25px;
-    background-color: #999;
+     background: #999 url(asset-path( 'drag-icon.png' , image)) no-repeat 4px 13px;
+    
   }
 
   .containercheck, .containerthumb, .containertext{

@@ -45,78 +45,7 @@ $(document).ready(function () {
   });
 
 
-/*********** FOR Gallery Form Sortable ********/
-  $( "#sortable-toadd" ).sortable({
-       cursor: 'crosshair',
-       opacity: 0.4,
-       placeholder: "ui-state-highlight",
-       handle: '.handle',
-       receive: function(event, ui) { 
-        // on drop, uncheck the check box
-        ui.item.find( "input:checkbox" ).prop('checked', false);
-       },
-  });
 
-  $( "#sortable, #sortable-toadd" ).sortable({
-      connectWith: ".connectedSortable"
-    });
-
-  $( "#sortable, #sortable-toadd" ).disableSelection();
-
- 
-  $( "#sortable" ).sortable({
-       cursor: 'crosshair',
-       opacity: 0.4,
-       placeholder: "ui-state-highlight",
-       handle: '.handle',
-      receive: function(event, ui) { 
-        // on drop, check the check box
-        console.log(ui.item.find( "input:checkbox" )) //containercheck
-        ui.item.find( "input:checkbox" ).prop('checked', true);
-        ui.item.find( "input:checkbox" ).attr('checked', 'checked');
-        
-        console.log('checkbox checked')
-
-       },
-      update: function(){
-        if(!$( "#sortable" ).attr( "gid" )){console.error('there was an error w gid');return;}
-        
-        AUTH_TOKEN = $('meta[name=csrf-token]').attr('content');
-
-        if( AUTH_TOKEN == null ){ console.error('there was an error w Auth');return;}
-
-/* works :  $.get('/galleries/'+$( "#sortable" ).attr( "gid" )+'/sort/id?', '_method=put&authenticity_token='+AUTH_TOKEN+'&'+$(this).sortable('serialize')); */
-
-        var postdata = { 
-        'authenticity_token':AUTH_TOKEN          
-        }   
-         
-       $.ajax({
-          url: '/galleries/'+$( "#sortable" ).attr( "gid" )+'/sort/id?'+$(this).sortable('serialize'),
-          data: postdata,
-          type: 'post',  
-          beforeSend: function (req){
-            slideshow.loader(false);
-            console.log('sorting start')
-          },
-          error: function (textStatus, errorThrown){
-            slideshow.loader(true);
-            console.log('sorting error')
-          },
-          complete: function (req){
-            // call global loader func
-            slideshow.loader(true);
-            console.log('sorting complete')
-          },
-       }
-      ); // end call
-    } // end update
-  });
-
-  $('#assetsubmit').click( function(event){ 
-    slideshow.loader(false);
-    $('#assetform').submit();
-  });
 
 /*********** FOR Image Area Tabs ********/
 if($( "#tabs" ).length > 0){ $( "#tabs" ).tabs(); }
