@@ -12,7 +12,6 @@ protect_from_forgery only: [:sort]
 
 layout :resolve_layout
 
-
   def index
     # i assume this can only be used if the display is paginated?
     @galleries = Gallery.paginate(page: params[:page])
@@ -79,7 +78,7 @@ layout :resolve_layout
     # set default
     @template = 'slideshow_customv3'
     if @view_options.has_key?(params[:v].to_i) 
-            @template = 'slideshow_customv'+ params[:v] 
+      @template = 'slideshow_customv'+ params[:v] 
     end
     # the main share view
     # pulls in the child view

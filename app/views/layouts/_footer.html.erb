@@ -1,17 +1,18 @@
 <footer class="footer">
-  <small>
-    Copyright ©<%=Time.new.year   %>. All rights reserved. Do not duplicate or redistribute in any form.
-  
-<span id="demo"></span>
-
-</small>
-  <nav>
+    <nav>
     <ul>
       <li><%= link_to "About",   about_path %></li>
       <li><%= link_to "Contact", contact_path %></li>
       <li><%= link_to "help", help_path %></li> 
     </ul>
   </nav>
+
+<small>
+    Copyright ©<%=Time.new.year   %>. All rights reserved. Do not duplicate or redistribute in any form.
+  
+    <p>Your browser is <span id="demo"></span> pixels wide.</p>
+
+</small>
 </footer>
 
 <div id="dvLoading">
