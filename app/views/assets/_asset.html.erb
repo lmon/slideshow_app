@@ -1,4 +1,4 @@
-<li>
+<li id="asset_<%= asset.id %>">
   <span class="content"><%= link_to asset.name, user_asset_path(asset.user, asset)%> <br />
    		<span class="timestamp">
 	    Uploaded on <%= time_ago_in_words(asset.created_at) %> ago by 
@@ -6,10 +6,12 @@
 	    	</span>
 		</span>
 	</span>
+
+
 	<%if user_has_privileges asset.user_id %>
 	<span>    
-	    <%= link_to 'Destroy', asset, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-small btn-secondary" %>
-  <%= link_to 'Edit', edit_user_asset_path(asset.user, asset) , class: "btn btn-small btn-secondary"%> 
+	    <%= link_to 'Destroy', user_asset_path(asset.user, asset), remote:true, method: :delete,  data: { confirm: 'Are you sure?' }, class: "btn btn-small btn-secondary" %>
+  		<%= link_to 'Edit', edit_user_asset_path(asset.user, asset) , class: "btn btn-small btn-secondary"%> 
 	</span>
 <% end %>  
   

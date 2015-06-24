@@ -21,28 +21,38 @@
 
       <h1><%= @gallery.title %></h1>
       
-      <div>
-        <b>Links:</b><br />  
-        This page <%= link_to gallery_path(@gallery) %> <br />
-        <ul>
-        <% for k,v in @view_options %>
-         <li>"<%= v %>" version  <%= link_to share_for_gallery_path(k, @gallery.to_param()), share_for_gallery_path(k, @gallery.to_param())  %> </li>
-        <% end %>
-        </ul>
-        
+      <% if @gallery.assets.count > 0 %>
+        <div>
+          <b>Links:</b><br />  
+          This page <%= link_to gallery_path(@gallery) %> <br />
+          <ul>
+          <% for k,v in @view_options %>
+           <li>"<%= v %>" version  <%= link_to share_for_gallery_path(k, @gallery.to_param()), share_for_gallery_path(k, @gallery.to_param())  %> </li>
+          <% end %>
+          </ul>
+        </div>
+       <%else%>
+       No images in this gallery yet.
+       <%end%>
+
+       <div>
+         <% if @gallery.private == 0 %>
+         This gallery is public. 
+         <% else %>
+         This gallery is private. 
+         <% end %>
+         
       </div>
       
-       <div>
-        Private? <%= 'Yes' unless @gallery.private == 0 %>
-      </div>
-       <div>
-        Order: <%= @gallery.asset_order %>
-      </div>
+      <% if @gallery.assets.count > 0 %>
+        <div>
+          Order: <%= @gallery.asset_order %>
+        </div>
       
-      <p>Has Assets: Count: <%=@gallery.assets.count %></p>
+        <p>This gallery has <%=@gallery.assets.count %> assets.</p>
+      <%end%>
       
              
-      <p>This gallery has <%=@gallery.assets.count %> assets.</p>
       
       <%= render 'slideshow_customv5' %>      
     

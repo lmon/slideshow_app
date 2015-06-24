@@ -21,7 +21,6 @@ class UsersController < ApplicationController
   def show
   	@user = User.includes(:assets).find(params[:id])
     @galleries = @user.galleries.paginate(page: params[:page])
-    #@assets = @user.assets
   end
 
   def create

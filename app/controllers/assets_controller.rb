@@ -52,9 +52,14 @@ end
   # DELETE /assets/1
   # DELETE /assets/1.json
   def destroy
-     Asset.find(params[:id]).destroy()
-      flash[:success] = "Asset Deleted"
-      redirect_to assets_url
+      @asset = Asset.find(params[:id]) #.destroy()
+      #flash[:success] = "Asset Deleted"
+      #redirect_to all_assets_url
+      @asset.destroy
+      respond_to do |format|
+      format.html
+      format.js
+      end
   end
 
 	# POST /assets
@@ -63,7 +68,7 @@ end
     @asset = current_user.assets.build(asset_params)
     if @asset.save
          flash[:success] = "Asset created!"
-         redirect_to @asset
+         redirect_to all_assets_url #@asset
     else
         render 'new'
     end

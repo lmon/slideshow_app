@@ -17,16 +17,19 @@
        <%end%></p>
 
         <p><%if limitcheck? 'assets' %>
-       <%=link_to 'Upload  images', new_user_asset_path(@user) , class: "btn btn-small btn-secondary"%>  
+          <%=link_to 'Upload  images', new_user_asset_path(@user) , class: "btn btn-small btn-secondary"%>  
        <%else%>
-       You have reached the maximum number of Assets
+        You have reached the maximum number of Assets
         <% end %>
 
        </p>
        <% end %>
 
-              <p><%= link_to 'View My Images', user_assets_path(@user) , class: "btn btn-small btn-secondary"%>   
-       I have <%= @user.assets.any? %> images
+       <%if @user.assets.count > 0 %>
+        <p><%= link_to 'View My Images', user_assets_path(@user) , class: "btn btn-small btn-secondary"%></p>   
+       <%else%>
+        <p>I have no images</p>
+        <% end %>
 
        </div>       
 

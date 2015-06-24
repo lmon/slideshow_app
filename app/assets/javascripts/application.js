@@ -23,7 +23,6 @@
 if(!slideshow){ var slideshow = {}; }
 
 $(document).ready(function () {
-
   
   slideshow.loader = function(mode){
       console.log('inside load function')
@@ -44,9 +43,6 @@ $(document).ready(function () {
     effect: 'slideInRight'
   });
 
-
-
-
 /*********** FOR Image Area Tabs ********/
 if($( "#tabs" ).length > 0){ $( "#tabs" ).tabs(); }
 
@@ -57,6 +53,13 @@ if($("#sortable" ).length > 0){ console.log('Got Sortable' )  }
 if($('#sliderArea').length > 0){ console.log('Got Slider' )  }
 
 
+});
+
+$(document).on('page:fetch', function() {
+  $(".loading-indicator").show();
+});
+$(document).on('page:change', function() {
+  $(".loading-indicator").hide();
 });
 
 

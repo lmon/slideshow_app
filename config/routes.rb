@@ -12,7 +12,8 @@ Slideshow::Application.routes.draw do
   match '/signin',  to: 'sessions#new',         via: 'get'
   match '/signout', to: 'sessions#destroy',     via: 'delete'
   match '/assets',  to: 'assets#update',        via: 'patch'
-  match '/all_assets',  to: 'assets#index_all',  :as => "all_assets",    via: 'get'
+  match '/assets',  to: 'assets#destroy',        via: 'delete'
+  match '/all_assets',  to: 'assets#index',  :as => "all_assets",    via: 'get'
   match '/share/:v/:id', to: 'galleries#shareview', :as => "share_for_gallery", via: 'get'  
 
   # The priority is based upon order of creation: first created -> highest priority.
@@ -35,7 +36,7 @@ Slideshow::Application.routes.draw do
   # handle req to gallery / sort :json
   # maps to galleries#sort
   # sample URL /galleries/304/sort/id?asset[]=23&asset[]=21&asset[]=22&asset[]=19&asset[]=14&asset[]=13&asset[]=7&asset[]=6
-  post 'galleries/:id/sort/:ids' => 'galleries#sort'#, {:sort => :get }
+  post 'galleries/:id/sort/:ids' => 'galleries#sort' #, {:sort => :get }
 
 
   # Example of regular route:

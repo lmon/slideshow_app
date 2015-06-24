@@ -13,6 +13,12 @@
     
     <%= csrf_meta_tags %>
 
+    <!-- JS needs to be here , per https://coderwall.com/p/ypzfdw/faster-page-loads-with-turbolinks -->
+    <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+
+    <%= javascript_include_tag "jquery.colorbox.js", "data-turbolinks-track" => true %>
+
+
     <%= render 'layouts/shim' %>
   </head>
 
@@ -38,9 +44,6 @@
 </div>
 
 
-<%= javascript_include_tag "application", "data-turbolinks-track" => true %>
-
-<%= javascript_include_tag "jquery.colorbox.js", "data-turbolinks-track" => true %>
 
 <script type="text/javascript">
   document.getElementById("demo").innerHTML = $(document).width();;
