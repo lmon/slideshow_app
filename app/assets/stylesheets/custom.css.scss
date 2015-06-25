@@ -354,13 +354,13 @@ aside {
     line-height: 1.2em; 
     }
   .ui-state-highlight { height: 2em; line-height: 1.2em; }
-*/
+  */
 
   .handle{
     display:inline-block;
     height: 100%;
     width:  25px;
-     background: #999 url(asset-path( 'drag-icon.png' , image)) no-repeat 4px 13px;
+     background: #999 url(asset-path( 'cursor_drag_hand.png' , image)) no-repeat 1px 1px;
     
   }
 

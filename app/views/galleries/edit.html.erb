@@ -10,6 +10,7 @@
         <%=render 'shared/error_messages', thing: @gallery%>
 		<%=render 'gallery_form', f:f   , allassets: @allassets , usedsortedassets: @usedsortedassets %>
 
+      <a href="#" id="assetsubmit">click</a>
       <%= f.submit class: "btn btn-small btn-primary" %> <%=link_to 'Cancel', current_user , class: "btn btn-small btn-secondary"%> 
     <% end %>
 

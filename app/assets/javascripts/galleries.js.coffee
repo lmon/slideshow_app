@@ -72,6 +72,7 @@ $("#sortable").sortable
 # end call
 # end update
 $("#assetsubmit").click (event) ->
-  slideshow.loader false
-  $("#assetform").submit()
+  alert("i work");
+  #slideshow.loader false
+  #$("#assetform").submit()
   return
