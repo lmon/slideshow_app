@@ -1,5 +1,5 @@
 <% provide(:title, 'Asset Listing') %>
-<h1>Listing <%= current_user.name %>'s assets (<%= @assets.count %>) </h1>
+<h1>Listing assets for <%= current_user.name %> (<%= @assets.count %>) </h1>
 
 <%= will_paginate %>
 
